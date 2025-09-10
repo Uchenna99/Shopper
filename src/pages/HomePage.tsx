@@ -1,8 +1,12 @@
+import NavigationBar from "../components/NavigationBar"
 
 
 const HomePage = () => {
   return (
-    <div className="text-3xl text-red-500">HomePage</div>
+    <>
+      <NavigationBar/>
+      <div className="text-3xl text-red-500">HomePage</div>
+    </>
   )
 }
 

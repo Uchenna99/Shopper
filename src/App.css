@@ -1,1 +1,46 @@
 @import "tailwindcss";
+
+*{
+    box-sizing: border-box;
+}
+
+
+@font-face {
+    font-family: monts-light;
+    src: url(./assets/Fonts/Montserrat-Light.woff2);
+}
+
+@font-face {
+    font-family: monts-regular;
+    src: url(./assets/Fonts/Montserrat-Regular.woff2);
+}
+
+@font-face {
+    font-family: monts-medium;
+    src: url(./assets/Fonts/Montserrat-Medium.woff2);
+}
+
+@font-face {
+    font-family: monts-semi-bold;
+    src: url(./assets/Fonts/Montserrat-SemiBold.woff2);
+}
+
+@font-face {
+    font-family: monts-bold;
+    src: url(./assets/Fonts/Montserrat-Bold.woff2);
+}
+
+@font-face {
+    font-family: monts-extra-bold;
+    src: url(./assets/Fonts/Montserrat-ExtraBold.woff2);
+}
+
+
+@theme {
+    --font-monts-light: "monts-light";
+    --font-monts-regular: "monts-regular";
+    --font-monts-medium: "monts-medium";
+    --font-monts-semi-bold: "monts-semi-bold";
+    --font-monts-bold: "monts-bold";
+    --font-monts-extra-bold: "monts-extra-bold";
+}
