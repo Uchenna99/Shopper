@@ -35,6 +35,22 @@
     src: url(./assets/Fonts/Montserrat-ExtraBold.woff2);
 }
 
+@font-face {
+    font-family: merienda-medium;
+    src: url(./assets/Fonts/Merienda-Medium.woff2);
+}
+
+@font-face {
+    font-family: merienda-semi-bold;
+    src: url(./assets/Fonts/Merienda-SemiBold.woff2);
+}
+
+@font-face {
+    font-family: merienda-bold;
+    src: url(./assets/Fonts/Merienda-Bold.woff2);
+}
+
+
 
 @theme {
     --font-monts-light: "monts-light";
@@ -43,4 +59,7 @@
     --font-monts-semi-bold: "monts-semi-bold";
     --font-monts-bold: "monts-bold";
     --font-monts-extra-bold: "monts-extra-bold";
+    --font-merienda-medium: "merienda-medium";
+    --font-merienda-semi-bold: "merienda-semi-bold";
+    --font-merienda-bold: "merienda-bold";
 }
