@@ -9,7 +9,7 @@ const NavRightOption = ({ title }:Props) => {
     const [hovering, setHovering] = useState(false);
 
   return (
-    <div className="flex items-center gap-[6px]"
+    <div className="flex items-center gap-[6px] max-md:hidden"
         onMouseEnter={()=>setHovering(true)} onMouseLeave={()=>setHovering(false)}>
         
         {

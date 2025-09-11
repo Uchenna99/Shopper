@@ -1,27 +1,38 @@
-import { Search } from "lucide-react";
-import { motion } from "framer-motion";
+import { Search, X } from "lucide-react";
 
 interface Props {
   searching: boolean;
+  close: ()=>void;
 }
 
 
-const SearchBar = ({ searching }:Props) => {
+const SearchBar = ({ searching, close }:Props) => {
 
   return (
     <>
         <div className="w-full h-10 rounded-3xl ring-1 ring-black/20 flex items-center justify-center focus-within:ring-orange-300 
           transition-all duration-200 relative">
 
-            <motion.input type="text" 
-                className="w-full border-none outline-none pl-5 text-black-text font-monts-medium "
+            <input type="text" 
+                className={`w-full border-none outline-none pl-5 pr-10 text-black-text font-monts-medium
+                ${searching? '':'hidden'}`}
             />
 
             <Search
               size={18}
               color={'#2b2726'}
-              className={`absolute z-90 transition-all duration-200 ${searching? '':''}`}
+              className={`absolute right-[11px] z-90 transition-all duration-200 ${searching? '':''}`}
             />
+
+            {
+              searching &&
+              <X
+                size={18}
+                color="#ffb86a"
+                className="absolute -right-5 top-1"
+                onClick={close}
+              />
+            }
 
         </div>
     </>
