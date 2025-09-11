@@ -7,15 +7,15 @@ import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useMediaQuery } from "../../hooks/MediaQuery";
 import NavDropDown from "./NavDropDown";
+import { useAppContext } from "../../hooks/AppContext";
 
 
 const NavigationBar = () => {
+  const { showMenu, setShowMenu } = useAppContext();
   const isMobile = useMediaQuery("(max-width: 530px)");
   const [searching, setSearching] = useState(false);
   const [hideLogo, setHideLogo] = useState(false);
-  const [showMenu, setShowMenu] = useState(false);
 
-  // const dropdownRef = useRef(null);
 
   useEffect(()=>{
     if(isMobile && searching) {
@@ -31,26 +31,11 @@ const NavigationBar = () => {
     if(!searching) { setSearching(true) };
   };
 
-  // useEffect(() => {
-  //   function handleClickOutside(event: MouseEvent) {
-  //     if (
-  //       dropdownRef.current &&
-  //       !dropdownRef.current.contains(event.target as Node)
-  //     ) {
-  //       setToggle(true); // hide immediately
-  //     }
-  //   }
-
-  //   document.addEventListener("mousedown", handleClickOutside);
-  //   return () => {
-  //     document.removeEventListener("mousedown", handleClickOutside);
-  //   };
-  // }, []);
-
 
   return (
     <>
-        <NavDropDown show={showMenu} />
+        <NavDropDown />
+
         <div className="w-full h-20 bg-white flex justify-center sticky top-0 z-50 shadow-sm">
             <div className={`w-[1300px] max-w-full h-full flex items-center justify-between px-5 gap-2`}>
 
@@ -65,7 +50,7 @@ const NavigationBar = () => {
 
                 <div className="h-full flex items-center gap-6 text-black-text max-lg:hidden">
                   
-                  <NavOption/>
+                  <NavOption />
 
                   <p className="text-lg font-monts-medium cursor-pointer hover:text-orange-400 transition-all duration-250 text-nowrap">
                     About us
