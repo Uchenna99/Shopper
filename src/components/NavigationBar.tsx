@@ -2,29 +2,64 @@ import logo from "../assets/Icons/online-shopping_3081648.svg";
 import NavOption from "./NavOption";
 import SearchBar from "./SearchBar";
 import NavRightOption from "./NavRightOption";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useMediaQuery } from "../hooks/MediaQuery";
+import NavDropDown from "./NavDropDown";
 
 
 const NavigationBar = () => {
   const isMobile = useMediaQuery("(max-width: 530px)");
   const [searching, setSearching] = useState(false);
+  const [hideLogo, setHideLogo] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+
+  const dropdownRef = useRef(null);
+
+  useEffect(()=>{
+    if(isMobile && searching) {
+      if(!hideLogo) { setHideLogo(true) }
+    }else if(isMobile && !searching) {
+      setTimeout(() => {
+        setHideLogo(false);
+      }, 200);
+    }
+  },[searching]);
 
   const startSearch = ()=>{
     if(!searching) { setSearching(true) };
   };
 
+  // useEffect(() => {
+  //   function handleClickOutside(event: MouseEvent) {
+  //     if (
+  //       dropdownRef.current &&
+  //       !dropdownRef.current.contains(event.target as Node)
+  //     ) {
+  //       setToggle(true); // hide immediately
+  //     }
+  //   }
+
+  //   document.addEventListener("mousedown", handleClickOutside);
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, []);
+
 
   return (
     <>
-        <div className="w-full h-20 bg-white flex justify-center sticky top-0">
+        <NavDropDown show={showMenu} />
+        <div className="w-full h-20 bg-white flex justify-center sticky top-0 z-50 shadow-sm">
             <div className={`w-[1300px] max-w-full h-full flex items-center justify-between px-5 gap-2`}>
 
                 <motion.div className={`flex items-center gap-3 cursor-pointer hover:scale-110 transition-all duration-250`}>
-                    <img src={logo} alt="" className="w-9 h-9 sm:w-11 sm:h-11" />
-                    <h1 className="text-xl sm:text-2xl font-monster font-monts-bold"><span className="text-orange-500">SHOP</span><span className="text-orange-300">PER</span></h1>
+                    <img src={logo} alt="" className="w-8 h-8 sm:w-11 sm:h-11" />
+                    <h1 className={`text-xl sm:text-2xl font-monster font-monts-bold transition-all duration-300
+                      ${hideLogo? 'hidden':''}`}>
+                      <span className="text-orange-500">SHOP</span><span className="text-orange-300">PER</span>
+                    </h1>
                 </motion.div>
 
 
@@ -45,10 +80,10 @@ const NavigationBar = () => {
 
 
 
-                <div className="h-full flex items-center gap-6">
+                <div className="h-full flex items-center gap-4">
 
-                  <motion.div className="h-full flex items-center cursor-pointer mr-3"
-                    initial={{width:40}} animate={searching? {width:240}:{}} 
+                  <motion.div className="h-full flex items-center cursor-pointer md:mr-3"
+                    initial={{width:40}} animate={searching && isMobile? {width:220}: searching && !isMobile?{width:240}:{}} 
                     transition={{duration:0.3, ease:'easeInOut'}}
                     onClick={startSearch}>
 
@@ -61,10 +96,18 @@ const NavigationBar = () => {
                   <NavRightOption title="Cart"/>
 
                   <div className="w-10 h-full lg:hidden flex items-center justify-center">
-                    <Menu
-                      size={25}
-                      
-                    />
+                    {
+                      showMenu?
+                      <X
+                        size={25}
+                        onClick={()=> setShowMenu(false)}
+                      />
+                      :
+                      <Menu
+                        size={25}
+                        onClick={()=> setShowMenu(true)}
+                      />
+                    }
                   </div>
 
                 </div>
