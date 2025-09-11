@@ -11,32 +11,28 @@ const NavOption = () => {
 
     const categoriesRef = useRef<HTMLDivElement | null>(null);
 
-    const toggleCategories = ()=>{
-        if(!showCategories) { setShowCategories(true) }
-        else{ setShowCategories(false) }
-    };
-
     useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (
-        categoriesRef.current &&
-        !categoriesRef.current.contains(event.target as Node)
-      ) {
-        setShowCategories(false);
-      }
-    }
+        function handleClickOutside(event: MouseEvent) {
+        if (
+            categoriesRef.current &&
+            !categoriesRef.current.contains(event.target as Node)
+        ) {
+            setShowCategories(false);
+        }
+        }
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+    
 
   return (
     <div className="relative" ref={categoriesRef}>
 
         <div className="h-6 flex items-center gap-2 cursor-pointer transition-all duration-200"
-            onMouseEnter={()=>setHovering(true)} onMouseLeave={()=>setHovering(false)} onClick={toggleCategories}>
+            onMouseEnter={()=>setHovering(true)} onMouseLeave={()=>setHovering(false)} onClick={()=> setShowCategories(!showCategories)}>
 
             <p className="text-lg font-monts-medium">Categories</p>
 
