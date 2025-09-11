@@ -7,7 +7,7 @@ const NavOption = () => {
     const [hovering, setHovering] = useState(false);
 
   return (
-    <div className="flex items-center gap-2 cursor-pointer transition-all duration-200 relative"
+    <div className="h-6 flex items-center gap-2 cursor-pointer transition-all duration-200 relative"
         onMouseEnter={()=>setHovering(true)} onMouseLeave={()=>setHovering(false)}>
 
         <p className="text-lg font-monts-medium">Categories</p>

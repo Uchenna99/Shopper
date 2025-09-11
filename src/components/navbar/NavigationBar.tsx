@@ -1,11 +1,11 @@
-import logo from "../assets/Icons/online-shopping_3081648.svg";
+import logo from "../../assets/Icons/online-shopping_3081648.svg";
 import NavOption from "./NavOption";
-import SearchBar from "./SearchBar";
+import SearchBar from "../SearchBar";
 import NavRightOption from "./NavRightOption";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { useMediaQuery } from "../hooks/MediaQuery";
+import { useMediaQuery } from "../../hooks/MediaQuery";
 import NavDropDown from "./NavDropDown";
 
 
@@ -15,7 +15,7 @@ const NavigationBar = () => {
   const [hideLogo, setHideLogo] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
 
-  const dropdownRef = useRef(null);
+  // const dropdownRef = useRef(null);
 
   useEffect(()=>{
     if(isMobile && searching) {
