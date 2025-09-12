@@ -67,3 +67,18 @@
 
     --breakpoint-xs: '530px';
 }
+
+
+::-webkit-scrollbar{
+    width: 5px;
+    background-color: white;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: #ff8904;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background-color: #ff6900;
+}

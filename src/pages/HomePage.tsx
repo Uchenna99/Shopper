@@ -1,5 +1,6 @@
 import Hero from "../components/Hero"
 import NavigationBar from "../components/navbar/NavigationBar"
+import TopCategories from "../components/TopCategories"
 
 
 const HomePage = () => {
@@ -10,6 +11,8 @@ const HomePage = () => {
       <NavigationBar/>
       
       <Hero/>
+
+      <TopCategories/>
 
     </div>
     </>

@@ -17,9 +17,12 @@ const CategoriesDropdown = () => {
 
       <CategoryOption title="Children's Clothing" amount={10}/>
 
-      <CategoryOption title="Accessories" amount={1}/>
-      
+      <CategoryOption title="Shoes" amount={10}/>
 
+      <CategoryOption title="Bags" amount={1}/>
+
+      <CategoryOption title="Accessories" amount={9}/>
+      
     </div>
   )
 }
