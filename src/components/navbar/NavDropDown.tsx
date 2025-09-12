@@ -5,9 +5,8 @@ import { useAppContext } from "../../hooks/AppContext";
 
 
 const NavDropDown = () => {
-  const { showMenu, setShowMenu, setShowCategories, showCategories } = useAppContext();
+  const { showMenu, setShowMenu, setShowDropCategories, showDropCategories } = useAppContext();
   const dropdownRef = useRef<HTMLDivElement | null>(null);
-  const categoriesRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent)=> {
@@ -23,21 +22,10 @@ const NavDropDown = () => {
   }, []);
 
 
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-    if (
-        categoriesRef.current &&
-        !categoriesRef.current.contains(event.target as Node)
-    ) {
-        setShowCategories(false);
-    }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-    document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  const handleShowCategories = ()=>{
+    if(showDropCategories) { setShowDropCategories(false) }
+    else { setShowDropCategories(true) }
+  };
 
 
   return (
@@ -47,15 +35,15 @@ const NavDropDown = () => {
         animate={showMenu? {top:90}:{}}
         ref={dropdownRef}>
 
-        <div className="h-9 flex items-center" ref={categoriesRef}>
+        <div className="h-9 flex items-center">
           <div className="flex items-center gap-1" 
-            onClick={()=>setShowCategories(!showCategories)}>
+            onClick={handleShowCategories}>
               <p className="">Categories</p>
               <ChevronDown 
                   size={15} 
                   strokeWidth={2.5}
-                  color={showCategories? '#ff8904' : '#2b2726'}
-                  className={`mt-1 transition-all duration-200 ${showCategories? 'rotate-180':''}`}
+                  color={showDropCategories? '#ff8904' : '#2b2726'}
+                  className={`mt-1 transition-all duration-200 ${showDropCategories? 'rotate-180':''}`}
               />
           </div>
         </div>
