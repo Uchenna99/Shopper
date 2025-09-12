@@ -36,7 +36,7 @@ const NavigationBar = () => {
     <>
         <NavDropDown />
 
-        <div className="w-full h-20 bg-white flex justify-center sticky top-0 z-50 shadow-sm">
+        <div className="w-full h-20 bg-white flex justify-center sticky top-0 z-90 shadow-sm">
             <div className={`w-[1300px] max-w-full h-full flex items-center justify-between px-5 gap-2`}>
 
                 <motion.div className={`flex items-center gap-3 cursor-pointer hover:scale-110 transition-all duration-250`}>

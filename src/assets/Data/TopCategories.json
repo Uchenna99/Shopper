@@ -1,8 +1,8 @@
 [
-    {"title": "Men", "link": "https://res.cloudinary.com/df6xz7bqp/image/upload/v1757686928/fadkhera-official-QlF7NUzEglA-unsplash-min_mdp6qj.jpg"},
-    {"title": "Women", "link":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757686930/sami-sadeghi-iTVJI7ltJn0-unsplash-min_osvbnz.jpg"},
-    {"title": "Children", "link":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757695706/playground-3357704_1920-min_nipwci.jpg"},
-    {"title": "Shoes", "link":""},
-    {"title": "Bags", "link":""},
-    {"title": "Accessories", "link":""}
+    {"title": "Men", "amount":20, "link": "https://res.cloudinary.com/df6xz7bqp/image/upload/v1757686928/fadkhera-official-QlF7NUzEglA-unsplash-min_mdp6qj.jpg"},
+    {"title": "Women", "amount":25, "link":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757686930/sami-sadeghi-iTVJI7ltJn0-unsplash-min_osvbnz.jpg"},
+    {"title": "Children", "amount":10, "link":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757710380/kid-6620283_1280-min_mzwzfy.jpg"},
+    {"title": "Shoes", "amount":12, "link":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757695957/childrens-shoes-3104832_1920-min_nriwk5.jpg"},
+    {"title": "Bags", "amount":1, "link":""},
+    {"title": "Accessories", "amount":9, "link":""}
 ]

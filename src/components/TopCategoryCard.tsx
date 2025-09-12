@@ -11,7 +11,7 @@ const TopCategoryCard = ({ link, title }:Props) => {
         relative flex justify-center items-end">
     
         <img src={link} alt="" 
-            className="h-full asp"
+            className="h-full w-auto max-w-none"
         />
 
         <h1 className="absolute z-20 text-white text-2xl font-merienda-semi-bold mb-5">
