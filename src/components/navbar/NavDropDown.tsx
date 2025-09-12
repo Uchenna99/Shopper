@@ -2,6 +2,7 @@ import { ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { useAppContext } from "../../hooks/AppContext";
+import CategoriesBurgerDropdown from "./CategoriesBurgerDropdown";
 
 
 const NavDropDown = () => {
@@ -35,8 +36,8 @@ const NavDropDown = () => {
         animate={showMenu? {top:90}:{}}
         ref={dropdownRef}>
 
-        <div className="h-9 flex items-center">
-          <div className="flex items-center gap-1" 
+        <div className="flex flex-col items-center justify-center relative">
+          <div className="h-9 flex items-center gap-1" 
             onClick={handleShowCategories}>
               <p className="">Categories</p>
               <ChevronDown 
@@ -46,6 +47,8 @@ const NavDropDown = () => {
                   className={`mt-1 transition-all duration-200 ${showDropCategories? 'rotate-180':''}`}
               />
           </div>
+          { showDropCategories && <CategoriesBurgerDropdown/> }
+          
         </div>
 
         <div className="h-9 flex items-center">
