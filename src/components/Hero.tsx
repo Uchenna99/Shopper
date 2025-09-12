@@ -3,7 +3,7 @@ import HeroButton from "./HeroButton";
 
 const Hero = () => {
   return (
-    <div className="w-full min-h-[calc(100vh-80px)] max-h-[calc(100vh-80px)] bg-orange-300 flex justify-center">
+    <div className="w-full min-h-[calc(100vh-80px)] max-h-[calc(100vh-80px)] bg-amber-100 flex justify-center">
 
         <div className="w-[1300px] max-w-full min-h-full p-5 flex items-center relative ">
 
