@@ -8,8 +8,7 @@ const CategoriesBurgerDropdown = () => {
 
 
   return (
-    <div className="w-full p-5 rounded-md
-      grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-5"
+    <div className="w-full py-5 rounded-md grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-5"
       >
       {
         photos.map((photo, index)=>(

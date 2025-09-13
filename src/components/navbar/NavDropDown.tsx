@@ -30,7 +30,7 @@ const NavDropDown = () => {
 
 
   return (
-    <motion.div className={`w-full p-10 bg-white flex flex-col items-center gap-5 fixed left-0 z-40 
+    <motion.div className={`w-full py-10 px-5 bg-white flex flex-col items-center gap-5 fixed left-0 z-40 
         font-monts-medium lg:hidden shadow-sm
         ${showDropCategories? 'max-h-[calc(100vh-80px)] overflow-y-scroll':''}`}
         initial={{top:'-110%'}}

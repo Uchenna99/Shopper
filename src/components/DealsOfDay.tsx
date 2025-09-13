@@ -1,6 +1,6 @@
-import ProductCard from "./ProductCard";
 import products from "../assets/Data/Items.json";
 import { getRandomItems } from "../utils/UtilityFunctions";
+import ProductCard2 from "./ProductCard2";
 
 
 const DealsOfDay = () => {
@@ -20,7 +20,7 @@ const DealsOfDay = () => {
                     <div className="w-full min-w-fit grid grid-cols-[repeat(6,300px)] gap-3 sm:gap-6 pb-8">
                         {
                             deals.map((product, index)=>(
-                                <ProductCard 
+                                <ProductCard2
                                     key={index}
                                     name={product.name}
                                     description={product.description}
