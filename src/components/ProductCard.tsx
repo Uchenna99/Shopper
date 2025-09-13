@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { StarRatingDisplay } from "./StarRatingDisplay";
 import ProductCardButton from "./buttons/ProductCardButton";
-import { splitPrice } from "../utils/SplitPrice";
+import { splitPrice } from "../utils/UtilityFunctions";
 
 interface Props {
     name: string;
@@ -22,13 +22,13 @@ const ProductCard = ({ name, description, price, rating, image }:Props) => {
       initial={{opacity:0, y:30}} animate={inView? {opacity:1, y:0}:{}} transition={{duration:0.3, ease:'easeInOut'}}
       ref={ref}>
 
-        <div className="w-full aspect-[2/2.1] bg-orange-50 rounded-xl overflow-hidden cursor-pointer transition-all duration-200
-            relative flex justify-center items-end">
+        <div className="w-full aspect-[2/2.1] bg-orange-50 rounded-xl overflow-hidden cursor-pointer 
+            relative flex"
+            >
+            <div className="w-full h-full bg-cover bg-center bg-no-repeat transition-all duration-300 hover:scale-105"
+                style={{backgroundImage:`url(${image})`}}>
+            </div>
         
-            <img src={image} alt="" 
-                className="h-full w-auto max-w-none hover:scale-110 transition-all duration-300"
-            />
-
         </div>
 
         <div className="w-full flex flex-col gap-2">

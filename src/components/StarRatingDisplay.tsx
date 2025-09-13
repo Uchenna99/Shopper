@@ -24,7 +24,7 @@ export const StarRatingDisplay: React.FC<StarRatingDisplayProps> = ({
             viewBox="0 0 20 20"
             width={size}
             height={size}
-            fill={isFull ? "gold" : isHalf ? "url(#halfGradient)" : "gray"}
+            fill={isFull ? "gold" : isHalf ? "url(#halfGradient)" : "lightgray"}
           >
             <defs>
               <linearGradient id="halfGradient">
@@ -36,7 +36,7 @@ export const StarRatingDisplay: React.FC<StarRatingDisplayProps> = ({
           </svg>
         );
       })}
-      <span className="text-xs text-black-text font-monts-light ml-1">(57)</span>
+      {/* <span className="text-xs text-black-text font-monts-light ml-1">(57)</span> */}
     </div>
   );
 };

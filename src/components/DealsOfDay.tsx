@@ -1,7 +1,11 @@
 import ProductCard from "./ProductCard";
+import products from "../assets/Data/Items.json";
+import { getRandomItems } from "../utils/UtilityFunctions";
 
 
 const DealsOfDay = () => {
+    const deals = getRandomItems(products, 6);
+
   return (
     <>
         <div className="w-full flex justify-center">
@@ -13,9 +17,19 @@ const DealsOfDay = () => {
 
 
                 <div className="w-full flex overflow-x-scroll">
-                    <div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 row-auto gap-3 sm:gap-6">
-                        
-                        <ProductCard/>
+                    <div className="w-full min-w-fit grid grid-cols-[repeat(6,300px)] gap-3 sm:gap-6 pb-8">
+                        {
+                            deals.map((product, index)=>(
+                                <ProductCard 
+                                    key={index}
+                                    name={product.name}
+                                    description={product.description}
+                                    price={product.price}
+                                    image={product.image}
+                                    rating={product.rating}
+                                />
+                            ))
+                        }
 
                     </div>
                 </div>
