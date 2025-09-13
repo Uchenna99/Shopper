@@ -10,7 +10,7 @@ const CategoryOption = ({ title, amount, thumbnail }:Props) => {
     const [hovering, setHovering] = useState(false);
 
   return (
-    <div className="flex items-center gap-2 bg-[#f5f6f6] p-1 rounded-sm cursor-pointer"
+    <div className="flex items-center gap-2 bg-gray-100 p-1 rounded-sm cursor-pointer"
         onMouseEnter={()=> setHovering(true)} onMouseLeave={()=> setHovering(false)}>
 
         <div className="w-14 h-14 min-w-14 min-h-14 bg-gray-200 rounded-sm bg-center bg-no-repeat bg-cover"

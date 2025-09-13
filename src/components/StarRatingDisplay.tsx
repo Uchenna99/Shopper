@@ -36,7 +36,7 @@ export const StarRatingDisplay: React.FC<StarRatingDisplayProps> = ({
           </svg>
         );
       })}
-      <span className="text-sm text-gray-600">{rating.toFixed(1)}</span>
+      <span className="text-xs text-black-text font-monts-light ml-1">(57)</span>
     </div>
   );
 };

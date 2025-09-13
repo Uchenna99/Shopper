@@ -1,4 +1,4 @@
-import HeroButton from "./HeroButton";
+import HeroButton from "./buttons/HeroButton";
 import pic from "../assets/YV9oZmxpcA==.png";
 // import { useScreenHeight } from "../hooks/HeightQuery";
 
