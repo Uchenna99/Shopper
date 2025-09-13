@@ -30,6 +30,7 @@ const TopCategoryCard = ({ link, title }:Props) => {
       <p className={`${hovering? 'text-orange-400':'text-black-text'} font-monts-semi-bold transition-all duration-200`}>
         {title}
       </p>
+      
     </motion.div>
   )
 }

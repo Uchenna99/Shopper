@@ -6,7 +6,7 @@ const TopCategories = () => {
   return (
     <>
         <div className="w-full flex justify-center">
-            <div className="w-[1300px] max-w-full px-4 sm:px-5 py-20 flex flex-col gap-7">
+            <div className="w-[1300px] max-w-full px-4 sm:px-5 pt-20 pb-10 flex flex-col gap-7">
 
                 <h1 className="text-black-text text-2xl sm:text-3xl font-merienda-bold">
                     Our Top Categories
