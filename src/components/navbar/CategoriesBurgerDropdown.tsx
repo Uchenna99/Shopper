@@ -8,7 +8,7 @@ const CategoriesBurgerDropdown = () => {
 
 
   return (
-    <div className="w-[690px] max-w-screen p-5 rounded-md
+    <div className="w-full p-5 rounded-md
       grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-5"
       >
       {

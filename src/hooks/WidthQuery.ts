@@ -1,24 +1,24 @@
 import { useEffect, useState } from "react";
 
-
-export function useMediaQuery(query: string): boolean {
+export function useScreenWidth(threshold: number): boolean {
   const [matches, setMatches] = useState<boolean>(() =>
-    typeof window !== "undefined" ? window.matchMedia(query).matches : false
+    typeof window !== "undefined"
+      ? window.matchMedia(`(max-width: ${threshold}px)`).matches
+      : false
   );
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia(query);
+    const mediaQuery = window.matchMedia(`(max-width: ${threshold}px)`);
 
     const handler = (event: MediaQueryListEvent) => setMatches(event.matches);
 
-    // Add listener
     mediaQuery.addEventListener("change", handler);
 
     // Initial check
     setMatches(mediaQuery.matches);
 
     return () => mediaQuery.removeEventListener("change", handler);
-  }, [query]);
+  }, [threshold]);
 
   return matches;
 }

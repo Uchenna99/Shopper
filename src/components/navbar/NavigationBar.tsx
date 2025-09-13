@@ -5,14 +5,14 @@ import NavRightOption from "./NavRightOption";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { useMediaQuery } from "../../hooks/MediaQuery";
+import { useScreenWidth } from "../../hooks/WidthQuery";
 import NavDropDown from "./NavDropDown";
 import { useAppContext } from "../../hooks/AppContext";
 
 
 const NavigationBar = () => {
   const { showMenu, setShowMenu } = useAppContext();
-  const isMobile = useMediaQuery("(max-width: 530px)");
+  const isMobile = useScreenWidth(530);
   const [searching, setSearching] = useState(false);
   const [hideLogo, setHideLogo] = useState(false);
 

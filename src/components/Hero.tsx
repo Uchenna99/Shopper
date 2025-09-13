@@ -1,8 +1,11 @@
 import HeroButton from "./HeroButton";
 import pic from "../assets/YV9oZmxpcA==.png";
+// import { useScreenHeight } from "../hooks/HeightQuery";
 
 
 const Hero = () => {
+  // const smallHeigth = useScreenHeight(500);
+
   return (
     <div className="w-full max-sm:min-h-[calc(75vh-80px)] min-h-[calc(100vh-80px)] max-h-[calc(100vh-80px)] bg-gray-500 flex justify-center">
 
