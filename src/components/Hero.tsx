@@ -15,7 +15,7 @@ const Hero = () => {
             <h1 className="text-white font-merienda-bold text-3xl sm:text-5xl leading-tight">
               Elevate Your Everyday Style
             </h1>
-            <p className="text-white text-lg font-monts-medium">
+            <p className="text-white sm:text-lg font-monts-medium">
               From casual fits to statement pieces, everything you need to shine.
             </p>
             <HeroButton/>
