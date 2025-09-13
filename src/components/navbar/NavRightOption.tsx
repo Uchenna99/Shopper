@@ -9,7 +9,7 @@ const NavRightOption = ({ title }:Props) => {
     const [hovering, setHovering] = useState(false);
 
   return (
-    <div className="flex items-center gap-[6px] max-md:hidden"
+    <div className="flex items-center gap-[6px] max-md:hidden cursor-pointer"
         onMouseEnter={()=>setHovering(true)} onMouseLeave={()=>setHovering(false)}>
         
         {
@@ -28,7 +28,7 @@ const NavRightOption = ({ title }:Props) => {
                 className={`${hovering? 'scale-130' : ''} transition-all duration-200`}
             />
         }
-        <p className={`text-sm font-monts-medium cursor-pointer ${hovering? 'text-orange-400':''} transition-all duration-250`}>
+        <p className={`text-sm font-monts-medium ${hovering? 'text-orange-400':''} transition-all duration-250`}>
             {title}
         </p>
     </div>
