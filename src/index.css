@@ -1,0 +1,36 @@
+/* 
+Light theme
+// Primary (brand)
+text-orange-500   // for headers & accents
+bg-orange-500     // for buttons, highlights
+
+// Backgrounds
+bg-gray-50        // page background (clean, neutral)
+bg-white          // card background
+bg-amber-50       // section highlight (soft warm tone)
+
+// Text
+text-gray-900     // main body text
+text-gray-600     // secondary text (descriptions, captions)
+
+// Borders / Dividers
+border-gray-200
+
+
+
+Dark theme
+// Primary (brand)
+text-orange-400   // headers & accents (slightly lighter for contrast)
+bg-orange-500     // call-to-action buttons
+
+// Backgrounds
+bg-gray-900       // main background
+bg-gray-800       // card background
+bg-blue-900       // optional section highlight (contrasts orange)
+
+// Text
+text-gray-100     // body text
+text-gray-400     // muted/secondary text
+
+// Borders / Dividers
+border-gray-700 */

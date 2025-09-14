@@ -1,6 +1,6 @@
-import products from "../assets/Data/Items.json";
-import { getRandomItems } from "../utils/UtilityFunctions";
-import ProductCard2 from "./ProductCard2";
+import products from "../../assets/Data/Items.json";
+import { getRandomItems } from "../../utils/UtilityFunctions";  
+import ProductCard2 from "./../ProductCard2";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";               // core Swiper
 import "swiper/css/navigation";    // for navigation buttons

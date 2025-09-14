@@ -1,6 +1,6 @@
 import logo from "../../assets/Icons/online-shopping_3081648.svg";
 import NavOption from "./NavOption";
-import SearchBar from "../SearchBar";
+import SearchBar from "./SearchBar";
 import NavRightOption from "./NavRightOption";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";

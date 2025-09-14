@@ -1,7 +1,8 @@
-import DealsOfDay from "../components/DealsOfDay"
-import Hero from "../components/Hero"
+import CashBack from "../components/homepage/CashBack"
+import DealsOfDay from "../components/homepage/DealsOfDay"
+import Hero from "../components/homepage/Hero"
+import TopCategories from "../components/homepage/TopCategories"
 import NavigationBar from "../components/navbar/NavigationBar"
-import TopCategories from "../components/TopCategories"
 
 
 const HomePage = () => {
@@ -16,6 +17,8 @@ const HomePage = () => {
       <TopCategories/>
 
       <DealsOfDay/>
+
+      <CashBack/>
 
     </div>
     </>

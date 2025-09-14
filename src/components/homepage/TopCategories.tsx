@@ -1,5 +1,5 @@
-import TopCategoryCard from "./TopCategoryCard";
-import photos from "../assets/Data/TopCategories.json";
+import photos from "../../assets/Data/TopCategories.json";
+import TopCategoryCard from "../TopCategoryCard";
 
 
 const TopCategories = () => {

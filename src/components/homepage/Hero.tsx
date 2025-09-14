@@ -1,5 +1,5 @@
-import HeroButton from "./buttons/HeroButton";
-import pic from "../assets/YV9oZmxpcA==.png";
+import pic from "../../assets/YV9oZmxpcA==.png";
+import HeroButton from "../buttons/HeroButton";
 // import { useScreenHeight } from "../hooks/HeightQuery";
 
 
@@ -18,7 +18,7 @@ const Hero = () => {
             <p className="text-white sm:text-lg font-monts-medium">
               From casual fits to statement pieces, everything you need to shine.
             </p>
-            <HeroButton/>
+            <HeroButton title="Discover Your Style"/>
           </div>
 
           <div className="max-sm:hidden h-full w-full absolute right-0 bottom-0 bg-cover bg-no-repeat bg-bottom-right overflow-hidden">

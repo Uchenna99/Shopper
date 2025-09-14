@@ -63,7 +63,8 @@
     --font-merienda-semi-bold: "merienda-semi-bold";
     --font-merienda-bold: "merienda-bold";
 
-    --color-black-text: #2b2726;
+    --color-black-text: #101828;
+    --color-border-gray: #e5e7eb;
 
     --breakpoint-xs: '530px';
 }
