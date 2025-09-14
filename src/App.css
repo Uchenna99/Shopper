@@ -70,8 +70,8 @@
 
 
 ::-webkit-scrollbar{
-    width: 5px;
-    height: 5px;
+    width: 4px;
+    height: 3px;
     background-color: white;
 }
 

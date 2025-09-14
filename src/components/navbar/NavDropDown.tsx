@@ -32,9 +32,9 @@ const NavDropDown = () => {
   return (
     <motion.div className={`w-full py-10 px-5 bg-white flex flex-col items-center gap-5 fixed left-0 z-40 
         font-monts-medium lg:hidden shadow-sm
-        ${showDropCategories? 'max-h-[calc(100vh-80px)] overflow-y-scroll':''}`}
+        ${showDropCategories? 'max-h-[calc(100vh-60px)] overflow-y-scroll':''}`}
         initial={{top:'-110%'}}
-        animate={showMenu? {top:90}:{}}
+        animate={showMenu? {top:60}:{}}
         ref={dropdownRef}>
 
         <div className="w-full flex flex-col items-center justify-center relative">

@@ -6,14 +6,14 @@ import { splitPrice } from "../utils/UtilityFunctions";
 
 interface Props {
     name: string;
-    description: string;
+    description?: string;
     price: number;
     rating: number;
     category?: 'men' | 'women' | 'children' | 'bags' | 'accessories' | 'shoes';
     image: string;
 }
 
-const ProductCard2 = ({ name, description, price, rating, image }:Props) => {
+const ProductCard2 = ({ name, price, rating, image }:Props) => {
     const { ref, inView } = useInView({threshold:0.5, triggerOnce: true});
     const { main, decimal } = splitPrice(price);
 
@@ -45,9 +45,9 @@ const ProductCard2 = ({ name, description, price, rating, image }:Props) => {
                 </p>
             </div>
 
-            <p className="text-black-text text-xs font-monts-regular">
+            {/* <p className="text-black-text text-xs font-monts-regular">
                 {description}
-            </p>
+            </p> */}
 
             <StarRatingDisplay rating={rating} size={17}/>
 
