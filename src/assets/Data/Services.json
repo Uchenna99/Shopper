@@ -1,0 +1,21 @@
+[
+    {
+        "title":"Frequently Asked Questions", 
+        "text":"Find quick answers to common questions about shopping, orders, and returns.", 
+        "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757884258/43458-removebg-preview-min_adm6nf.png", 
+        "tint":""
+    },
+    {
+        "title":"Online Payment Process", 
+        "text":"Secure and seamless checkout with multiple trusted payment options.", 
+        "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757884514/Screenshot_2025-09-14_221252-removebg-preview-min_eirxyd.png", 
+        "tint":""
+    },
+    {
+        "title":"Home Delivery Options", 
+        "text":"Fast and reliable delivery straight to your doorstep, with flexible shipping choices.", 
+        "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757884258/2149095913-removebg-preview-min_nn8nqn.png", 
+        "tint":""
+    }
+    
+]

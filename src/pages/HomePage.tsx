@@ -5,6 +5,7 @@ import Hero from "../components/homepage/Hero"
 import TopCategories from "../components/homepage/TopCategories"
 import NavigationBar from "../components/navbar/NavigationBar";
 import products from "../assets/Data/Items.json";
+import OurServices from "../components/homepage/OurServices"
 
 
 const HomePage = () => {
@@ -27,6 +28,8 @@ const HomePage = () => {
         products={products}
         customClass="slider2"
       />
+
+      <OurServices/>
 
     </div>
     </>
