@@ -6,6 +6,7 @@ import TopCategories from "../components/homepage/TopCategories"
 import NavigationBar from "../components/navbar/NavigationBar";
 import products from "../assets/Data/Items.json";
 import OurServices from "../components/homepage/OurServices"
+import Footer from "../components/Footer"
 
 
 const HomePage = () => {
@@ -30,6 +31,8 @@ const HomePage = () => {
       />
 
       <OurServices/>
+
+      <Footer/>
 
     </div>
     </>
