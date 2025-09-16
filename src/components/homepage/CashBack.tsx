@@ -10,7 +10,7 @@ const CashBack = () => {
 
   return (
     <div className="w-full h-[300px] md:h-[400px] flex justify-center bg-orange-100 overflow-hidden">
-        <div className="w-[1300px] flex items-center md:gap-10 relative" ref={ref1}>
+        <div className="w-[1300px] flex items-center relative" ref={ref1}>
 
             <motion.div className="flex flex-col gap-5 bg-white/50 rounded-2xl max-xl:rounded-tl-none max-xl:rounded-bl-none p-5  z-30"
                 initial={{opacity:0, x:'-110%'}}
@@ -27,7 +27,7 @@ const CashBack = () => {
             </motion.div>
 
 
-            <div className="w-[20px] h-full absolute left-1/3">
+            <div className="w-[20px] h-full absolute left-1/4 sm:left-1/3">
                 <motion.img src="https://res.cloudinary.com/df6xz7bqp/image/upload/v1757869692/14276-removebg-preview-min_erlvzd.png" alt="happy lady" 
                     className="absolute bottom-0 max-md:w-[400px] max-h-none max-w-none"
                     initial={{y:'100%', opacity:0}}

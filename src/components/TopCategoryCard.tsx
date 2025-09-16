@@ -22,7 +22,7 @@ const TopCategoryCard = ({ link, title }:Props) => {
           onMouseEnter={()=>setHovering(true)} onMouseLeave={()=>setHovering(false)}>
       
           <img src={link} alt="" 
-              className="h-full w-auto max-w-none hover:scale-110 transition-all duration-300"
+              className={`h-full w-auto max-w-none transition-all duration-300 ${hovering? 'scale-110':''}`}
           />
 
       </div>
