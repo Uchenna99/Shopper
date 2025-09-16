@@ -26,7 +26,7 @@ const Footer = () => {
 
               <div className="w-full flex flex-col gap-3">
                 <p className="font-monts-semi-bold">
-                  Payment methods
+                  Payment options
                 </p>
                 <div className="w-full flex flex-wrap gap-2">
                   {
@@ -47,13 +47,16 @@ const Footer = () => {
                 <p className="font-monts-semi-bold mb-2 text-lg">
                   About us
                 </p>
-                <p className="w-fit font-monts-regular transition-all duration-200 cursor-pointer hover:text-orange-400 hover:translate-x-1">
+                <p className="w-fit font-monts-regular transition-all duration-200 cursor-pointer hover:text-orange-400 
+                  hover:translate-x-1 active:text-orange-400">
                   About Shopper
                 </p>
-                <p className="w-fit font-monts-regular transition-all duration-200 cursor-pointer hover:text-orange-400 hover:translate-x-1">
+                <p className="w-fit font-monts-regular transition-all duration-200 cursor-pointer hover:text-orange-400 
+                  hover:translate-x-1 active:text-orange-400">
                   Careers
                 </p>
-                <p className="w-fit font-monts-regular transition-all duration-200 cursor-pointer hover:text-orange-400 hover:translate-x-1">
+                <p className="w-fit font-monts-regular transition-all duration-200 cursor-pointer hover:text-orange-400 
+                  hover:translate-x-1 active:text-orange-400">
                   News & Blog
                 </p>
               </div>
@@ -65,16 +68,20 @@ const Footer = () => {
                 <p className="font-monts-semi-bold mb-2 text-lg">
                   Services
                 </p>
-                <p className="w-fit font-monts-regular transition-all duration-200 cursor-pointer hover:text-orange-400 hover:translate-x-1">
+                <p className="w-fit font-monts-regular transition-all duration-200 cursor-pointer hover:text-orange-400 
+                  hover:translate-x-1 active:text-orange-400">
                   Gift cards
                 </p>
-                <p className="w-fit font-monts-regular transition-all duration-200 cursor-pointer hover:text-orange-400 hover:translate-x-1">
+                <p className="w-fit font-monts-regular transition-all duration-200 cursor-pointer hover:text-orange-400 
+                  hover:translate-x-1 active:text-orange-400">
                   Shipping & Delivery
                 </p>
-                <p className="w-fit font-monts-regular transition-all duration-200 cursor-pointer hover:text-orange-400 hover:translate-x-1">
+                <p className="w-fit font-monts-regular transition-all duration-200 cursor-pointer hover:text-orange-400 
+                  hover:translate-x-1 active:text-orange-400">
                   Order Pickup
                 </p>
-                <p className="w-fit font-monts-regular transition-all duration-200 cursor-pointer hover:text-orange-400 hover:translate-x-1">
+                <p className="w-fit font-monts-regular transition-all duration-200 cursor-pointer hover:text-orange-400 
+                  hover:translate-x-1 active:text-orange-400">
                   Mobile App
                 </p>
               </div>
