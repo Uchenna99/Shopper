@@ -10,7 +10,7 @@ interface Props {
 
 const TopCategoryCard = ({ link, title }:Props) => {
   const [hovering, setHovering] = useState(false);
-  const { ref, inView } = useInView({threshold:0.5});
+  const { ref, inView } = useInView({threshold:0.7});
   
   return (
     <motion.div className="w-full flex flex-col items-center gap-3"

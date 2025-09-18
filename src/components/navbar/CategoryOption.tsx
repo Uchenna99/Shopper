@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAppContext } from "../../hooks/AppContext";
 
 interface Props {
     title: string;
@@ -7,11 +9,18 @@ interface Props {
 }
 
 const CategoryOption = ({ title, amount, thumbnail }:Props) => {
-    const [hovering, setHovering] = useState(false);
+  const navigate = useNavigate();
+  const { setShowCategories, setShowDropCategories } = useAppContext();
+  const [hovering, setHovering] = useState(false);
 
   return (
     <div className="flex items-center gap-2 bg-gray-100 p-1 rounded-sm cursor-pointer"
-        onMouseEnter={()=> setHovering(true)} onMouseLeave={()=> setHovering(false)}>
+        onMouseEnter={()=> setHovering(true)} onMouseLeave={()=> setHovering(false)}
+        onClick={()=>{
+          navigate(`/${title}`);
+          setShowCategories(false);
+          setShowDropCategories(false);
+        }}>
 
         <div className="w-14 h-14 min-w-14 min-h-14 bg-gray-200 rounded-sm bg-center bg-no-repeat bg-cover"
         style={{backgroundImage:`url(${thumbnail})`}}></div>

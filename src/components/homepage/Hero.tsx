@@ -17,12 +17,12 @@ const Hero = () => {
 
   return (
     <div className={`w-full bg-orange-500 flex justify-center
-      ${smallHeigth? 'min-h-[600px]' : 'min-h-[calc(85vh-80px)] xs:min-h-[calc(100vh-80px)] max-h-[calc(100vh-80px)]'}`}>
+      ${smallHeigth? 'min-h-[600px]' : 'min-h-[calc(70vh-80px)] lg:min-h-[calc(100vh-80px)] max-h-[calc(100vh-80px)]'}`}>
 
         <div className="w-[1300px] max-w-full min-h-full p-5 flex items-end relative">
 
           <div className="w-[450px] max-w-full flex flex-col gap-6 z-20 mb-10 sm:mb-20">
-            <h1 className="text-white font-merienda-bold text-3xl sm:text-6xl leading-tight text-outline">
+            <h1 className="text-white font-merienda-bold text-4xl sm:text-6xl leading-tight text-outline">
               Elevate Your Everyday Style
             </h1>
             <p className="text-white sm:text-lg font-monts-medium">
@@ -53,8 +53,8 @@ const Hero = () => {
                 heroImages.map((img, index)=>(
                   <SwiperSlide className="" key={index}>
                     <div 
-                      className="h-full w-full bg-orange-500 flex bg-[length:180%] xs:bg-[length:140%] md:bg-[length:120%] lg:bg-[length:95%] xl:bg-[length:90%] 
-                      bg-bottom bg-no-repeat" 
+                      className="h-full w-full bg-orange-500 flex bg-[length:200%] xs:bg-[length:140%] md:bg-[length:120%] 
+                      lg:bg-[length:95%] xl:bg-[length:90%] bg-bottom bg-no-repeat" 
                       style={{backgroundImage:`url(${img})`}}
                     ></div>
                   </SwiperSlide>
