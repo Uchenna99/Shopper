@@ -84,3 +84,18 @@
 ::-webkit-scrollbar-thumb:hover{
     background-color: #ff6900;
 }
+
+
+/* hero pagination bullets */
+.custom-bullet {
+  width: 10px !important;
+  height: 10px !important;
+  background-color: black !important;
+  margin-bottom: 10px !important;
+}
+
+.swiper-pagination-bullet-active.custom-bullet {
+  width: 12px !important;
+  height: 12px !important;
+  background-color: #FFFFFF !important;
+}
