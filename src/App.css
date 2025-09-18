@@ -90,12 +90,17 @@
 .custom-bullet {
   width: 10px !important;
   height: 10px !important;
-  background-color: black !important;
+  background-color: white !important;
   margin-bottom: 10px !important;
 }
 
 .swiper-pagination-bullet-active.custom-bullet {
   width: 12px !important;
   height: 12px !important;
-  background-color: #FFFFFF !important;
+  background-color: white !important;
+}
+
+
+.text-outline {
+  -webkit-text-stroke: 1px black;
 }
