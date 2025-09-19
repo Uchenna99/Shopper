@@ -10,7 +10,7 @@ interface Props {
 
 const CategoryOption = ({ title, amount, thumbnail }:Props) => {
   const navigate = useNavigate();
-  const { setShowCategories, setShowDropCategories } = useAppContext();
+  const { setShowCategories, setShowDropCategories, setShowMenu } = useAppContext();
   const [hovering, setHovering] = useState(false);
 
   return (
@@ -20,6 +20,7 @@ const CategoryOption = ({ title, amount, thumbnail }:Props) => {
           navigate(`/${title}`);
           setShowCategories(false);
           setShowDropCategories(false);
+          setShowMenu(false);
         }}>
 
         <div className="w-14 h-14 min-w-14 min-h-14 bg-gray-200 rounded-sm bg-center bg-no-repeat bg-cover"

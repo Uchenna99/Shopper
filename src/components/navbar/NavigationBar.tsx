@@ -9,6 +9,7 @@ import { useScreenWidth } from "../../hooks/WidthQuery";
 import NavDropDown from "./NavDropDown";
 import { useAppContext } from "../../hooks/AppContext";
 import { useScreenHeight } from "../../hooks/HeightQuery";
+import { Link } from "react-router-dom";
 
 
 const NavigationBar = () => {
@@ -42,13 +43,13 @@ const NavigationBar = () => {
             ${smallHeigth? 'h-14':'h-14 sm:h-20'}`}>
             <div className={`w-[1300px] max-w-full h-full flex items-center justify-between px-5 gap-2`}>
 
-                <div className={`flex items-center gap-3 cursor-pointer hover:scale-110 transition-all duration-250`}>
-                    <img src={logo} alt="" className="w-8 h-8 sm:w-11 sm:h-11" />
-                    <h1 className={`text-xl sm:text-2xl font-monster font-monts-bold transition-all duration-300
-                      ${hideLogo? 'hidden':''}`}>
-                      <span className="text-orange-500">SHOP</span><span className="text-orange-300">PER</span>
-                    </h1>
-                </div>
+                <Link to={'/'} className={`flex items-center gap-3 cursor-pointer hover:scale-110 transition-all duration-250`}>
+                  <img src={logo} alt="" className="w-8 h-8 sm:w-11 sm:h-11" />
+                  <h1 className={`text-xl sm:text-2xl font-monster font-monts-bold transition-all duration-300
+                    ${hideLogo? 'hidden':''}`}>
+                    <span className="text-orange-500">SHOP</span><span className="text-orange-300">PER</span>
+                  </h1>
+                </Link>
 
 
                 <div className="h-full flex items-center gap-6 text-black-text max-lg:hidden">
