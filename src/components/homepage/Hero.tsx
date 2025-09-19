@@ -22,7 +22,7 @@ const Hero = () => {
         <div className="w-[1300px] max-w-full min-h-full p-5 flex items-end relative">
 
           <div className="w-[450px] max-w-full flex flex-col gap-6 z-20 mb-10 sm:mb-20">
-            <h1 className="text-white font-merienda-bold text-4xl sm:text-6xl leading-tight text-outline">
+            <h1 className="text-white font-merienda-bold text-4xl sm:text-6xl leading-tight">
               Elevate Your Everyday Style
             </h1>
             <p className="text-white sm:text-lg font-monts-medium">
@@ -55,8 +55,9 @@ const Hero = () => {
                     <div 
                       className="h-full w-full bg-orange-500 flex bg-[length:200%] xs:bg-[length:140%] md:bg-[length:120%] 
                       lg:bg-[length:95%] xl:bg-[length:90%] bg-bottom bg-no-repeat" 
-                      style={{backgroundImage:`url(${img})`}}
-                    ></div>
+                      style={{backgroundImage:`url(${img})`}}>
+                      <div className="absolute inset-0 bg-black/40 md:hidden"></div>
+                    </div>
                   </SwiperSlide>
                 ))
               }
