@@ -33,7 +33,7 @@ const ProductCard = ({ name, price, rating, image }:Props) => {
 
         <div className="w-full flex flex-col gap-2">
 
-            <p className="text-black-text sm:text-lg font-monts-semi-bold">
+            <p className="text-black-text sm:text-lg font-monts-semi-bold truncate">
                 {name}
             </p>
 
