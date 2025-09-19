@@ -16,12 +16,12 @@ const LikeButton = ({ initialLiked, toggle }:LikeButtonProps) => {
     };
 
   return (
-    <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm absolute z-10 top-4 right-4
-        cursor-pointer transition-all duration-300 hover:scale-105 active:scale-105"
+    <div className="w-8 h-8 bg-white text-black-text rounded-full flex items-center justify-center shadow-sm absolute z-10 top-4 right-4
+        cursor-pointer transition-all duration-300 hover:scale-105 active:scale-105 hover:text-red-400"
         onClick={handleLike}>
         <Heart
             size={18}
-            className={`transition-all duration-300 ${liked? 'fill-red-500':''}`}
+            className={`transition-all duration-300 ${liked? 'fill-red-400':''}`}
             strokeWidth={liked? 0 : 1}
         />
     </div>

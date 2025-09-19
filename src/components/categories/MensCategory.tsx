@@ -34,8 +34,10 @@ const MensCategory = () => {
                 transition={{duration:0.4, delay:0.2, ease:'easeOut'}} 
                 src="https://res.cloudinary.com/df6xz7bqp/image/upload/v1758235659/Adobe_Express_-_file_2_-min_gvfg95.png" 
                 alt="young man" 
-                className="w-[400px] absolute top-15 sm:-top-3 -right-10 sm:right-0 lg:right-1/6 max-sm:opacity-70"
+                className="w-[400px] absolute top-15 sm:-top-3 -right-15 sm:right-0 lg:right-1/6 max-sm:opacity-70"
               />
+
+              <div className="absolute inset-0 max-sm:bg-white/30"></div>
 
             </div>
           </div>
