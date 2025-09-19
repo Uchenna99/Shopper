@@ -5,8 +5,8 @@ import ProductCard from "./ProductCard";
 const CardGrid = () => {
   return (
     <>
-        <div className="w-[1300px] max-w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4
-            gap-1 sm:gap-x-4 gap-y-10 py-10 px-2">
+        <div className="w-[1300px] max-w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5
+            gap-1 sm:gap-x-3 gap-y-10 py-10 px-2">
             {
                 products.map((item, index)=>(
                     <ProductCard

@@ -3,6 +3,7 @@ import { useInView } from "react-intersection-observer";
 import { StarRatingDisplay } from "./StarRatingDisplay";
 import ProductCardButton from "./buttons/ProductCardButton";
 import { splitPrice } from "../utils/UtilityFunctions";
+import LikeButton from "./LikeButton";
 
 interface Props {
     name: string;
@@ -18,7 +19,7 @@ const ProductCard = ({ name, price, rating, image }:Props) => {
     const { main, decimal } = splitPrice(price);
 
   return (
-    <motion.div className="w-full flex flex-col items-center gap-3 p-1"
+    <motion.div className="w-full flex flex-col items-center gap-3 p-1 relative"
       initial={{opacity:0, y:30}} animate={inView? {opacity:1, y:0}:{}} transition={{duration:0.4, ease:'easeInOut'}}
       ref={ref}>
 
@@ -50,6 +51,11 @@ const ProductCard = ({ name, price, rating, image }:Props) => {
             <ProductCardButton/>
 
         </div>
+
+        <LikeButton
+            initialLiked={false}
+            toggle={()=>{}}
+        />
       
     </motion.div>
   )
