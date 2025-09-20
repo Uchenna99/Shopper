@@ -150,5 +150,13 @@
         "rating":5,
         "category":"shoes",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1758403695/409868915_b6e9634d-c83b-4344-996f-4e7de82c6a65-removebg-preview-min_wmskmq.png"
+    },
+    {
+        "name":"Caasual lace up shoes", 
+        "description":"High quality, highly durable and stylish.", 
+        "price":39.99,
+        "rating":5,
+        "category":"shoes",
+        "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1758405383/Screenshot_2025-09-20_225318-min_sz17ew.png"
     }
 ]
