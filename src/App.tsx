@@ -5,6 +5,7 @@ import MensCategory from './components/categories/MensCategory'
 import NotFound from './components/NotFound'
 import WomensCategory from './components/categories/WomensCategory'
 import ChildrensCategory from './components/categories/ChildrensCategory'
+import ShoesCollection from './components/categories/ShoesCollection'
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <Route path='/men' element={<MensCategory/>} />
         <Route path='/women' element={<WomensCategory/>} />
         <Route path='/children' element={<ChildrensCategory/>} />
+        <Route path='/shoes' element={<ShoesCollection/>} />
         <Route path='*' element={<NotFound />} />
         
       </Routes>

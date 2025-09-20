@@ -1,6 +1,6 @@
 [
     {
-        "name":"Stylish snaekers", 
+        "name":"Stylish sneakers", 
         "description":"High quality and durable, that missing piece of your outfit.", 
         "price":32,
         "rating":4,
@@ -142,5 +142,13 @@
         "rating":5,
         "category":"children",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757801809/8302-min_yzc6cb.jpg"
+    },
+    {
+        "name":"Classic English dress shoes", 
+        "description":"High quality, highly durable and stylish.", 
+        "price":89.50,
+        "rating":5,
+        "category":"shoes",
+        "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1758403695/409868915_b6e9634d-c83b-4344-996f-4e7de82c6a65-removebg-preview-min_wmskmq.png"
     }
 ]
