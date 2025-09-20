@@ -1,6 +1,6 @@
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import products from "../assets/Data/Items.json";
 import ProductCard from "./ProductCard";
+import Pagination from "./Pagination";
 
 
 const CardGrid = () => {
@@ -23,32 +23,7 @@ const CardGrid = () => {
         </div>
 
 
-        <div className="flex items-center gap-3 text-black-text">
-            <div className="w-8 h-8 rounded-full flex items-center justify-center ring-1 cursor-pointer hover:text-orange-400 transition-all
-                duration-200">
-                <ChevronLeft size={18}/>
-            </div>
-
-            <div className="w-8 h-8 rounded-full flex items-center justify-center bg-gray-100 hover:bg-orange-400 hover:text-white
-                cursor-pointer transition-all duration-200">
-                <p className="text-sm font-monts-regular">1</p>
-            </div>
-
-            <div className="w-8 h-8 rounded-full flex items-center justify-center bg-gray-100 hover:bg-orange-400 hover:text-white
-                cursor-pointer transition-all duration-200">
-                <p className="text-sm font-monts-regular">2</p>
-            </div>
-
-            <div className="w-8 h-8 rounded-full flex items-center justify-center bg-gray-100 hover:bg-orange-400 hover:text-white
-                cursor-pointer transition-all duration-200">
-                <p className="text-sm font-monts-regular">3</p>
-            </div>
-            
-            <div className="w-8 h-8 rounded-full flex items-center justify-center ring-1 cursor-pointer hover:text-orange-400 transition-all
-                duration-200">
-                <ChevronRight size={18}/>
-            </div>
-        </div>
+        <Pagination currentPage={1} totalPages={5} onPageChange={()=>{}}/>
     </div>
   )
 }
