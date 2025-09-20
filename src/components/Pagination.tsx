@@ -34,7 +34,7 @@ const Pagination = ({ totalPages, currentPage, onPageChange }: PaginationProps) 
           className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 font-monts-regular text-sm
             outline-none
             ${currentPage === i
-              ? 'bg-orange-500 text-white'
+              ? 'bg-orange-400 text-white'
               : 'bg-gray-100 text-black-text hover:bg-gray-300 cursor-pointer'
             }`
           }
@@ -65,7 +65,7 @@ const Pagination = ({ totalPages, currentPage, onPageChange }: PaginationProps) 
       <button
         onClick={handlePrevious}
         disabled={windowStart === 1}
-        className="w-8 h-8 rounded-full ring-1 text-black-text hover:text-orange-500 disabled:opacity-50 transition-all duration-200
+        className="w-8 h-8 rounded-full ring-1 text-black-text hover:text-orange-400 disabled:opacity-50 transition-all duration-200
         flex items-center justify-center disabled:pointer-events-none outline-none"
       >
         <ChevronLeft size={18}/>
@@ -76,7 +76,7 @@ const Pagination = ({ totalPages, currentPage, onPageChange }: PaginationProps) 
       <button
         onClick={handleNext}
         disabled={windowStart + windowSize - 1 >= totalPages}
-        className="w-8 h-8 rounded-full ring-1 text-black-text hover:text-orange-500 disabled:opacity-50 transition-all duration-200
+        className="w-8 h-8 rounded-full ring-1 text-black-text hover:text-orange-400 disabled:opacity-50 transition-all duration-200
         flex items-center justify-center disabled:pointer-events-none outline-none"
       >
         <ChevronRight size={18}/>
