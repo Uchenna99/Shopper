@@ -6,10 +6,12 @@ import SortSelector from "../SortSelector";
 import { motion } from "framer-motion";
 import products from "../../assets/Data/Items.json";
 import Footer from "../Footer";
+import { useScreenWidth } from "../../hooks/WidthQuery";
 
 
 const ChildrensCategory = () => {
     const popular = products.slice(0, 6);
+    const smallWidth = useScreenWidth(470);
 
   return (
     <>
@@ -21,10 +23,10 @@ const ChildrensCategory = () => {
             <div className="w-[1300px] h-full max-w-full bg-orange-400 rounded-xs flex items-center gap-[200px] px-5 md:px-20 
               relative overflow-hidden">
 
-              <motion.div className="flex flex-col gap-5 z-10 max-sm:w-[300px]"
+              <motion.div className="flex flex-col gap-5 z-10"
                 initial={{opacity:0, x:60, y:200}} animate={{opacity:1, x:0, y:0}} transition={{duration:0.4, ease:'easeOut'}}>
                 <h1 className="text-black-text text-3xl sm:text-4xl lg:text-5xl font-merienda-bold leading-normal">
-                  Explore our Stellar <br /> Children's Collection
+                  Explore our Stellar <br /> Children's {smallWidth && <br/>} Collection
                 </h1>
 
                 <HeroButton title="Explore"/>
