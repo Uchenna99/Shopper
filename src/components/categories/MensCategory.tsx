@@ -1,14 +1,18 @@
 import { useAppContext } from "../../hooks/AppContext";
 import HeroButton from "../buttons/HeroButton";
 import CardGrid from "../CardGrid";
+import CardsSlide from "../CardsSlide";
 import NavigationBar from "../navbar/NavigationBar";
 import SortSelector from "../SortSelector";
 import { motion } from "framer-motion";
+import products from "../../assets/Data/Items.json";
+import Footer from "../Footer";
 
 
 
 const MensCategory = () => {
     const {  } = useAppContext();
+    const popular = products.slice(0, 6);
 
     return (
     <>
@@ -52,6 +56,15 @@ const MensCategory = () => {
 
             <CardGrid/>
           </div>
+
+
+          <CardsSlide
+            title="Popular this week"
+            products={popular}
+            customClass="slide1"
+          />
+
+          <Footer/>
             
         </div>
     </>

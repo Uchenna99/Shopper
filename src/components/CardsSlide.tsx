@@ -28,7 +28,7 @@ const CardsSlide = ({ title, products, customClass }:Props) => {
                         breakpoints={{
                             0: { slidesPerView: 2 },    // mobile
                             640: { slidesPerView: 3 },  // tablet
-                            1024: { slidesPerView: 4 }, // desktop
+                            1024: { slidesPerView: 5 }, // desktop
                         }}
                         navigation={{
                             prevEl: `.${customClass}-prev-custom`,
