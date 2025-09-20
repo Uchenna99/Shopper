@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage'
 import MensCategory from './components/categories/MensCategory'
 import NotFound from './components/NotFound'
 import WomensCategory from './components/categories/WomensCategory'
+import ChildrensCategory from './components/categories/ChildrensCategory'
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
         <Route path='/' element={<HomePage/>} />
         <Route path='/men' element={<MensCategory/>} />
         <Route path='/women' element={<WomensCategory/>} />
+        <Route path='/children' element={<ChildrensCategory/>} />
         <Route path='*' element={<NotFound />} />
         
       </Routes>

@@ -34,7 +34,7 @@ const NavDropDown = () => {
         font-monts-medium lg:hidden shadow-sm
         ${showDropCategories? 'max-h-[calc(100vh-60px)] overflow-y-scroll':''}`}
         initial={{top:'-110%'}}
-        animate={showMenu? {top:60}:{}}
+        animate={showMenu? {top:55}:{}}
         ref={dropdownRef}>
 
         <div className="w-full flex flex-col items-center justify-center relative">
