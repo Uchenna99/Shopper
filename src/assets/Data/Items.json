@@ -10,9 +10,10 @@
     {
         "name":"Analog classic wrist watch", 
         "description":"High quality and durable, that missing piece of your outfit.", 
-        "price":24,
+        "price":24.25,
         "rating":5,
         "category":"accessories",
+        "colors":["blue", "black", "red"],
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1739398356/samples/ecommerce/analog-classic.jpg"
     },
     {

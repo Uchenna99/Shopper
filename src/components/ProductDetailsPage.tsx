@@ -1,12 +1,77 @@
 import { useLocation } from "react-router-dom";
+import NavigationBar from "./navbar/NavigationBar";
+import { StarRatingDisplay } from "./StarRatingDisplay";
 
 
 const ProductDetailsPage = () => {
     const location = useLocation();
-    const item = location.state?.product;
+    const { item } = location.state;
+    const colors: string[] = item.colors;
     
   return (
-    <div className="w-full h-screen min-h-screen bg-orange-50 flex ">{item}</div>
+    <div className="w-full min-h-screen flex flex-col">
+        <NavigationBar/>
+
+        <div className="w-full flex justify-center px-3 py-10">
+            <div className="w-[1300px] flex gap-10">
+
+                <div className="flex-1 flex flex-col gap-5">
+                    <div className="w-full aspect-[3/2.5] bg-gray-200 rounded-md bg-center bg-cover bg-no-repeat" 
+                        style={{backgroundImage:`url('${item.image}')`}}
+                    />
+                    <div className="w-full flex gap-2">
+                        <div className="w-20 aspect-[3/2.5] bg-gray-100 rounded-md bg-center bg-cover bg-no-repeat"
+                            style={{backgroundImage:`url('${item.image}')`}}
+                        />
+                    </div>
+                </div>
+
+
+                <div className="flex-1 flex flex-col">
+
+                    <div className="w-full flex flex-col gap-2 border-b border-gray-300 py-5">
+                        <h1 className="text-3xl text-black-text font-monts-bold leading-normal"> {item.name} </h1>
+
+                        <p className="text-black-text text-sm font-monts-regular">{item.description}</p>
+
+                        <StarRatingDisplay 
+                            rating={item.rating}
+                            size={18}
+                        />
+                    </div>
+
+                    <div className="w-full flex flex-col gap-2 border-b border-gray-300 py-5">
+                        <p className="text-black-text text-2xl font-monts-semi-bold">
+                            ${item.price}
+                        </p>
+                        <p className="text-black-text text-xs font-monts-medium">No discount applied</p>
+                    </div>
+
+                    <div className="w-full flex flex-col gap-2 border-b border-gray-300 py-5">
+                        <p className="text-black-text font-monts-medium">Choose a Color</p>
+                        <div className="w-full flex gap-3 items-center p-2">
+                            {
+                                colors?
+                                colors.map((color, index)=>(
+                                    <div className="w-8 h-8 rounded-full border border-gray-300 p-1 rotate-135" key={index}>
+                                        <div className="w-full h-full rounded-full" style={{backgroundColor:color}}></div>
+                                    </div>
+                                ))
+                                :
+                                <div className="w-8 h-8 rounded-full border border-gray-300 p-1 relative flex items-center justify-center rotate-135">
+                                    <div className="w-full h-full rounded-full bg-gray-300"></div>
+                                    <div className="w-[calc(100%+20px)] min-h-[1px] h-[1px] absolute bg-red-400"></div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
   )
 }
 
