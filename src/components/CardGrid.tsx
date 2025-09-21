@@ -2,9 +2,11 @@ import products from "../assets/Data/Items.json";
 import ProductCard from "./ProductCard";
 import Pagination from "./Pagination";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 const CardGrid = () => {
+    const navigate = useNavigate();
     const [currentPage, setCurrentPage] = useState(1);
     
   return (
@@ -20,6 +22,7 @@ const CardGrid = () => {
                         description={item.description}
                         price={item.price}
                         rating={item.rating}
+                        onCardSelect={()=> navigate(`/${item.category}/productdetails`, {state: {item}})}
                     />
                 ))
             }

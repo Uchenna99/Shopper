@@ -4,10 +4,12 @@ import './index.css'
 import App from './App.tsx'
 import { BrowserRouter } from 'react-router-dom'
 import { AppProvider } from './hooks/AppContext.tsx'
+import ScrollToTop from './hooks/ScrollToTop.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
+      <ScrollToTop/>
       <AppProvider>
         <App />
       </AppProvider>

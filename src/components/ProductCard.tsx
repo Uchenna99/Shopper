@@ -12,20 +12,19 @@ interface Props {
     rating: number;
     category?: 'men' | 'women' | 'children' | 'bags' | 'accessories' | 'shoes';
     image: string;
+    onCardSelect?: ()=>void;
 }
 
-const ProductCard = ({ name, price, rating, image }:Props) => {
+const ProductCard = ({ name, price, rating, image, onCardSelect }:Props) => {
     const { ref, inView } = useInView({threshold:0.5, triggerOnce: true});
     const { main, decimal } = splitPrice(price);
 
   return (
-    <motion.div className="w-full flex flex-col items-center gap-3 p-1 relative"
+    <motion.div className="w-full flex flex-col items-center gap-3 p-1 relative cursor-pointer"
       initial={{opacity:0, y:30}} animate={inView? {opacity:1, y:0}:{}} transition={{duration:0.4, ease:'easeInOut'}}
-      ref={ref}>
+      ref={ref} onClick={onCardSelect}>
 
-        <div className="w-full aspect-[2/2.1] bg-orange-50 rounded-xl overflow-hidden cursor-pointer 
-            relative flex"
-            >
+        <div className="w-full aspect-[2/2.1] bg-orange-50 rounded-xl overflow-hidden relative flex">
             <div className="w-full h-full bg-cover bg-center bg-no-repeat transition-all duration-300 hover:scale-105"
                 style={{backgroundImage:`url(${image})`}}>
             </div>
@@ -34,7 +33,7 @@ const ProductCard = ({ name, price, rating, image }:Props) => {
 
         <div className="w-full flex flex-col gap-2">
 
-            <p className="text-black-text sm:text-lg font-monts-semi-bold truncate">
+            <p className="text-black-text font-monts-semi-bold truncate">
                 {name}
             </p>
 
@@ -48,7 +47,9 @@ const ProductCard = ({ name, price, rating, image }:Props) => {
 
             <StarRatingDisplay rating={rating} size={17}/>
 
-            <ProductCardButton/>
+            <ProductCardButton
+                onAdd={()=>{console.log('Item added')}}
+            />
 
         </div>
 

@@ -8,6 +8,8 @@ import ChildrensCategory from './components/categories/ChildrensCategory'
 import ShoesCollection from './components/categories/ShoesCollection'
 import BagsCollection from './components/categories/BagsCollection'
 import AccessoriesCategory from './components/categories/AccessoriesCategory'
+import ProductDetailsPage from './components/ProductDetailsPage'
+import Landing from './components/homepage/Landing'
 
 function App() {
 
@@ -15,14 +17,22 @@ function App() {
     <>
       <Routes>
 
-        <Route path='/' element={<HomePage/>} />
-        <Route path='/men' element={<MensCategory/>} />
-        <Route path='/women' element={<WomensCategory/>} />
-        <Route path='/children' element={<ChildrensCategory/>} />
-        <Route path='/shoes' element={<ShoesCollection/>} />
-        <Route path='/bags' element={<BagsCollection/>} />
-        <Route path='/accessories' element={<AccessoriesCategory/>} />
+        <Route path='/' element={<Landing/>} >
+
+          <Route index element={<HomePage/>} />
+          <Route path='/men' element={<MensCategory/>} />
+          <Route path='/women' element={<WomensCategory/>} />
+          <Route path='/children' element={<ChildrensCategory/>} />
+          <Route path='/shoes' element={<ShoesCollection/>} />
+          <Route path='/bags' element={<BagsCollection/>} />
+          <Route path='/accessories' element={<AccessoriesCategory/>} />
+          <Route path=':category/productdetails' element={<ProductDetailsPage/>} />
+          
+        </Route>
+        
+
         <Route path='*' element={<NotFound />} />
+
         
       </Routes>
     </>
