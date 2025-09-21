@@ -3,6 +3,7 @@ import NavigationBar from "./navbar/NavigationBar";
 import { StarRatingDisplay } from "./StarRatingDisplay";
 import { Minus, Plus } from "lucide-react";
 import { useState } from "react";
+import ProductCardButton from "./buttons/ProductCardButton";
 
 
 const ProductDetailsPage = () => {
@@ -24,9 +25,9 @@ const ProductDetailsPage = () => {
         <NavigationBar/>
 
         <div className="w-full flex justify-center px-3 py-10">
-            <div className="w-[1300px] flex gap-10">
+            <div className="w-[1300px] flex flex-col md:flex-row gap-10">
 
-                <div className="flex-1 flex flex-col gap-5">
+                <div className="flex-1 flex flex-col gap-5 sm:px-5">
                     <div className="w-full aspect-[3/2.5] bg-gray-200 rounded-md bg-center bg-cover bg-no-repeat" 
                         style={{backgroundImage:`url('${item.image}')`}}
                     />
@@ -38,7 +39,7 @@ const ProductDetailsPage = () => {
                 </div>
 
 
-                <div className="flex-1 flex flex-col">
+                <div className="flex-1 flex flex-col sm:px-5">
 
                     <div className="w-full flex flex-col gap-2 border-b border-gray-300 py-5">
                         <h1 className="text-3xl text-black-text font-monts-bold leading-normal"> {item.name} </h1>
@@ -77,26 +78,37 @@ const ProductDetailsPage = () => {
                         </div>
                     </div>
 
-                    <div className="w-full flex flex-col gap-2 border-b border-gray-300 py-5">
-                        <div className="flex items-center gap-4 text-black-text">
-                            <div className="w-8 h-8 rounded-full border border-gray-300 grid place-items-center cursor-pointer 
-                                hover:text-red-400" onClick={handleMinus}>
-                                <Minus 
-                                    size={18}
-                                    className="transition-all duration-200"
-                                />
+                    <div className="w-full flex flex-col gap-4 border-b border-gray-300 py-5">
+                        <div className="w-full flex items-center gap-7">
+                            <div className="flex items-center gap-4 text-black-text">
+                                <div className="w-8 h-8 rounded-full border border-gray-300 grid place-items-center cursor-pointer 
+                                    hover:text-red-400" onClick={handleMinus}>
+                                    <Minus 
+                                        size={18}
+                                        className="transition-all duration-200"
+                                    />
+                                </div>
+
+                                <p className="text-black-text font-monts-medium">{quantity}</p>
+
+                                <div className="w-8 h-8 rounded-full border border-gray-300 grid place-items-center cursor-pointer 
+                                    hover:text-green-600" onClick={handlePlus}>
+                                    <Plus 
+                                        size={18}
+                                        className="transition-all duration-200"
+                                    />
+                                </div>
                             </div>
 
-                            <p className="text-black-text font-monts-medium">{quantity}</p>
-
-                            <div className="w-8 h-8 rounded-full border border-gray-300 grid place-items-center cursor-pointer 
-                                hover:text-green-600" onClick={handlePlus}>
-                                <Plus 
-                                    size={18}
-                                    className="transition-all duration-200"
-                                />
+                            <div className="flex flex-col">
+                                <p className="text-black-text text-[10px] font-monts-medium">Only <span className="text-orange-500">12 units</span> left!</p>
+                                <p className="text-black-text text-[10px] font-monts-medium">Don't miss out</p>
                             </div>
                         </div>
+
+                        <ProductCardButton
+                            onAdd={()=>{}}
+                        />
                     </div>
                 </div>
 
