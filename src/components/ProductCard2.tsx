@@ -47,7 +47,9 @@ const ProductCard2 = ({ name, price, rating, image }:Props) => {
 
             <StarRatingDisplay rating={rating} size={17}/>
 
-            <ProductCardButton/>
+            <ProductCardButton
+                onAdd={()=>{}}
+            />
 
         </div>
       

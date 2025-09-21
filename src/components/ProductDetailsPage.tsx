@@ -1,12 +1,23 @@
 import { useLocation } from "react-router-dom";
 import NavigationBar from "./navbar/NavigationBar";
 import { StarRatingDisplay } from "./StarRatingDisplay";
+import { Minus, Plus } from "lucide-react";
+import { useState } from "react";
 
 
 const ProductDetailsPage = () => {
     const location = useLocation();
     const { item } = location.state;
     const colors: string[] = item.colors;
+    const [quantity, setQuantity] = useState(1);
+
+    const handleMinus = ()=>{
+        if(quantity !== 1) { setQuantity(quantity - 1) }
+    };
+
+    const handlePlus = ()=>{
+        setQuantity(quantity + 1);
+    };
     
   return (
     <div className="w-full min-h-screen flex flex-col">
@@ -63,6 +74,28 @@ const ProductDetailsPage = () => {
                                     <div className="w-[calc(100%+20px)] min-h-[1px] h-[1px] absolute bg-red-400"></div>
                                 </div>
                             }
+                        </div>
+                    </div>
+
+                    <div className="w-full flex flex-col gap-2 border-b border-gray-300 py-5">
+                        <div className="flex items-center gap-4 text-black-text">
+                            <div className="w-8 h-8 rounded-full border border-gray-300 grid place-items-center cursor-pointer 
+                                hover:text-red-400" onClick={handleMinus}>
+                                <Minus 
+                                    size={18}
+                                    className="transition-all duration-200"
+                                />
+                            </div>
+
+                            <p className="text-black-text font-monts-medium">{quantity}</p>
+
+                            <div className="w-8 h-8 rounded-full border border-gray-300 grid place-items-center cursor-pointer 
+                                hover:text-green-600" onClick={handlePlus}>
+                                <Plus 
+                                    size={18}
+                                    className="transition-all duration-200"
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
