@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { StarRatingDisplay } from "./StarRatingDisplay";
-import ProductCardButton from "./buttons/ProductCardButton";
+// import ProductCardButton from "./buttons/ProductCardButton";
 import { splitPrice } from "../utils/UtilityFunctions";
 
 interface Props {
@@ -11,16 +11,17 @@ interface Props {
     rating: number;
     category?: 'men' | 'women' | 'children' | 'bags' | 'accessories' | 'shoes';
     image: string;
+    onCardSelect?: ()=>void;
 }
 
-const ProductCard2 = ({ name, price, rating, image }:Props) => {
+const ProductCard2 = ({ name, price, rating, image, onCardSelect }:Props) => {
     const { ref, inView } = useInView({threshold:0.5, triggerOnce: true});
     const { main, decimal } = splitPrice(price);
 
   return (
     <motion.div className="w-full flex flex-col items-center gap-3 p-1"
       initial={{opacity:0, scale:0.8}} animate={inView? {opacity:1, scale:1}:{}} transition={{duration:0.3, ease:'easeInOut'}}
-      ref={ref}>
+      ref={ref} onClick={onCardSelect}>
 
         <div className="w-full aspect-[2/2.1] bg-orange-50 rounded-xl overflow-hidden cursor-pointer 
             relative flex"
@@ -47,9 +48,9 @@ const ProductCard2 = ({ name, price, rating, image }:Props) => {
 
             <StarRatingDisplay rating={rating} size={17}/>
 
-            <ProductCardButton
+            {/* <ProductCardButton
                 onAdd={()=>{}}
-            />
+            /> */}
 
         </div>
       

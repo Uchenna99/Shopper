@@ -79,7 +79,7 @@ const ProductDetailsPage = () => {
                         <p className="text-black-text font-monts-medium">Choose a Color</p>
                         <div className="w-full flex gap-3 items-center p-2">
                             {
-                                colors?
+                                colors.length >= 1?
                                 colors.map((color, index)=>(
                                     <div className="w-8 h-8 rounded-full border border-gray-300 p-1 rotate-135" key={index}>
                                         <div className="w-full h-full rounded-full" style={{backgroundColor:color}}></div>

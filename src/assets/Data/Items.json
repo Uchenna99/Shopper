@@ -5,6 +5,7 @@
         "price":32,
         "rating":4,
         "category":"shoes",
+        "colors":[],
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1739398357/samples/ecommerce/shoes.png"
     },
     {
@@ -21,6 +22,7 @@
         "description":"High quality and durable.", 
         "price":46.99,
         "rating":5,
+        "colors":[],
         "category":"bags",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757797959/leather-bag-gray-min_iqoio7.jpg"
     },
@@ -29,6 +31,7 @@
         "description":"High quality and durable.", 
         "price":41.50,
         "rating":5,
+        "colors":[],
         "category":"shoes",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757715384/96609-min_1_cpflb0.jpg"
     },
@@ -37,6 +40,7 @@
         "description":"High quality and stylish.", 
         "price":41.50,
         "rating":5,
+        "colors":[],
         "category":"shoes",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757712085/Y19maWxsLHdfMjAwMCxoXzIwMDAsZ19hdXRv-min_qauqoq.jpg"
     },
@@ -45,6 +49,7 @@
         "description":"High quality and stylish.", 
         "price":53.95,
         "rating":4,
+        "colors":[],
         "category":"bags",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757712443/bag-1194459_1280-min_zeh3e4.jpg"
     },
@@ -53,6 +58,7 @@
         "description":"English traditional quality and style.", 
         "price":75.95,
         "rating":5,
+        "colors":[],
         "category":"men",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757801810/13706225_2012.i211.010..man_s_suit_realistic-min_owxge2.jpg"
     },
@@ -61,6 +67,7 @@
         "description":"Look like a powerful yet stylish wizard", 
         "price":12.90,
         "rating":5,
+        "colors":[],
         "category":"accessories",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757801810/409092869_ea0bb1c0-dad9-4050-876c-ffc086e62f13-min_pyqovw.jpg"
     },
@@ -69,6 +76,7 @@
         "description":"Take your casual look up a notch", 
         "price":19.00,
         "rating":4,
+        "colors":[],
         "category":"women",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757801810/Screenshot_2025-09-13_225841-min_utnqza.png"
     },
@@ -77,6 +85,7 @@
         "description":"Beautiful and elegant gown", 
         "price":63.50,
         "rating":5,
+        "colors":[],
         "category":"women",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757801809/Screenshot_2025-09-13_230233-min_yq97o5.png"
     },
@@ -85,6 +94,7 @@
         "description":"Comfy and stylish", 
         "price":18.30,
         "rating":5,
+        "colors":[],
         "category":"women",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757800388/6543-min_wa7azx.jpg"
     },
@@ -93,6 +103,7 @@
         "description":"Comfy and stylish", 
         "price":9.99,
         "rating":5,
+        "colors":[],
         "category":"men",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757800388/12971-min_uprbv7.jpg"
     },
@@ -101,6 +112,7 @@
         "description":"Comfy and stylish", 
         "price":29.49,
         "rating":5,
+        "colors":[],
         "category":"men",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757800387/7648-min_gbmxew.jpg"
     },
@@ -109,6 +121,7 @@
         "description":"Comfy and stylish", 
         "price":7.49,
         "rating":4,
+        "colors":[],
         "category":"men",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757801809/Screenshot_2025-09-13_225558-min_lu8ohk.png"
     },
@@ -117,6 +130,7 @@
         "description":"Comfy and stylish", 
         "price":18.29,
         "rating":4,
+        "colors":[],
         "category":"men",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757801809/8005-min_rdnkj3.jpg"
     },
@@ -125,6 +139,7 @@
         "description":"Comfy and stylish", 
         "price":17.90,
         "rating":5,
+        "colors":[],
         "category":"children",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757801810/Screenshot_2025-09-13_230811-min_wx3qr8.png"
     },
@@ -133,6 +148,7 @@
         "description":"Beautiful and stylish", 
         "price":9.90,
         "rating":5,
+        "colors":[],
         "category":"children",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757801810/Screenshot_2025-09-13_230121-min_axhza2.png"
     },
@@ -141,6 +157,7 @@
         "description":"Beautiful and stylish", 
         "price":7.50,
         "rating":5,
+        "colors":[],
         "category":"children",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757801809/8302-min_yzc6cb.jpg"
     },
@@ -149,6 +166,7 @@
         "description":"High quality, highly durable and stylish.", 
         "price":89.50,
         "rating":5,
+        "colors":[],
         "category":"shoes",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1758403695/409868915_b6e9634d-c83b-4344-996f-4e7de82c6a65-removebg-preview-min_wmskmq.png"
     },
@@ -157,6 +175,7 @@
         "description":"High quality, highly durable and stylish.", 
         "price":39.99,
         "rating":5,
+        "colors":[],
         "category":"shoes",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1758405383/Screenshot_2025-09-20_225318-min_sz17ew.png"
     }

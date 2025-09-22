@@ -6,9 +6,11 @@ import "swiper/css";               // core Swiper
 import "swiper/css/navigation";    // for navigation buttons
 import { Navigation } from "swiper/modules";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 
 const DealsOfDay = () => {
+    const navigate = useNavigate();
     const deals = getRandomItems(products, 6);
 
   return (
@@ -42,6 +44,7 @@ const DealsOfDay = () => {
                                     price={product.price}
                                     image={product.image}
                                     rating={product.rating}
+                                    onCardSelect={()=> navigate(`/${product.category}/productdetails`, {state: {item: product}})}
                                 />
                             </SwiperSlide>
                         ))}

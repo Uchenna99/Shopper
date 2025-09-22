@@ -4,6 +4,7 @@ import "swiper/css";               // core Swiper
 import "swiper/css/navigation";    // for navigation buttons
 import ProductCard2 from "./ProductCard2";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 
 interface Props {
@@ -13,6 +14,8 @@ interface Props {
 }
 
 const CardsSlide = ({ title, products, customClass }:Props) => {
+    const navigate = useNavigate();
+    
   return (
     <>
         <div className="w-full flex justify-center">
@@ -44,6 +47,7 @@ const CardsSlide = ({ title, products, customClass }:Props) => {
                                     price={product.price}
                                     image={product.image}
                                     rating={product.rating}
+                                    onCardSelect={()=> navigate(`/${product.category}/productdetails`, {state: {item: product}})}
                                 />
                             </SwiperSlide>
                         ))}
