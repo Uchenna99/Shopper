@@ -1,17 +1,19 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import NavigationBar from "./navbar/NavigationBar";
 import { StarRatingDisplay } from "./StarRatingDisplay";
-import { Minus, NotepadText, Plus, Truck } from "lucide-react";
+import { Minus, NotepadText, Plus, Truck, X } from "lucide-react";
 import { useState } from "react";
 import ProductCardButton from "./buttons/ProductCardButton";
 import CardsSlide from "./CardsSlide";
 import products from "../assets/Data/Items.json";
+import LikeButton from "./LikeButton";
 
 
 const ProductDetailsPage = () => {
     const location = useLocation();
     const { item } = location.state;
     const colors: string[] = item.colors;
+    const navigate = useNavigate();
     const [quantity, setQuantity] = useState(1);
 
     const handleMinus = ()=>{
@@ -26,13 +28,25 @@ const ProductDetailsPage = () => {
     <div className="w-full min-h-screen flex flex-col">
         <NavigationBar/>
 
-        <div className="w-full flex justify-center px-3 py-10">
-            <div className="w-[1300px] flex flex-col md:flex-row gap-10">
+        <div className="w-full flex justify-center px-3 py-15">
+            <div className="w-[1300px] flex flex-col md:flex-row gap-10 relative">
+                <X
+                    size={30}
+                    className="absolute right-3 -top-10 border rounded-full p-1 text-black-text hover:text-red-400
+                    transition-all duration-200 cursor-pointer"
+                    onClick={()=> navigate(-1)}
+                />
 
                 <div className="flex-1 flex flex-col gap-5 sm:px-5">
-                    <div className="w-full aspect-[3/2.5] bg-gray-200 rounded-md bg-center bg-cover bg-no-repeat" 
-                        style={{backgroundImage:`url('${item.image}')`}}
-                    />
+                    <div className="w-full aspect-[3/2.5] bg-gray-200 rounded-md bg-center bg-cover bg-no-repeat relative" 
+                        style={{backgroundImage:`url('${item.image}')`}}>
+                        <LikeButton
+                            initialLiked={false}
+                            toggle={()=>{}}
+                        />
+                    </div>
+                    
+                    
                     <div className="w-full flex gap-2">
                         <div className="w-20 aspect-[3/2.5] bg-gray-100 rounded-md bg-center bg-cover bg-no-repeat"
                             style={{backgroundImage:`url('${item.image}')`}}

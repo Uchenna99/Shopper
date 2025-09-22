@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { StarRatingDisplay } from "./StarRatingDisplay";
-import ProductCardButton from "./buttons/ProductCardButton";
+// import ProductCardButton from "./buttons/ProductCardButton";
 import { splitPrice } from "../utils/UtilityFunctions";
-import LikeButton from "./LikeButton";
+// import LikeButton from "./LikeButton";
 
 interface Props {
     name: string;
@@ -47,16 +47,16 @@ const ProductCard = ({ name, price, rating, image, onCardSelect }:Props) => {
 
             <StarRatingDisplay rating={rating} size={17}/>
 
-            <ProductCardButton
+            {/* <ProductCardButton
                 onAdd={()=>{console.log('Item added')}}
-            />
+            /> */}
 
         </div>
 
-        <LikeButton
+        {/* <LikeButton
             initialLiked={false}
             toggle={()=>{}}
-        />
+        /> */}
       
     </motion.div>
   )
