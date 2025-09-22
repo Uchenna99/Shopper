@@ -15,16 +15,16 @@ const CartItem = () => {
     };
 
   return (
-    <div className="w-full flex justify-between py-4">
+    <div className="w-full flex justify-between py-4 border-b border-gray-300 last:border-b-0">
 
         <div className="flex flex-col gap-3">
 
             <div className="flex items-center gap-5">
 
-                <div className="w-20 aspect-square rounded-sm bg-gray-100"></div>
+                <div className="w-15 sm:w-20 aspect-square rounded-sm bg-gray-100"></div>
 
                 <div className="flex flex-col gap-1">
-                    <h4 className="text-lg text-black-text font-semibold leading-normal">
+                    <h4 className="text-lg text-black-text font-semibold leading-normal truncate">
                         Item Name
                     </h4>
                     <p className="text-black-text text-sm font-monts-medium">
@@ -46,7 +46,7 @@ const CartItem = () => {
                 $100.00
             </p>
 
-            <div className="flex items-center gap-4">
+            <div className="flex flex-col items-end sm:flex-row sm:items-center gap-4">
                 <p className="text-black-text text-xs font-monts-medium">Quantity :</p>
 
                 <div className="flex items-center gap-4 text-black-text">

@@ -7,6 +7,7 @@ import ProductCardButton from "./buttons/ProductCardButton";
 import CardsSlide from "./CardsSlide";
 import products from "../assets/Data/Items.json";
 import LikeButton from "./LikeButton";
+import Footer from "./Footer";
 
 
 const ProductDetailsPage = () => {
@@ -163,6 +164,7 @@ const ProductDetailsPage = () => {
             customClass="slide4"
             products={products}
         />
+        <Footer/>
     </div>
   )
 }
