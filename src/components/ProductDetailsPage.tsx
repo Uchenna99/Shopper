@@ -1,9 +1,11 @@
 import { useLocation } from "react-router-dom";
 import NavigationBar from "./navbar/NavigationBar";
 import { StarRatingDisplay } from "./StarRatingDisplay";
-import { Minus, Plus } from "lucide-react";
+import { Minus, NotepadText, Plus, Truck } from "lucide-react";
 import { useState } from "react";
 import ProductCardButton from "./buttons/ProductCardButton";
+import CardsSlide from "./CardsSlide";
+import products from "../assets/Data/Items.json";
 
 
 const ProductDetailsPage = () => {
@@ -110,12 +112,43 @@ const ProductDetailsPage = () => {
                             onAdd={()=>{}}
                         />
                     </div>
+
+                    <div className="w-full flex flex-col gap-1 py-5">
+                        <div className="w-full flex border border-gray-300 p-4 rounded-sm">
+                            <Truck size={16} color="#ff6900"/>
+                            <div className="flex flex-col px-3">
+                                <p className="text-black-text text-xs font-monts-semi-bold">
+                                    Free Delivery
+                                </p>
+                                <p className="text-black-text text-xs font-monts-medium cursor-pointer hover:underline active:underline">
+                                    Check your eligibility for free delivery.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="w-full flex border border-gray-300 p-4 rounded-sm">
+                            <NotepadText size={16} color="#ff6900"/>
+                            <div className="flex flex-col px-3">
+                                <p className="text-black-text text-xs font-monts-semi-bold">
+                                    Return Policy
+                                </p>
+                                <p className="text-black-text text-xs font-monts-medium cursor-pointer hover:underline active:underline">
+                                    Free 15 days delivery returns.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
 
-
         </div>
+
+        <CardsSlide
+            title="Similar Items You Might Like"
+            customClass="slide4"
+            products={products}
+        />
     </div>
   )
 }
