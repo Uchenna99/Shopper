@@ -10,6 +10,8 @@ import BagsCollection from './components/categories/BagsCollection'
 import AccessoriesCategory from './components/categories/AccessoriesCategory'
 import ProductDetailsPage from './components/ProductDetailsPage'
 import Landing from './components/homepage/Landing'
+import Checkout from './pages/Checkout'
+import ShoppingCart from './pages/ShoppingCart'
 
 function App() {
 
@@ -27,6 +29,8 @@ function App() {
           <Route path='/bags' element={<BagsCollection/>} />
           <Route path='/accessories' element={<AccessoriesCategory/>} />
           <Route path=':category/productdetails' element={<ProductDetailsPage/>} />
+          <Route path='/cart' element={<ShoppingCart/>} />
+          <Route path='/checkout' element={<Checkout/>} />
           
         </Route>
         
