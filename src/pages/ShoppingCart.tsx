@@ -136,6 +136,11 @@ const ShoppingCart = () => {
             customClass="slide1"
             products={products}
         />
+        <CardsSlide
+            title="Similiar Items You Might Like"
+            customClass="slide2"
+            products={products}
+        />
 
         <Footer/>
     </div>
