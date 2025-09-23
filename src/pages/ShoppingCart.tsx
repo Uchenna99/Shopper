@@ -3,13 +3,14 @@ import CartItem from "../components/CartItem";
 import RemoveCartItem from "../components/confirmations/RemoveCartItem";
 import Coupon from "../components/Coupon";
 import NavigationBar from "../components/navbar/NavigationBar";
-
+import CheckBox from "../components/buttons/CheckBox";
 
 
 const ShoppingCart = () => {
     const [confirmRemove, setConfirmRemove] = useState(false);
+    const [selectedPayment, setSelectedPayment] = useState<'card' | 'delivery' | 'paystack'>('paystack');
   return (
-    <div className="w-full h-screen flex flex-col items-center relative bg-orange-50">
+    <div className="w-full min-h-screen max-h-fit flex flex-col items-center relative bg-orange-50">
         <NavigationBar/>
 
         <div className="w-[1300px] max-w-full flex flex-col md:flex-row py-10 px-3 gap-5">
@@ -24,7 +25,10 @@ const ShoppingCart = () => {
                     </div>
 
                     <CartItem
-                        onRemove={()=> setConfirmRemove(true)}
+                        onRemove={()=> {
+                            setConfirmRemove(true);
+                            document.body.classList.add("overflow-hidden");
+                        }}
                     />
                     <CartItem
                         onRemove={()=> setConfirmRemove(true)}
@@ -51,10 +55,58 @@ const ShoppingCart = () => {
                     <Coupon/>
                 </div>
 
-                <div className="flex border-b border-gray-300 pb-2 pt-3">
-                    <p className="text-lg text-black-text font-monts-semi-bold">
+                <div className="flex border-b border-gray-300 pb-2 pt-5">
+                    <p className="text-black-text font-monts-semi-bold">
                         Payment Details
                     </p>
+                </div>
+
+                <div className="w-full flex flex-col py-5 gap-3">
+                    <CheckBox
+                        option="Paystack"
+                        isSelected={selectedPayment === 'paystack'}
+                        select={()=>setSelectedPayment('paystack')}
+                    />
+                    <CheckBox
+                        option="Debit Card"
+                        isSelected={selectedPayment === 'card'}
+                        select={()=>setSelectedPayment('card')}
+                    />
+                    <CheckBox
+                        option="Cash on Delivery"
+                        isSelected={selectedPayment === 'delivery'}
+                        select={()=>setSelectedPayment('delivery')}
+                    />
+                </div>
+
+                <div className="w-full flex flex-col py-5 gap-3 text-black-text">
+                    <div className="w-full flex justify-between items-center gap-2">
+                        <p className="text-sm font-monts-semi-bold">Sub Total</p>
+                        <p className="text-sm font-monts-medium">
+                            $200.00
+                        </p>
+                    </div>
+
+                    <div className="w-full flex justify-between items-center gap-2">
+                        <p className="text-sm font-monts-semi-bold">Coupon Discount</p>
+                        <p className="text-sm font-monts-medium">
+                            - $0.00
+                        </p>
+                    </div>
+
+                    <div className="w-full flex justify-between items-center gap-2">
+                        <p className="text-sm font-monts-semi-bold">Shipping</p>
+                        <p className="text-sm font-monts-medium">
+                            $0.00
+                        </p>
+                    </div>
+
+                    <div className="w-full flex justify-between items-center gap-2">
+                        <p className="text-sm font-monts-semi-bold">Total</p>
+                        <p className="text-sm font-monts-medium">
+                            = $200.00
+                        </p>
+                    </div>
                 </div>
             </div>
 
@@ -63,7 +115,11 @@ const ShoppingCart = () => {
         {
             confirmRemove && 
             <RemoveCartItem
-                
+                onConfirm={()=>{}}
+                onCancel={()=> {
+                    setConfirmRemove(false);
+                    document.body.classList.remove("overflow-hidden");
+                }}
             />
         }
     </div>
