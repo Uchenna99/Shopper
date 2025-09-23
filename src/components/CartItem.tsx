@@ -48,7 +48,7 @@ const CartItem = ({ onRemove }:Props) => {
 
 
         <div className="min-w-fit flex flex-col items-end gap-3">
-            <p className="text-black-text text-lg font-monts-semi-bold">
+            <p className="text-black-text font-monts-semi-bold">
                 $100.00
             </p>
 

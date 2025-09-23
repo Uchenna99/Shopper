@@ -4,20 +4,23 @@ import RemoveCartItem from "../components/confirmations/RemoveCartItem";
 import Coupon from "../components/Coupon";
 import NavigationBar from "../components/navbar/NavigationBar";
 import CheckBox from "../components/buttons/CheckBox";
+import CardsSlide from "../components/CardsSlide";
+import products from "../assets/Data/Items.json";
+import Footer from "../components/Footer";
 
 
 const ShoppingCart = () => {
     const [confirmRemove, setConfirmRemove] = useState(false);
     const [selectedPayment, setSelectedPayment] = useState<'card' | 'delivery' | 'paystack'>('paystack');
   return (
-    <div className="w-full min-h-screen max-h-fit flex flex-col items-center relative bg-orange-50">
+    <div className="w-full flex flex-col items-center relative">
         <NavigationBar/>
 
         <div className="w-[1300px] max-w-full flex flex-col md:flex-row py-10 px-3 gap-5">
 
             <div className="w-full md:w-2/3 flex">
 
-                <div className="w-full bg-white rounded-sm shadow-sm pt-4 px-4">
+                <div className="w-full bg-white rounded-sm shadow-sm pt-4 px-4 border border-gray-300">
                     <div className="flex border-b border-gray-300 pb-2">
                         <p className="text-lg text-black-text font-monts-bold">
                             Cart <span className="font-monts-semi-bold">( 1 item )</span>
@@ -35,8 +38,8 @@ const ShoppingCart = () => {
                     />
 
                     <div className="w-full flex justify-between gap-2 items-center py-5">
-                        <p className="text-black-text text-lg font-monts-semi-bold">Subtotal:</p>
-                        <p className="text-black-text text-lg font-monts-semi-bold">
+                        <p className="text-black-text font-monts-semi-bold">Subtotal:</p>
+                        <p className="text-black-text font-monts-semi-bold">
                             $200.00
                         </p>
                     </div>
@@ -44,10 +47,10 @@ const ShoppingCart = () => {
             </div>
 
 
-            <div className="w-full md:w-1/3 bg-white rounded-sm shadow-sm p-4">
+            <div className="w-full md:w-1/3 bg-white rounded-sm shadow-sm p-4 border border-gray-300">
                 <div className="flex border-b border-gray-300 pb-2">
                     <p className="text-lg text-black-text font-monts-semi-bold">
-                        Summary
+                        Order Summary
                     </p>
                 </div>
 
@@ -61,7 +64,7 @@ const ShoppingCart = () => {
                     </p>
                 </div>
 
-                <div className="w-full flex flex-col py-5 gap-3">
+                <div className="w-full flex flex-col py-5 gap-3 border-b border-gray-300">
                     <CheckBox
                         option="Paystack"
                         isSelected={selectedPayment === 'paystack'}
@@ -101,12 +104,17 @@ const ShoppingCart = () => {
                         </p>
                     </div>
 
-                    <div className="w-full flex justify-between items-center gap-2">
+                    <div className="w-full flex justify-between items-center gap-2 my-2">
                         <p className="text-sm font-monts-semi-bold">Total</p>
                         <p className="text-sm font-monts-medium">
                             = $200.00
                         </p>
                     </div>
+
+                    <button className="w-full border-none outline-none bg-orange-400 rounded-4xl py-2 text-white font-monts-medium
+                        cursor-pointer hover:bg-orange-500 active:bg-orange-500 active:scale-95 transition-all duration-200">
+                        Pay $200.00
+                    </button>
                 </div>
             </div>
 
@@ -122,6 +130,14 @@ const ShoppingCart = () => {
                 }}
             />
         }
+
+        <CardsSlide
+            title="Similiar Items You Might Like"
+            customClass="slide1"
+            products={products}
+        />
+
+        <Footer/>
     </div>
   )
 }
