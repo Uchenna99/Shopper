@@ -1,12 +1,15 @@
+import { useState } from "react";
 import CartItem from "../components/CartItem";
+import RemoveCartItem from "../components/confirmations/RemoveCartItem";
 import Coupon from "../components/Coupon";
 import NavigationBar from "../components/navbar/NavigationBar";
 
 
 
 const ShoppingCart = () => {
+    const [confirmRemove, setConfirmRemove] = useState(false);
   return (
-    <div className="w-full flex flex-col items-center relative bg-orange-50">
+    <div className="w-full h-screen flex flex-col items-center relative bg-orange-50">
         <NavigationBar/>
 
         <div className="w-[1300px] max-w-full flex flex-col md:flex-row py-10 px-3 gap-5">
@@ -20,8 +23,19 @@ const ShoppingCart = () => {
                         </p>
                     </div>
 
-                    <CartItem/>
-                    <CartItem/>
+                    <CartItem
+                        onRemove={()=> setConfirmRemove(true)}
+                    />
+                    <CartItem
+                        onRemove={()=> setConfirmRemove(true)}
+                    />
+
+                    <div className="w-full flex justify-between gap-2 items-center py-5">
+                        <p className="text-black-text text-lg font-monts-semi-bold">Subtotal:</p>
+                        <p className="text-black-text text-lg font-monts-semi-bold">
+                            $200.00
+                        </p>
+                    </div>
                 </div>
             </div>
 
@@ -45,6 +59,13 @@ const ShoppingCart = () => {
             </div>
 
         </div>
+
+        {
+            confirmRemove && 
+            <RemoveCartItem
+                
+            />
+        }
     </div>
   )
 }

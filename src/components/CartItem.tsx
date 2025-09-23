@@ -1,9 +1,11 @@
 import { Minus, Plus, Trash2 } from "lucide-react";
 import { useState } from "react";
 
+interface Props {
+    onRemove: ()=>void;
+}
 
-
-const CartItem = () => {
+const CartItem = ({ onRemove }:Props) => {
     const [quantity, setQuantity] = useState(1);
 
     const handleMinus = ()=>{
@@ -15,17 +17,17 @@ const CartItem = () => {
     };
 
   return (
-    <div className="w-full flex justify-between py-4 border-b border-gray-300 last:border-b-0">
+    <div className="w-full flex justify-between gap-2 py-4 border-b border-gray-300">
 
         <div className="flex flex-col gap-3">
 
-            <div className="flex items-center gap-5">
+            <div className="flex items-start gap-3 sm:gap-5">
 
-                <div className="w-15 sm:w-20 aspect-square rounded-sm bg-gray-100"></div>
+                <div className="min-w-15 sm:min-w-20 aspect-square rounded-sm bg-gray-100"></div>
 
                 <div className="flex flex-col gap-1">
-                    <h4 className="text-lg text-black-text font-semibold leading-normal truncate">
-                        Item Name
+                    <h4 className="sm:text-lg text-black-text text-wrap font-semibold leading-tight truncate">
+                        Item Name testing border Item Name testing border
                     </h4>
                     <p className="text-black-text text-sm font-monts-medium">
                         Color: black
@@ -37,11 +39,15 @@ const CartItem = () => {
 
             </div>
 
-            <Trash2 size={22} className="text-red-400 cursor-pointer hover:text-red-500"/>
+            <Trash2 
+                size={22} 
+                className="text-red-400 cursor-pointer hover:text-red-500"
+                onClick={onRemove}
+            />
         </div>
 
 
-        <div className="flex flex-col items-end justify-center gap-3">
+        <div className="min-w-fit flex flex-col items-end gap-3">
             <p className="text-black-text text-lg font-monts-semi-bold">
                 $100.00
             </p>
