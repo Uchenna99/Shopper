@@ -3,9 +3,10 @@ import { useState } from "react";
 
 interface Props {
     onRemove: ()=>void;
+    item: any;
 }
 
-const CartItem = ({ onRemove }:Props) => {
+const CartItem = ({ onRemove, item }:Props) => {
     const [quantity, setQuantity] = useState(1);
 
     const handleMinus = ()=>{
@@ -27,13 +28,15 @@ const CartItem = ({ onRemove }:Props) => {
 
                 <div className="flex flex-col gap-1">
                     <h4 className="sm:text-lg text-black-text text-wrap font-semibold leading-tight truncate">
-                        Item Name testing border Item Name testing border
+                        {item.name}
                     </h4>
+
                     <p className="text-black-text text-sm font-monts-medium">
-                        Color: black
+                        Color:Nil
                     </p>
+
                     <p className="text-black-text text-sm font-monts-medium">
-                        Size: XXL
+                        Size: Nil
                     </p>
                 </div>
 

@@ -9,7 +9,9 @@ interface AppContextType {
   showDropCategories: boolean;
   setShowDropCategories: React.Dispatch<React.SetStateAction<boolean>>;
   cartItems: any[];
-  setCartItems: React.Dispatch<React.SetStateAction<any[]>>;
+  addToCart: (item: any)=>void;
+  increaseQuantity: (item: any)=>void;
+  decreaseQuantity: (item: any)=>void;
 }
 
 // Create the context with default undefined
@@ -22,10 +24,37 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [showDropCategories, setShowDropCategories] = useState(false);
   const [cartItems, setCartItems] = useState<any[]>([]); 
 
+  const addToCart = (newItem: any) => {
+    setCartItems((prevItems) => {
+      const exists = prevItems.find((item) => item.name === newItem.name);
+
+      if (exists) {
+        // increment quantity
+        return prevItems.map((item) =>
+          item.name === newItem.name ? { ...item, quantity: item.quantity + newItem.quantity } : item
+        );
+      }
+
+      // else add new item
+      return [...prevItems, newItem];
+    });
+  };
+
+  const increaseQuantity = (item: any)=>{
+    return cartItems.map((cartItem)=> 
+      cartItem.name === item.name? {...cartItem, quantity:cartItem.quantity + 1}: cartItem)
+  };
+
+  const decreaseQuantity = (item: any)=>{
+    return cartItems.map((cartItem)=> 
+      cartItem.name === item.name && cartItem.quantity > 1? {...cartItem, quantity:cartItem.quantity - 1}: cartItem)
+  };
+
+
 
   return (
     <AppContext.Provider value={{ showMenu, setShowMenu, showCategories, setShowCategories, 
-      setShowDropCategories, showDropCategories, cartItems, setCartItems
+      setShowDropCategories, showDropCategories, cartItems, addToCart, increaseQuantity, decreaseQuantity
     }}>
       {children}
     </AppContext.Provider>

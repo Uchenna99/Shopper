@@ -1,4 +1,4 @@
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 
@@ -7,7 +7,14 @@ const EmptyCart = () => {
     const navigate = useNavigate();
 
   return (
-    <div className="w-full flex flex-col items-center py-20 px-3 gap-10 text-black-text">
+    <div className="w-[1300px] max-w-full flex flex-col items-center py-20 px-3 gap-10 text-black-text relative">
+        <X
+            size={30}
+            className="absolute right-3 top-5 border rounded-full p-1 text-black-text hover:text-red-400
+            transition-all duration-200 cursor-pointer"
+            onClick={()=> navigate(-1)}
+        />
+        
         <ShoppingCart
             size={100}
             className="text-orange-400"

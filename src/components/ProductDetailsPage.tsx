@@ -8,6 +8,7 @@ import CardsSlide from "./CardsSlide";
 import products from "../assets/Data/Items.json";
 import LikeButton from "./LikeButton";
 import Footer from "./Footer";
+import { useAppContext } from "../hooks/AppContext";
 
 
 const ProductDetailsPage = () => {
@@ -15,6 +16,7 @@ const ProductDetailsPage = () => {
     const { item } = location.state;
     const colors: string[] = item.colors;
     const navigate = useNavigate();
+    const { addToCart } = useAppContext();
     const [quantity, setQuantity] = useState(1);
 
     const handleMinus = ()=>{
@@ -24,6 +26,12 @@ const ProductDetailsPage = () => {
     const handlePlus = ()=>{
         setQuantity(quantity + 1);
     };
+
+    const addItemToCart = ()=>{
+        const cartItem = {...item, quantity};
+        addToCart(cartItem);
+    };
+    
     
   return (
     <div className="w-full min-h-screen flex flex-col">
@@ -124,7 +132,9 @@ const ProductDetailsPage = () => {
                         </div>
 
                         <ProductCardButton
-                            onAdd={()=>{}}
+                            onAdd={()=>{
+                                addItemToCart
+                            }}
                         />
                     </div>
 

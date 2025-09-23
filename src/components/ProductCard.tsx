@@ -16,7 +16,7 @@ interface Props {
 }
 
 const ProductCard = ({ name, price, rating, image, onCardSelect }:Props) => {
-    const { ref, inView } = useInView({threshold:0.5, triggerOnce: true});
+    const { ref, inView } = useInView({threshold:0.4, triggerOnce: true});
     const { main, decimal } = splitPrice(price);
 
   return (
