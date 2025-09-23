@@ -38,10 +38,10 @@ const WomensCategory = () => {
                 transition={{duration:0.4, delay:0.2, ease:'easeOut'}} 
                 src="https://res.cloudinary.com/df6xz7bqp/image/upload/v1758357340/freestocks-VFrcRtEQKL8-unsplash-min-removebg-preview-min_ib3yl9.png" 
                 alt="young man" 
-                className="w-[400px] absolute bottom-0 -right-15 sm:right-0 lg:right-1/6 max-sm:opacity-70"
+                className="w-[400px] absolute bottom-0 -right-15 sm:right-0 lg:right-1/6"
               />
 
-              <div className="absolute inset-0 max-sm:bg-white/30"></div>
+              {/* <div className="absolute inset-0 max-sm:bg-white/30"></div> */}
 
             </div>
           </div>

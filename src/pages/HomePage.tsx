@@ -7,9 +7,24 @@ import NavigationBar from "../components/navbar/NavigationBar";
 import products from "../assets/Data/Items.json";
 import OurServices from "../components/homepage/OurServices"
 import Footer from "../components/Footer"
+import { useLocation, useNavigate } from "react-router-dom"
+import { useEffect } from "react"
 
 
 const HomePage = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (location.state?.scrollTo) {
+      window.scrollTo({
+        top: location.state.scrollTo,
+        behavior: "smooth"
+      });
+    }
+    navigate(location.pathname, { replace: true });
+  }, [location.state]);
+
   return (
     <>
     <div className="w-full relative">
