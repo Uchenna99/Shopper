@@ -29,7 +29,10 @@ const BagsCollection = () => {
                   Explore our Stellar <br /> Bags {smallWidth && <br/>} Collection
                 </h1>
 
-                <HeroButton title="Explore"/>
+                <HeroButton 
+                  title="Explore"
+                  whenClicked={()=> window.scrollTo({top:310, behavior:'smooth'})}
+                />
               </motion.div>
 
               <motion.img

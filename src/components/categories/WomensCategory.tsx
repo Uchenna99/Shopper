@@ -30,7 +30,10 @@ const WomensCategory = () => {
                   Explore our Stellar <br /> Women's {smallWidth && <br/>} Collection
                 </h1>
 
-                <HeroButton title="Explore"/>
+                <HeroButton 
+                  title="Explore"
+                  whenClicked={()=> window.scrollTo({top:310, behavior:'smooth'})}
+                />
               </motion.div>
 
               <motion.img
