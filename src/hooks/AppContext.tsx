@@ -8,6 +8,8 @@ interface AppContextType {
   setShowCategories: React.Dispatch<React.SetStateAction<boolean>>;
   showDropCategories: boolean;
   setShowDropCategories: React.Dispatch<React.SetStateAction<boolean>>;
+  cartItems: any[];
+  setCartItems: React.Dispatch<React.SetStateAction<any[]>>;
 }
 
 // Create the context with default undefined
@@ -17,12 +19,13 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
-   const [showDropCategories, setShowDropCategories] = useState(false);
+  const [showDropCategories, setShowDropCategories] = useState(false);
+  const [cartItems, setCartItems] = useState<any[]>([]); 
 
 
   return (
     <AppContext.Provider value={{ showMenu, setShowMenu, showCategories, setShowCategories, 
-      setShowDropCategories, showDropCategories
+      setShowDropCategories, showDropCategories, cartItems, setCartItems
     }}>
       {children}
     </AppContext.Provider>

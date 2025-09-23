@@ -19,7 +19,7 @@ const CardsSlide = ({ title, products, customClass }:Props) => {
   return (
     <>
         <div className="w-full flex justify-center">
-            <div className="w-[1300px] max-w-full px-4 sm:px-5 py-20 flex flex-col gap-14">
+            <div className="w-[1300px] max-w-full px-4 sm:px-5 py-10 flex flex-col gap-14">
 
                 <h1 className="text-black-text text-2xl sm:text-3xl font-merienda-bold">
                     {title}
