@@ -26,7 +26,9 @@ const CartItemDisplay = ({ onRemove, item }:Props) => {
 
             <div className="flex items-start gap-3 sm:gap-5">
 
-                <div className="min-w-15 sm:min-w-20 aspect-square rounded-sm bg-gray-100"></div>
+                <div className="min-w-15 sm:min-w-20 aspect-square rounded-sm bg-gray-100 bg-center bg-no-repeat bg-cover"
+                    style={{backgroundImage:`url(${item.image})`}}
+                />
 
                 <div className="flex flex-col gap-1">
                     <h4 className="sm:text-lg text-black-text text-wrap font-semibold leading-tight truncate">

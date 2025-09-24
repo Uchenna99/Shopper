@@ -9,11 +9,12 @@ import { useScreenWidth } from "../../hooks/WidthQuery";
 import NavDropDown from "./NavDropDown";
 import { useAppContext } from "../../hooks/AppContext";
 import { useScreenHeight } from "../../hooks/HeightQuery";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 
 const NavigationBar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const smallHeigth = useScreenHeight(500);
   const { showMenu, setShowMenu } = useAppContext();
   const isMobile = useScreenWidth(530);
@@ -88,7 +89,7 @@ const NavigationBar = () => {
 
                   <NavRightOption 
                     title="Cart"
-                    whenClicked={()=> navigate('/cart')}
+                    whenClicked={()=> location.pathname.includes('/cart')? null : navigate('/cart')}
                   />
 
                   <div className="w-10 h-full lg:hidden flex items-center justify-center">

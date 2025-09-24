@@ -1,6 +1,6 @@
 
 interface Props {
-    subtotal: number;
+    subtotal: any;
 }
 
 const CartTotal = ({ subtotal }:Props) => {

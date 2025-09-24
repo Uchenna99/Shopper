@@ -45,7 +45,7 @@ const ShoppingCart = () => {
 
                     <div className="w-full bg-white rounded-sm shadow-sm pt-4 px-4 border border-gray-300">
                         <div className="flex border-b border-gray-300 pb-2">
-                            <p className="text-lg text-black-text font-monts-bold">
+                            <p className="text-black-text font-monts-bold">
                                 Cart <span className="font-monts-semi-bold">( {cartItems.length} {cartItems.length == 1? 'item':'items'} )</span>
                             </p>
                         </div>
@@ -66,7 +66,7 @@ const ShoppingCart = () => {
                         <div className="w-full flex justify-between gap-2 items-center py-5">
                             <p className="text-black-text font-monts-semi-bold">Subtotal:</p>
                             <p className="text-black-text font-monts-semi-bold">
-                                ${subtotal}
+                                ${subtotal.toFixed(2)}
                             </p>
                         </div>
                     </div>
@@ -76,7 +76,7 @@ const ShoppingCart = () => {
                 <div className="w-full md:w-1/3">
                     <div className="w-full bg-white rounded-sm shadow-sm p-4 border border-gray-300">
                         <div className="flex border-b border-gray-300 pb-2">
-                            <p className="text-lg text-black-text font-monts-semi-bold">
+                            <p className="text-black-text font-monts-semi-bold">
                                 Order Summary
                             </p>
                         </div>
@@ -110,7 +110,7 @@ const ShoppingCart = () => {
                         </div>
 
                         <CartTotal
-                            subtotal={subtotal}
+                            subtotal={subtotal.toFixed(2)}
                         />
                     </div>
                 </div>
