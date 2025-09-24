@@ -3,13 +3,11 @@ import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { useAppContext } from "../../hooks/AppContext";
 import CategoriesBurgerDropdown from "./CategoriesBurgerDropdown";
-import { useNavigate } from "react-router-dom";
 
 
 const NavDropDown = () => {
   const { showMenu, setShowMenu, setShowDropCategories, showDropCategories } = useAppContext();
   const dropdownRef = useRef<HTMLDivElement | null>(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent)=> {

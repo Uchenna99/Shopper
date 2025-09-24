@@ -20,7 +20,7 @@ const EmptyCart = () => {
             className="text-orange-400"
         />
 
-        <h1 className="text-xl font-monts-semi-bold">
+        <h1 className="text-lg sm:text-xl font-monts-semi-bold">
             Your cart is empty
         </h1>
 

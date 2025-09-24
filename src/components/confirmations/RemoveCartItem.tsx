@@ -13,7 +13,7 @@ const RemoveCartItem = ({ onCancel, onConfirm, deleting }:Props) => {
         <div className="w-full h-screen fixed top-0 left-0 bg-black/40" onClick={onCancel}></div>
         
         <motion.div className="fixed top-2/5 left-1/2 -translate-x-1/2 w-[400px] max-w-[calc(100%-24px)] bg-white rounded-md p-5 text-black-text"
-            initial={{opacity:0, scale:0.7}} animate={{opacity:1, scale:1}} transition={{duration:0.3, ease:'easeInOut'}}>
+            initial={{opacity:0, scale:0.7}} animate={{opacity:1, scale:1}} transition={{duration:0.2, ease:'easeInOut'}}>
             <X size={20} 
                 className="absolute right-3 top-5 cursor-pointer hover:text-red-400 active:text-red-400 transition-all duration-200"
                 onClick={onCancel}
