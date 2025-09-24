@@ -1,5 +1,4 @@
-import { useState } from "react";
-import CartItem from "../components/CartItem";
+import { useEffect, useState } from "react";
 import RemoveCartItem from "../components/confirmations/RemoveCartItem";
 import Coupon from "../components/Coupon";
 import NavigationBar from "../components/navbar/NavigationBar";
@@ -12,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../hooks/AppContext";
 import EmptyCart from "../components/EmptyCart";
 import CartTotal from "../components/CartTotal";
+import CartItemDisplay from "../components/CartItemDisplay";
 
 
 const ShoppingCart = () => {
@@ -19,6 +19,13 @@ const ShoppingCart = () => {
     const { cartItems } = useAppContext();
     const [confirmRemove, setConfirmRemove] = useState(false);
     const [selectedPayment, setSelectedPayment] = useState<'card' | 'delivery' | 'paystack'>('paystack');
+    const [subtotal, setSubtotal] = useState(0);
+
+    useEffect(()=>{
+        let sum = 0;
+        cartItems.forEach((cartItem)=> sum = sum + (cartItem.price * cartItem.quantity));
+        setSubtotal(sum);
+    },[cartItems]);
 
   return (
     <div className="w-full flex flex-col items-center relative">
@@ -45,7 +52,7 @@ const ShoppingCart = () => {
 
                         {
                             cartItems.map((cartItem, index)=>(
-                                <CartItem
+                                <CartItemDisplay
                                     key={index}
                                     item={cartItem}
                                     onRemove={()=> {
@@ -59,7 +66,7 @@ const ShoppingCart = () => {
                         <div className="w-full flex justify-between gap-2 items-center py-5">
                             <p className="text-black-text font-monts-semi-bold">Subtotal:</p>
                             <p className="text-black-text font-monts-semi-bold">
-                                $200.00
+                                ${subtotal}
                             </p>
                         </div>
                     </div>
@@ -102,7 +109,9 @@ const ShoppingCart = () => {
                             />
                         </div>
 
-                        <CartTotal/>
+                        <CartTotal
+                            subtotal={subtotal}
+                        />
                     </div>
                 </div>
 

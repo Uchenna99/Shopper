@@ -1,20 +1,22 @@
 import { Minus, Plus, Trash2 } from "lucide-react";
-import { useState } from "react";
+// import { useState } from "react";
+import type { CartItem } from "../utils/Types";
+import { useAppContext } from "../hooks/AppContext";
 
 interface Props {
     onRemove: ()=>void;
-    item: any;
+    item: CartItem;
 }
 
-const CartItem = ({ onRemove, item }:Props) => {
-    const [quantity, setQuantity] = useState(1);
+const CartItemDisplay = ({ onRemove, item }:Props) => {
+    const { increaseQuantity, decreaseQuantity } = useAppContext();
 
     const handleMinus = ()=>{
-        if(quantity !== 1) { setQuantity(quantity - 1) }
+        decreaseQuantity(item);
     };
 
     const handlePlus = ()=>{
-        setQuantity(quantity + 1);
+        increaseQuantity(item);
     };
 
   return (
@@ -52,7 +54,7 @@ const CartItem = ({ onRemove, item }:Props) => {
 
         <div className="min-w-fit flex flex-col items-end gap-3">
             <p className="text-black-text font-monts-semi-bold">
-                $100.00
+                ${item.price}
             </p>
 
             <div className="flex flex-col items-end sm:flex-row sm:items-center gap-4">
@@ -67,7 +69,7 @@ const CartItem = ({ onRemove, item }:Props) => {
                         />
                     </div>
 
-                    <p className="text-black-text text-sm font-monts-medium">{quantity}</p>
+                    <p className="text-black-text text-sm font-monts-medium">{item.quantity}</p>
 
                     <div className="w-6 h-6 rounded-full border border-gray-300 grid place-items-center cursor-pointer 
                         text-green-600" onClick={handlePlus}>
@@ -84,4 +86,4 @@ const CartItem = ({ onRemove, item }:Props) => {
   )
 }
 
-export default CartItem;
+export default CartItemDisplay;

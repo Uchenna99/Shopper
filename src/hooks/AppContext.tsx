@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, type ReactNode } from "react";
+import type { CartItem } from "../utils/Types";
 
 // Define the shape of your context
 interface AppContextType {
@@ -8,10 +9,10 @@ interface AppContextType {
   setShowCategories: React.Dispatch<React.SetStateAction<boolean>>;
   showDropCategories: boolean;
   setShowDropCategories: React.Dispatch<React.SetStateAction<boolean>>;
-  cartItems: any[];
-  addToCart: (item: any)=>void;
-  increaseQuantity: (item: any)=>void;
-  decreaseQuantity: (item: any)=>void;
+  cartItems: CartItem[];
+  addToCart: (item: CartItem)=>void;
+  increaseQuantity: (cartItem: CartItem)=>void;
+  decreaseQuantity: (item: CartItem)=>void;
 }
 
 // Create the context with default undefined
@@ -22,9 +23,9 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
   const [showDropCategories, setShowDropCategories] = useState(false);
-  const [cartItems, setCartItems] = useState<any[]>([]); 
+  const [cartItems, setCartItems] = useState<CartItem[]>([]); 
 
-  const addToCart = (newItem: any) => {
+  const addToCart = (newItem: CartItem) => {
     setCartItems((prevItems) => {
       const exists = prevItems.find((item) => item.name === newItem.name);
 
@@ -40,14 +41,33 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  const increaseQuantity = (item: any)=>{
-    return cartItems.map((cartItem)=> 
-      cartItem.name === item.name? {...cartItem, quantity:cartItem.quantity + 1}: cartItem)
+  const increaseQuantity = (cartItem: CartItem)=>{
+    setCartItems((prevItems) => {
+      const exists = prevItems.find((item) => item.name === cartItem.name);
+
+      if (exists) {
+        // increment quantity
+        return prevItems.map((item) =>
+          item.name === cartItem.name ? { ...item, quantity: item.quantity + 1 } : item
+        );
+      }
+
+      return prevItems;
+    });
   };
 
-  const decreaseQuantity = (item: any)=>{
-    return cartItems.map((cartItem)=> 
-      cartItem.name === item.name && cartItem.quantity > 1? {...cartItem, quantity:cartItem.quantity - 1}: cartItem)
+  const decreaseQuantity = (cartItem: CartItem)=>{
+    setCartItems((prevItems) => {
+      const exists = prevItems.find((item) => item.name === cartItem.name);
+
+      if (exists) {
+        return prevItems.map((item) =>
+          item.name === cartItem.name && item.quantity > 1? { ...item, quantity: item.quantity -   1 } : item
+        );
+      }
+
+      return prevItems;
+    });
   };
 
 

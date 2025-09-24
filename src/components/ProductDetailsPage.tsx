@@ -9,6 +9,7 @@ import products from "../assets/Data/Items.json";
 import LikeButton from "./LikeButton";
 import Footer from "./Footer";
 import { useAppContext } from "../hooks/AppContext";
+import type { CartItem } from "../utils/Types";
 
 
 const ProductDetailsPage = () => {
@@ -28,7 +29,7 @@ const ProductDetailsPage = () => {
     };
 
     const addItemToCart = ()=>{
-        const cartItem = {...item, quantity};
+        const cartItem: CartItem = {...item, quantity};
         addToCart(cartItem);
     };
     
@@ -133,7 +134,7 @@ const ProductDetailsPage = () => {
 
                         <ProductCardButton
                             onAdd={()=>{
-                                addItemToCart
+                                addItemToCart();
                             }}
                         />
                     </div>
