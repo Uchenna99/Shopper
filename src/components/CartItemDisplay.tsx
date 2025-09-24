@@ -30,7 +30,7 @@ const CartItemDisplay = ({ item }:Props) => {
             removeFromCart(item);
             setConfirmRemove(false);
             setDeleting(false);
-        }, 1000);
+        }, 800);
     };
 
 

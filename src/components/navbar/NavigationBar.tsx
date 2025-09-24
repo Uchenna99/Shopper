@@ -4,7 +4,7 @@ import SearchBar from "./SearchBar";
 import NavRightOption from "./NavRightOption";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, ShoppingCart, X } from "lucide-react";
 import { useScreenWidth } from "../../hooks/WidthQuery";
 import NavDropDown from "./NavDropDown";
 import { useAppContext } from "../../hooks/AppContext";
@@ -16,7 +16,7 @@ const NavigationBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const smallHeigth = useScreenHeight(500);
-  const { showMenu, setShowMenu } = useAppContext();
+  const { showMenu, setShowMenu, cartItems } = useAppContext();
   const isMobile = useScreenWidth(530);
   const [searching, setSearching] = useState(false);
   const [hideLogo, setHideLogo] = useState(false);
@@ -81,6 +81,21 @@ const NavigationBar = () => {
                     <SearchBar searching={searching} close={()=> setSearching(false)}/>
 
                   </motion.div>
+
+                  <div className={`relative flex md:hidden ml-2`} 
+                    onClick={()=> location.pathname.includes('/cart')? null : navigate('/cart')}>
+                    <ShoppingCart
+                        size={18}
+                        strokeWidth={2}
+                        className={`transition-all duration-200 z-10`}
+                    />
+                    <div className={`min-w-4 min-h-4 bg-orange-400 rounded-full absolute -top-3 left-[2px] grid place-items-center
+                            ${cartItems.length === 0? 'hidden':''}`}>
+                        <p className="text-white text-xs font-monts-medium">
+                            {cartItems.length || 0}
+                        </p>
+                    </div>
+                  </div> 
 
                   <NavRightOption 
                     title="Account" 
