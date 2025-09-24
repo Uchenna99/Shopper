@@ -43,7 +43,7 @@ const NavigationBar = () => {
 
         <div className={`w-full bg-white flex justify-center sticky top-0 z-90 shadow-sm
             ${smallHeigth? 'h-14':'h-14 sm:h-20'}`}>
-            <div className={`w-[1300px] max-w-full h-full flex items-center justify-between px-5 gap-2`}>
+            <div className={`w-[1300px] max-w-full h-full flex items-center justify-between px-2 sm:px-5 gap-2`}>
 
                 <Link to={'/'} className={`flex items-center gap-3 cursor-pointer hover:scale-110 transition-all duration-250`}>
                   <img src={logo} alt="" className="w-8 h-8 sm:w-11 sm:h-11" />
@@ -85,11 +85,11 @@ const NavigationBar = () => {
                   <div className={`relative flex md:hidden ml-2`} 
                     onClick={()=> location.pathname.includes('/cart')? null : navigate('/cart')}>
                     <ShoppingCart
-                        size={18}
+                        size={21}
                         strokeWidth={2}
                         className={`transition-all duration-200 z-10`}
                     />
-                    <div className={`min-w-4 min-h-4 bg-orange-400 rounded-full absolute -top-3 left-[2px] grid place-items-center
+                    <div className={`min-w-4 min-h-4 bg-orange-400 rounded-full absolute -top-3 left-1 grid place-items-center
                             ${cartItems.length === 0? 'hidden':''}`}>
                         <p className="text-white text-xs font-monts-medium">
                             {cartItems.length || 0}
