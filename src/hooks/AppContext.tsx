@@ -11,6 +11,7 @@ interface AppContextType {
   setShowDropCategories: React.Dispatch<React.SetStateAction<boolean>>;
   cartItems: CartItem[];
   addToCart: (item: CartItem)=>void;
+  removeFromCart: (item: CartItem)=>void;
   increaseQuantity: (cartItem: CartItem)=>void;
   decreaseQuantity: (item: CartItem)=>void;
 }
@@ -39,6 +40,10 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       // else add new item
       return [...prevItems, newItem];
     });
+  };
+
+  const removeFromCart = (item: CartItem)=>{
+    setCartItems((prev)=> prev.filter((filterItem)=> filterItem.name !== item.name))
   };
 
   const increaseQuantity = (cartItem: CartItem)=>{
@@ -74,7 +79,8 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <AppContext.Provider value={{ showMenu, setShowMenu, showCategories, setShowCategories, 
-      setShowDropCategories, showDropCategories, cartItems, addToCart, increaseQuantity, decreaseQuantity
+      setShowDropCategories, showDropCategories, cartItems, addToCart, increaseQuantity, decreaseQuantity,
+      removeFromCart
     }}>
       {children}
     </AppContext.Provider>

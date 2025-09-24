@@ -2,14 +2,18 @@ import { Minus, Plus, Trash2 } from "lucide-react";
 // import { useState } from "react";
 import type { CartItem } from "../utils/Types";
 import { useAppContext } from "../hooks/AppContext";
+import { useState } from "react";
+import RemoveCartItem from "./confirmations/RemoveCartItem";
 
 interface Props {
-    onRemove: ()=>void;
+    // onRemove: ()=>void;
     item: CartItem;
 }
 
-const CartItemDisplay = ({ onRemove, item }:Props) => {
-    const { increaseQuantity, decreaseQuantity } = useAppContext();
+const CartItemDisplay = ({ item }:Props) => {
+    const { increaseQuantity, decreaseQuantity, removeFromCart } = useAppContext();
+    const [confirmRemove, setConfirmRemove] = useState(false);
+    const [deleting, setDeleting] = useState(false);
 
     const handleMinus = ()=>{
         decreaseQuantity(item);
@@ -18,6 +22,17 @@ const CartItemDisplay = ({ onRemove, item }:Props) => {
     const handlePlus = ()=>{
         increaseQuantity(item);
     };
+
+    const removeItem = ()=>{
+        setDeleting(true);
+
+        setTimeout(() => {
+            removeFromCart(item);
+            setConfirmRemove(false);
+            setDeleting(false);
+        }, 1000);
+    };
+
 
   return (
     <div className="w-full flex justify-between gap-2 py-4 border-b border-gray-300">
@@ -49,9 +64,20 @@ const CartItemDisplay = ({ onRemove, item }:Props) => {
             <Trash2 
                 size={22} 
                 className="text-red-400 cursor-pointer hover:text-red-500"
-                onClick={onRemove}
+                onClick={()=> setConfirmRemove(true)}
             />
         </div>
+
+        {
+            confirmRemove && 
+            <RemoveCartItem
+                deleting={deleting}
+                onConfirm={removeItem}
+                onCancel={()=> {
+                    setConfirmRemove(false);
+                }}
+            />
+        }
 
 
         <div className="min-w-fit flex flex-col items-end gap-3">

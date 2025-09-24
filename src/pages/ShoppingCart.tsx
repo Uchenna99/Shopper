@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import RemoveCartItem from "../components/confirmations/RemoveCartItem";
 import Coupon from "../components/Coupon";
 import NavigationBar from "../components/navbar/NavigationBar";
 import CheckBox from "../components/buttons/CheckBox";
@@ -17,7 +16,6 @@ import CartItemDisplay from "../components/CartItemDisplay";
 const ShoppingCart = () => {
     const navigate = useNavigate();
     const { cartItems } = useAppContext();
-    const [confirmRemove, setConfirmRemove] = useState(false);
     const [selectedPayment, setSelectedPayment] = useState<'card' | 'delivery' | 'paystack'>('paystack');
     const [subtotal, setSubtotal] = useState(0);
 
@@ -55,10 +53,6 @@ const ShoppingCart = () => {
                                 <CartItemDisplay
                                     key={index}
                                     item={cartItem}
-                                    onRemove={()=> {
-                                        setConfirmRemove(true);
-                                        document.body.classList.add("overflow-hidden");
-                                    }}
                                 />
                             ))
                         }
@@ -120,16 +114,7 @@ const ShoppingCart = () => {
             <EmptyCart/>
         }
 
-        {
-            confirmRemove && 
-            <RemoveCartItem
-                onConfirm={()=>{}}
-                onCancel={()=> {
-                    setConfirmRemove(false);
-                    document.body.classList.remove("overflow-hidden");
-                }}
-            />
-        }
+        
 
         <CardsSlide
             title="More Items You Might Like"

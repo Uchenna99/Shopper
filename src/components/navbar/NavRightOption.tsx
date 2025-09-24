@@ -32,7 +32,8 @@ const NavRightOption = ({ title, whenClicked }:Props) => {
                     strokeWidth={2}
                     className={`${hovering? 'scale-130' : ''} transition-all duration-200 z-10`}
                 />
-                <div className="min-w-5 min-h-5 bg-orange-400 rounded-full absolute -top-4 left-0 grid place-items-center">
+                <div className={`min-w-5 min-h-5 bg-orange-400 rounded-full absolute -top-4 left-0 grid place-items-center
+                        ${cartItems.length === 0? 'hidden':''}`}>
                     <p className="text-white text-xs font-monts-medium">
                         {cartItems.length || 0}
                     </p>
