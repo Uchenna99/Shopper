@@ -62,14 +62,6 @@ const NavDropDown = () => {
           <p className="text-black-text">Support</p>
         </div>
 
-        <div className="h-9 flex items-center" 
-          onClick={()=>{
-            setShowMenu(false);
-            navigate('/cart');
-          }}>
-          <p className="text-black-text">Cart</p>
-        </div>
-
     </motion.div>
   )
 }
