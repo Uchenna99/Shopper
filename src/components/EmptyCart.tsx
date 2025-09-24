@@ -1,10 +1,12 @@
 import { ShoppingCart, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useScreenWidth } from "../hooks/WidthQuery";
 
 
 
 const EmptyCart = () => {
     const navigate = useNavigate();
+    const isSmall = useScreenWidth(640);
 
   return (
     <div className="w-[1300px] max-w-full flex flex-col items-center py-20 px-3 gap-10 text-black-text relative">
@@ -16,7 +18,7 @@ const EmptyCart = () => {
         />
         
         <ShoppingCart
-            size={100}
+            size={isSmall? 60 : 100}
             className="text-orange-400"
         />
 
