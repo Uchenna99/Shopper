@@ -85,7 +85,7 @@ const ProductDetailsPage = () => {
 
                     <div className="w-full flex flex-col gap-2 border-b border-gray-300 py-5">
                         <p className="text-black-text text-2xl font-monts-semi-bold">
-                            ${item.price}
+                            ${item.price.toFixed(2)}
                         </p>
                         <p className="text-black-text text-xs font-monts-medium">No discount applied</p>
                     </div>

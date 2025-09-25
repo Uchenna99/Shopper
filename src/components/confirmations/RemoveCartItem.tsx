@@ -12,22 +12,23 @@ const RemoveCartItem = ({ onCancel, onConfirm, deleting }:Props) => {
     <>
         <div className="w-full h-screen fixed top-0 left-0 bg-black/40" onClick={onCancel}></div>
         
-        <motion.div className="fixed top-2/5 left-1/2 -translate-x-1/2 w-[400px] max-w-[calc(100%-24px)] bg-white rounded-md p-5 text-black-text"
+        <motion.div className="fixed top-2/5 left-1/2 -translate-x-1/2 w-[400px] max-w-[calc(100%-24px)] bg-white rounded-md p-5 
+            text-black-text flex flex-col gap-1"
             initial={{opacity:0, scale:0.7}} animate={{opacity:1, scale:1}} transition={{duration:0.2, ease:'easeInOut'}}>
             <X size={20} 
                 className="absolute right-3 top-5 cursor-pointer hover:text-red-400 active:text-red-400 transition-all duration-200"
                 onClick={onCancel}
             />
 
-                <p className="font-monts-semi-bold text-center mb-3">
-                    Remove item
-                </p>
+            <p className="font-monts-semi-bold text-center mb-3">
+                Remove item
+            </p>
 
             <p className="text-black-text/80 text-sm text-center font-monts-medium mb-3">
                 Are you sure you want to remove this item from your cart?
             </p>
 
-            <div className="w-full flex gap-4">
+            <div className="w-full h-8 flex gap-4 mt-2">
                 <button className="flex-1 border-none outline-none cursor-pointer py-1 rounded-sm text-sm text-black-text
                     bg-orange-50 hover:bg-orange-100 active:bg-orange-100 transition-all duration-200 font-monts-medium"
                     onClick={onCancel}>
