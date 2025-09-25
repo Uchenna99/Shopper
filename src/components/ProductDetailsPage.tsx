@@ -19,6 +19,7 @@ const ProductDetailsPage = () => {
     const navigate = useNavigate();
     const { addToCart } = useAppContext();
     const [quantity, setQuantity] = useState(1);
+    const [addingToCart, setAddingToCart] = useState(false);
 
     const handleMinus = ()=>{
         if(quantity !== 1) { setQuantity(quantity - 1) }
@@ -29,8 +30,12 @@ const ProductDetailsPage = () => {
     };
 
     const addItemToCart = ()=>{
-        const cartItem: CartItem = {...item, quantity};
-        addToCart(cartItem);
+        setAddingToCart(true);
+        setTimeout(() => {
+            const cartItem: CartItem = {...item, quantity};
+            addToCart(cartItem);
+            setAddingToCart(false);
+        }, 1000);
     };
     
     
@@ -133,6 +138,7 @@ const ProductDetailsPage = () => {
                         </div>
 
                         <ProductCardButton
+                            adding={addingToCart}
                             onAdd={()=>{
                                 addItemToCart();
                             }}

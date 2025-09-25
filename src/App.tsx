@@ -34,10 +34,8 @@ function App() {
           
         </Route>
         
-
         <Route path='*' element={<NotFound />} />
 
-        
       </Routes>
     </>
   )
