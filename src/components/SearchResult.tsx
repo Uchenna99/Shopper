@@ -3,6 +3,7 @@ import { StarRatingDisplay } from "./StarRatingDisplay";
 import { splitPrice } from "../utils/UtilityFunctions";
 import { useScreenWidth } from "../hooks/WidthQuery";
 import { Search } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
     result: any[];
@@ -11,6 +12,7 @@ interface Props {
 
 const SearchResult = ({ result, foundItems }:Props) => {
     const isSmall = useScreenWidth(640);
+    const navigate = useNavigate();
 
   return (
     <>
@@ -25,7 +27,8 @@ const SearchResult = ({ result, foundItems }:Props) => {
                     result.map((item, index)=>(
                         <div className="w-full flex items-center gap-3 justify-between py-2 border-b border-gray-300 text-black-text 
                             last:border-none"
-                            key={index}>
+                            key={index}
+                            onClick={()=> navigate(`${item.category}/productdetails`, {state: {item}})}>
 
                             <div className="min-w-8 min-h-8 rounded-sm bg-gray-100 bg-center bg-cover bg-no-repeat"
                                 style={{backgroundImage:`url(${item.image})`}}
