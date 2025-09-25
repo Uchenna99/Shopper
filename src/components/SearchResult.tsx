@@ -17,7 +17,9 @@ const SearchResult = ({ result, foundItems }:Props) => {
         {
             foundItems?
             <motion.div className={`min-w-[450px] bg-white p-4 grid grid-cols-1 shadow-lg z-90 
-                ${isSmall? 'min-w-full fixed top-13 left-0' : 'absolute right-0 top-12 rounded-md'}`}>
+                ${isSmall? 'min-w-full fixed top-13 left-0' : 'absolute right-0 top-12 rounded-md'}`}
+                initial={{opacity:0, y:-10}}
+                animate={{opacity:1, y:0}} transition={{duration:0.3, ease:'easeInOut'}}>
 
                 {
                     result.map((item, index)=>(
@@ -55,7 +57,9 @@ const SearchResult = ({ result, foundItems }:Props) => {
             :
             <motion.div className={`min-w-[450px] bg-white p-5 flex justify-center items-center gap-2 text-black-text 
                 shadow-lg z-90 
-                ${isSmall? 'min-w-full fixed top-13 left-0' : 'absolute right-0 top-12 rounded-md'}`}>
+                ${isSmall? 'min-w-full fixed top-13 left-0' : 'absolute right-0 top-12 rounded-md'}`}
+                initial={{opacity:0, y:-10}}
+                animate={{opacity:1, y:0}} transition={{duration:0.3, ease:'easeInOut'}}>
 
                 <Search size={15}/>
 

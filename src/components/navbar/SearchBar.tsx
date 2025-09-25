@@ -58,7 +58,7 @@ const SearchBar = ({ searching, close }:Props) => {
 
 
             {
-              showResult &&
+              showResult && searching &&
               <SearchResult
                 result={foundItems}
                 foundItems={foundItems.length >= 1}
