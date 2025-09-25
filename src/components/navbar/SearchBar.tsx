@@ -1,4 +1,7 @@
 import { Search, X } from "lucide-react";
+import SearchResult from "../SearchResult";
+import products from "../../assets/Data/Items.json";
+import { useEffect, useState } from "react";
 
 interface Props {
   searching: boolean;
@@ -7,6 +10,14 @@ interface Props {
 
 
 const SearchBar = ({ searching, close }:Props) => {
+  const [searchInput, setSearchInput] = useState('');
+  const [showResult, setShowResult] = useState(false);
+
+  useEffect(()=>{
+    if(searchInput.length > 2) {
+      
+    }
+  },[searchInput]);
 
   return (
     <>
@@ -14,8 +25,10 @@ const SearchBar = ({ searching, close }:Props) => {
           transition-all duration-200 relative">
 
             <input type="text" 
-                className={`w-full border-none outline-none pl-5 pr-10 text-black-text font-monts-medium
-                ${searching? '':'hidden'}`}
+              className={`w-full border-none outline-none pl-5 pr-10 text-black-text font-monts-medium
+              ${searching? '':'hidden'}`}
+              value={searchInput}
+              onChange={(e)=> setSearchInput(e.target.value)}
             />
 
             <Search
@@ -31,6 +44,15 @@ const SearchBar = ({ searching, close }:Props) => {
                 color="#ffb86a"
                 className="absolute -right-5 top-1"
                 onClick={close}
+              />
+            }
+
+
+            {
+              showResult &&
+              <SearchResult
+                result={products.slice(0,6)}
+                foundItems={false}
               />
             }
 

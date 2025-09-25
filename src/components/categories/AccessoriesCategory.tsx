@@ -7,7 +7,6 @@ import { motion } from "framer-motion";
 import products from "../../assets/Data/Items.json";
 import Footer from "../Footer";
 import { useScreenWidth } from "../../hooks/WidthQuery";
-import SearchResult from "../SearchResult";
 
 
 const AccessoriesCategory = () => {
@@ -19,7 +18,6 @@ const AccessoriesCategory = () => {
         <div className="w-full relative">
 
           <NavigationBar/>
-          <SearchResult result={popular}/>
 
           <div className="w-full h-[300px] flex justify-center">
             <div className="w-[1300px] h-full max-w-full bg-orange-600 rounded-xs flex items-center gap-[200px] px-5 md:px-20 
