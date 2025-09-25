@@ -20,7 +20,7 @@ const SearchBar = ({ searching, close }:Props) => {
       if(!showResult){
         setShowResult(true);
       }
-      const searchItems = products.filter((item)=> item.name.toLowerCase().includes(searchInput));
+      const searchItems = products.filter((item)=> item.name.toLowerCase().includes(searchInput.toLowerCase()));
       setFoundItems(searchItems);
     }else{
       if(showResult){ setShowResult(false) }
