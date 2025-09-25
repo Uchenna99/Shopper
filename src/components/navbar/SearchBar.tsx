@@ -12,10 +12,18 @@ interface Props {
 const SearchBar = ({ searching, close }:Props) => {
   const [searchInput, setSearchInput] = useState('');
   const [showResult, setShowResult] = useState(false);
+  const [foundItems, setFoundItems] = useState<any[]>([]);
+
 
   useEffect(()=>{
-    if(searchInput.length > 2) {
-      
+    if(searchInput.length > 1) {
+      if(!showResult){
+        setShowResult(true);
+      }
+      const searchItems = products.filter((item)=> item.name.toLowerCase().includes(searchInput));
+      setFoundItems(searchItems);
+    }else{
+      if(showResult){ setShowResult(false) }
     }
   },[searchInput]);
 
@@ -27,6 +35,7 @@ const SearchBar = ({ searching, close }:Props) => {
             <input type="text" 
               className={`w-full border-none outline-none pl-5 pr-10 text-black-text font-monts-medium
               ${searching? '':'hidden'}`}
+              placeholder="Search items"
               value={searchInput}
               onChange={(e)=> setSearchInput(e.target.value)}
             />
@@ -51,8 +60,8 @@ const SearchBar = ({ searching, close }:Props) => {
             {
               showResult &&
               <SearchResult
-                result={products.slice(0,6)}
-                foundItems={false}
+                result={foundItems}
+                foundItems={foundItems.length >= 1}
               />
             }
 
