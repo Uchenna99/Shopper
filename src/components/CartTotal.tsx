@@ -1,9 +1,14 @@
+import { useState } from "react";
+import PaymentSuccessful from "./confirmations/PaymentSuccessful";
 
 interface Props {
     subtotal: any;
 }
 
 const CartTotal = ({ subtotal }:Props) => {
+    
+    const [successful, setSuccessful] = useState(false);
+
   return (
     <div className="w-full flex flex-col py-5 gap-3 text-black-text">
         <div className="w-full flex justify-between items-center gap-2">
@@ -36,9 +41,16 @@ const CartTotal = ({ subtotal }:Props) => {
 
         <button className="w-full border-none outline-none bg-orange-400 rounded-4xl py-2 text-white font-monts-medium
             cursor-pointer hover:bg-orange-500 active:bg-orange-500 active:scale-95 transition-all duration-200"
-            onClick={()=>{}}>
+            onClick={()=>{
+                setSuccessful(true);
+            }}>
             Pay ${subtotal}
         </button>
+
+        {
+            successful &&
+            <PaymentSuccessful/>
+        }
     </div>
   )
 }

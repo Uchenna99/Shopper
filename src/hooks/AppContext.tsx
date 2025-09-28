@@ -12,6 +12,7 @@ interface AppContextType {
   cartItems: CartItem[];
   addToCart: (item: CartItem)=>void;
   removeFromCart: (item: CartItem)=>void;
+  clearCart: ()=>void;
   increaseQuantity: (cartItem: CartItem)=>void;
   decreaseQuantity: (item: CartItem)=>void;
 }
@@ -44,6 +45,10 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
 
   const removeFromCart = (item: CartItem)=>{
     setCartItems((prev)=> prev.filter((filterItem)=> filterItem.name !== item.name))
+  };
+
+  const clearCart = ()=>{
+    setCartItems([]);
   };
 
   const increaseQuantity = (cartItem: CartItem)=>{
@@ -80,7 +85,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   return (
     <AppContext.Provider value={{ showMenu, setShowMenu, showCategories, setShowCategories, 
       setShowDropCategories, showDropCategories, cartItems, addToCart, increaseQuantity, decreaseQuantity,
-      removeFromCart
+      removeFromCart, clearCart
     }}>
       {children}
     </AppContext.Provider>

@@ -1,7 +1,6 @@
 import { ShoppingCart, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useScreenWidth } from "../hooks/WidthQuery";
-import PaymentSuccessful from "./confirmations/PaymentSuccessful";
 
 
 
@@ -33,7 +32,6 @@ const EmptyCart = () => {
             Browse our Categories
         </button>
 
-        <PaymentSuccessful/>
     </div>
   )
 }

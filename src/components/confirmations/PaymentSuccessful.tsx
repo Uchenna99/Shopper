@@ -4,10 +4,12 @@ import confetti_img from "../../assets/confetti_2.png";
 import mark from "../../assets/success_mark.png";
 import { useEffect } from "react";
 import { fireConfettiFromElement } from "../../utils/Confetti";
+import { useAppContext } from "../../hooks/AppContext";
 
 
 const PaymentSuccessful = () => {
     const navigate = useNavigate();
+    const { clearCart } = useAppContext();
 
     useEffect(()=>{
         setTimeout(() => {
@@ -17,10 +19,13 @@ const PaymentSuccessful = () => {
 
   return (
     <>
-        <div className="w-full h-screen fixed top-0 left-0 bg-black/40" onClick={()=>navigate('/', {state: {scrollTo:500}})}></div>
+        <div className="w-full h-screen fixed top-0 left-0 z-90 bg-black/40" onClick={()=>{
+            navigate('/', {state: {scrollTo:500}});
+            clearCart();
+        }}/>
         
         <motion.div className="fixed top-1/5 left-1/2 -translate-x-1/2 w-[360px] max-w-[calc(100%-24px)] bg-white rounded-xl
-            z-20 overflow-hidden bg-gradient-to-tr from-white to-blue-100"
+            z-100 overflow-hidden bg-gradient-to-tr from-white to-blue-100"
             initial={{scale:0.7, opacity:0}} animate={{scale:1, opacity:1}} transition={{duration:0.3, delay:0.2}}>
 
             <div className="w-full h-[230px] flex items-center justify-center animate-gradient-x
@@ -40,7 +45,10 @@ const PaymentSuccessful = () => {
 
                 <button className="w-fit px-4 py-2 bg-orange-400 text-white text-sm rounded-3xl cursor-pointer hover:bg-orange-500
                     transition-all duration-200"
-                    onClick={()=>navigate('/', {state: {scrollTo:500}})}>
+                    onClick={()=>{
+                        navigate('/', {state: {scrollTo:500}});
+                        clearCart();
+                    }}>
                     Continue Shopping
                 </button>
             </div>
