@@ -12,8 +12,11 @@ import ProductDetailsPage from './components/ProductDetailsPage'
 import Landing from './components/homepage/Landing'
 import Checkout from './pages/Checkout'
 import ShoppingCart from './pages/ShoppingCart'
+import { useAppContext } from './hooks/AppContext'
+import PaymentSuccessful from './components/confirmations/PaymentSuccessful'
 
 function App() {
+  const { paymentSuccess } = useAppContext();
 
   return (
     <>
@@ -37,6 +40,12 @@ function App() {
         <Route path='*' element={<NotFound />} />
 
       </Routes>
+
+      {
+        paymentSuccess &&
+        <PaymentSuccessful/>
+      }
+
     </>
   )
 }

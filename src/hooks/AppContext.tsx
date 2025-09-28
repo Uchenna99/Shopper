@@ -15,6 +15,8 @@ interface AppContextType {
   clearCart: ()=>void;
   increaseQuantity: (cartItem: CartItem)=>void;
   decreaseQuantity: (item: CartItem)=>void;
+  paymentSuccess: boolean;
+  setPaymentSuccess: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 // Create the context with default undefined
@@ -26,6 +28,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [showCategories, setShowCategories] = useState(false);
   const [showDropCategories, setShowDropCategories] = useState(false);
   const [cartItems, setCartItems] = useState<CartItem[]>([]); 
+  const [paymentSuccess, setPaymentSuccess] = useState(false);
 
   const addToCart = (newItem: CartItem) => {
     setCartItems((prevItems) => {
@@ -85,7 +88,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   return (
     <AppContext.Provider value={{ showMenu, setShowMenu, showCategories, setShowCategories, 
       setShowDropCategories, showDropCategories, cartItems, addToCart, increaseQuantity, decreaseQuantity,
-      removeFromCart, clearCart
+      removeFromCart, clearCart, paymentSuccess, setPaymentSuccess
     }}>
       {children}
     </AppContext.Provider>

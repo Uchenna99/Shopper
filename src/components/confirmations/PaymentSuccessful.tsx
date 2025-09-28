@@ -9,7 +9,7 @@ import { useAppContext } from "../../hooks/AppContext";
 
 const PaymentSuccessful = () => {
     const navigate = useNavigate();
-    const { clearCart } = useAppContext();
+    const { setPaymentSuccess } = useAppContext();
 
     useEffect(()=>{
         setTimeout(() => {
@@ -21,7 +21,7 @@ const PaymentSuccessful = () => {
     <>
         <div className="w-full h-screen fixed top-0 left-0 z-90 bg-black/40" onClick={()=>{
             navigate('/', {state: {scrollTo:500}});
-            clearCart();
+            setPaymentSuccess(false);
         }}/>
         
         <motion.div className="fixed top-1/5 left-1/2 -translate-x-1/2 w-[360px] max-w-[calc(100%-24px)] bg-white rounded-xl
@@ -47,7 +47,7 @@ const PaymentSuccessful = () => {
                     transition-all duration-200"
                     onClick={()=>{
                         navigate('/', {state: {scrollTo:500}});
-                        clearCart();
+                        setPaymentSuccess(false);
                     }}>
                     Continue Shopping
                 </button>
