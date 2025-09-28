@@ -20,7 +20,6 @@ const PaymentSuccessful = () => {
   return (
     <>
         <div className="w-full h-screen fixed top-0 left-0 z-90 bg-black/40" onClick={()=>{
-            navigate('/', {state: {scrollTo:500}});
             setPaymentSuccess(false);
         }}/>
         
