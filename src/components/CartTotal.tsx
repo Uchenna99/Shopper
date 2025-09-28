@@ -35,7 +35,8 @@ const CartTotal = ({ subtotal }:Props) => {
         </div>
 
         <button className="w-full border-none outline-none bg-orange-400 rounded-4xl py-2 text-white font-monts-medium
-            cursor-pointer hover:bg-orange-500 active:bg-orange-500 active:scale-95 transition-all duration-200">
+            cursor-pointer hover:bg-orange-500 active:bg-orange-500 active:scale-95 transition-all duration-200"
+            onClick={()=>{}}>
             Pay ${subtotal}
         </button>
     </div>

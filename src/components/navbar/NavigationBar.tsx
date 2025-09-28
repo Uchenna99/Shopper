@@ -89,12 +89,12 @@ const NavigationBar = () => {
                         strokeWidth={2}
                         className={`transition-all duration-200 z-10`}
                     />
-                    <div className={`min-w-4 min-h-4 bg-orange-400 rounded-full absolute -top-3 left-1 grid place-items-center
+                    <motion.div className={`min-w-4 min-h-4 bg-orange-400 rounded-full absolute -top-3 left-1 grid place-items-center
                             ${cartItems.length === 0? 'hidden':''}`}>
                         <p className="text-white text-xs font-monts-medium">
                             {cartItems.length || 0}
                         </p>
-                    </div>
+                    </motion.div>
                   </div> 
 
                   <NavRightOption 
