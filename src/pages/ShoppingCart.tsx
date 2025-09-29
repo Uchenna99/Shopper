@@ -12,6 +12,7 @@ import EmptyCart from "../components/EmptyCart";
 import CartTotal from "../components/CartTotal";
 import CartItemDisplay from "../components/CartItemDisplay";
 import DeliveryInfo from "../components/DeliveryInfo";
+import DeliveryInfoSaved from "../components/DeliveryInfoSaved";
 
 
 const ShoppingCart = () => {
@@ -19,6 +20,7 @@ const ShoppingCart = () => {
     const { cartItems } = useAppContext();
     const [selectedPayment, setSelectedPayment] = useState<'card' | 'delivery' | 'paystack'>('paystack');
     const [subtotal, setSubtotal] = useState(0);
+    const [savedAddress, setSavedAddress] = useState(false);
 
     useEffect(()=>{
         let sum = 0;
@@ -66,7 +68,18 @@ const ShoppingCart = () => {
                         </div>
                     </div>
 
-                    <DeliveryInfo/>
+                    <CheckBox
+                        option="Use saved address?"
+                        isSelected={savedAddress}
+                        select={()=>setSavedAddress(!savedAddress)}
+                    />
+
+                    {
+                        savedAddress?
+                        <DeliveryInfoSaved/>
+                        :
+                        <DeliveryInfo/>
+                    }
                     
                 </div>
 

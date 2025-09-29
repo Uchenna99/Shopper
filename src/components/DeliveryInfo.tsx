@@ -1,10 +1,12 @@
 import InputText from "./InputText";
+import { motion } from "framer-motion";
 
 
 
 const DeliveryInfo = () => {
   return (
-    <div className="w-full bg-white rounded-sm shadow-sm p-4 border border-gray-300 flex flex-col gap-4">
+    <motion.div className="w-full bg-white rounded-sm shadow-sm p-4 border border-gray-300 flex flex-col gap-4"
+        initial={{opacity:0, y:40}} animate={{opacity:1, y:0}} transition={{duration:0.3, ease:'easeInOut'}}>
 
         <div className="w-full flex justify-between items-center gap-2 border-b border-gray-300 pb-2 mb-2">
             <p className="text-black-text font-monts-semi-bold">
@@ -41,7 +43,7 @@ const DeliveryInfo = () => {
                 <InputText title="Phone" placeHolder="eg. +234-7031234567" required/>    
             </div>    
         </div>
-    </div>
+    </motion.div>
   )
 }
 
