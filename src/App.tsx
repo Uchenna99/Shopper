@@ -14,6 +14,8 @@ import Checkout from './pages/Checkout'
 import ShoppingCart from './pages/ShoppingCart'
 import { useAppContext } from './hooks/AppContext'
 import PaymentSuccessful from './components/confirmations/PaymentSuccessful'
+import Login from './pages/Login'
+import Signup from './pages/SignUp'
 
 function App() {
   const { paymentSuccess } = useAppContext();
@@ -21,6 +23,9 @@ function App() {
   return (
     <>
       <Routes>
+
+        <Route path='/login' element={<Login/>} />
+        <Route path='/signup' element={<Signup/>} />
 
         <Route path='/' element={<Landing/>} >
 
