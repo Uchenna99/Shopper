@@ -11,6 +11,7 @@ import { useAppContext } from "../hooks/AppContext";
 import EmptyCart from "../components/EmptyCart";
 import CartTotal from "../components/CartTotal";
 import CartItemDisplay from "../components/CartItemDisplay";
+import DeliveryInfo from "../components/DeliveryInfo";
 
 
 const ShoppingCart = () => {
@@ -39,7 +40,7 @@ const ShoppingCart = () => {
                     onClick={()=> navigate(-1)}
                 />
 
-                <div className="w-full md:w-2/3">
+                <div className="w-full md:w-2/3 flex flex-col gap-5">
 
                     <div className="w-full bg-white rounded-sm shadow-sm pt-4 px-4 border border-gray-300">
                         <div className="flex border-b border-gray-300 pb-2">
@@ -64,6 +65,9 @@ const ShoppingCart = () => {
                             </p>
                         </div>
                     </div>
+
+                    <DeliveryInfo/>
+                    
                 </div>
 
                 

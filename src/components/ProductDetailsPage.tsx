@@ -35,7 +35,7 @@ const ProductDetailsPage = () => {
             const cartItem: CartItem = {...item, quantity};
             addToCart(cartItem);
             setAddingToCart(false);
-        }, 1000);
+        }, 500);
     };
     
     
