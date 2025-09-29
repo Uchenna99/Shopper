@@ -121,7 +121,7 @@ const Login = () => {
               type="submit"
               disabled={isLoading}
               className="inline-flex items-center justify-center rounded-4xl text-sm font-medium transition-all duration-200 
-              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 disabled:pointer-events-none 
+              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 disabled:pointer-events-none cursor-pointer
               disabled:opacity-50 bg-orange-400 text-white hover:bg-orange-500 shadow-sm h-11 px-5 w-full relative overflow-hidden"
             >
               {isLoading ? (

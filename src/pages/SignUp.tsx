@@ -51,17 +51,17 @@ const Signup = () => {
         transition={{ duration: 0.5 }}
         className="max-w-md w-full space-y-8"
       >
-        <div className="rounded-lg border border-gray-300 bg-white text-gray-900 shadow-sm py-8 px-5">
+        <div className="rounded-lg border border-gray-300 bg-white text-black-text font-monts-medium shadow-sm py-8 px-5">
           <div className="text-center">
             <motion.h2 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="text-3xl font-bold text-gray-900 mb-2"
+              className="text-2xl font-monts-bold text-black-text mb-2"
             >
               Create Account
             </motion.h2>
-            <p className="text-gray-600">
+            <p className="text-black-text/70 text-sm">
               Join us and start your shopping journey
             </p>
           </div>
@@ -69,70 +69,78 @@ const Signup = () => {
           <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label htmlFor="firstName" className="block text-sm font-medium text-gray-900 mb-2">
+                <label htmlFor="firstName" className="block text-sm mb-2">
                   First Name
                 </label>
                 <motion.input
                   whileFocus={{ scale: 1.02 }}
+                  transition={{duration:0.2}}
                   id="firstName"
                   name="firstName"
                   type="text"
                   value={formData.firstName}
                   onChange={handleChange}
                   required
-                  className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-colors 
+                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400"
                   placeholder="John"
                 />
               </div>
               <div>
-                <label htmlFor="lastName" className="block text-sm font-medium text-gray-900 mb-2">
+                <label htmlFor="lastName" className="block text-sm mb-2">
                   Last Name
                 </label>
                 <motion.input
                   whileFocus={{ scale: 1.02 }}
+                  transition={{duration:0.2}}
                   id="lastName"
                   name="lastName"
                   type="text"
                   value={formData.lastName}
                   onChange={handleChange}
                   required
-                  className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-colors 
+                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400"
                   placeholder="Doe"
                 />
               </div>
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-900 mb-2">
+              <label htmlFor="email" className="block text-sm mb-2">
                 Email Address
               </label>
               <motion.input
                 whileFocus={{ scale: 1.02 }}
+                transition={{duration:0.2}}
                 id="email"
                 name="email"
                 type="email"
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 disabled:cursor-not-allowed disabled:opacity-50"
+                className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-colors 
+                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400"
                 placeholder="john@example.com"
               />
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-900 mb-2">
+              <label htmlFor="password" className="block text-sm mb-2">
                 Password
               </label>
               <div className="relative">
                 <motion.input
                   whileFocus={{ scale: 1.02 }}
+                  transition={{duration:0.2}}
                   id="password"
                   name="password"
                   type={showPassword ? 'text' : 'password'}
                   value={formData.password}
                   onChange={handleChange}
                   required
-                  className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 disabled:cursor-not-allowed disabled:opacity-50 pr-10"
+                  className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-color 
+                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 pr-10"
                   placeholder="Create a password"
                 />
                 <button
@@ -150,19 +158,21 @@ const Signup = () => {
             </div>
 
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-900 mb-2">
+              <label htmlFor="confirmPassword" className="block text-sm mb-2">
                 Confirm Password
               </label>
               <div className="relative">
                 <motion.input
                   whileFocus={{ scale: 1.02 }}
+                  transition={{duration:0.2}}
                   id="confirmPassword"
                   name="confirmPassword"
                   type={showConfirmPassword ? 'text' : 'password'}
                   value={formData.confirmPassword}
                   onChange={handleChange}
                   required
-                  className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 disabled:cursor-not-allowed disabled:opacity-50 pr-10"
+                  className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-color 
+                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 pr-10"
                   placeholder="Confirm your password"
                 />
                 <button
@@ -171,15 +181,15 @@ const Signup = () => {
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-900"
                 >
                   {showConfirmPassword ? (
-                    <EyeOff className="h-5 w-5" />
+                    <EyeOff className="h-5 w-5 cursor-pointer transition-all duration-200" />
                   ) : (
-                    <Eye className="h-5 w-5" />
+                    <Eye className="h-5 w-5 cursor-pointer transition-all duration-200" />
                   )}
                 </button>
               </div>
             </div>
 
-            <div className="flex items-center">
+            {/* <div className="flex items-center bg-red-300">
               <input
                 id="terms"
                 type="checkbox"
@@ -196,14 +206,16 @@ const Signup = () => {
                   Privacy Policy
                 </Link>
               </label>
-            </div>
+            </div> */}
 
             <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              whileHover={{ scale: 1.01 }}
+              whileTap={{ scale: 0.99 }}
               type="submit"
               disabled={isLoading}
-              className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 disabled:pointer-events-none disabled:opacity-50 bg-orange-400 text-white hover:bg-orange-500 shadow-sm active:scale-[0.98] h-11 px-8 w-full relative overflow-hidden"
+              className="inline-flex items-center justify-center rounded-4xl text-sm font-medium transition-all duration-200 
+              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 disabled:pointer-events-none cursor-pointer
+              disabled:opacity-50 bg-orange-400 text-white hover:bg-orange-500 shadow-sm h-11 px-5 w-full relative overflow-hidden"
             >
               {isLoading ? (
                 <motion.div
@@ -217,10 +229,10 @@ const Signup = () => {
             </motion.button>
 
             <div className="text-center">
-              <span className="text-gray-600">Already have an account? </span>
+              <span className="text-sm">Already have an account? </span>
               <Link 
                 to="/login" 
-                className="text-orange-400 hover:text-orange-500 font-medium"
+                className="text-orange-400 hover:text-orange-500 text-sm active:text-orange-500"
               >
                 Sign in
               </Link>

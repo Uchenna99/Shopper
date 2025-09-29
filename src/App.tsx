@@ -17,12 +17,15 @@ import PaymentSuccessful from './components/confirmations/PaymentSuccessful'
 import Login from './pages/Login'
 import Signup from './pages/SignUp'
 import Account from './pages/UserAccount'
+import { Toaster } from 'sonner'
 
 function App() {
   const { paymentSuccess } = useAppContext();
 
   return (
     <>
+      <Toaster richColors position="top-right" />
+
       <Routes>
 
         <Route path='/login' element={<Login/>} />
