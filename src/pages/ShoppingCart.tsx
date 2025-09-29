@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import Coupon from "../components/Coupon";
 import NavigationBar from "../components/navbar/NavigationBar";
 import CheckBox from "../components/buttons/CheckBox";
@@ -44,7 +45,8 @@ const ShoppingCart = () => {
 
                 <div className="w-full md:w-2/3 flex flex-col gap-5">
 
-                    <div className="w-full bg-white rounded-sm shadow-sm pt-4 px-4 border border-gray-300">
+                    <motion.div className="w-full bg-white rounded-sm shadow-sm pt-4 px-4 border border-gray-300"
+                        initial={{opacity:0, y:40}} animate={{opacity:1, y:0}} transition={{duration:0.3, ease:'easeInOut'}}>
                         <div className="flex border-b border-gray-300 pb-2">
                             <p className="text-black-text font-monts-bold">
                                 Cart <span className="font-monts-semi-bold">( {cartItems.length} {cartItems.length == 1? 'item':'items'} )</span>
@@ -66,7 +68,7 @@ const ShoppingCart = () => {
                                 ${subtotal.toFixed(2)}
                             </p>
                         </div>
-                    </div>
+                    </motion.div>
 
                     <CheckBox
                         option="Use saved address?"
@@ -85,7 +87,8 @@ const ShoppingCart = () => {
 
                 
                 <div className="w-full md:w-1/3">
-                    <div className="w-full bg-white rounded-sm shadow-sm p-4 border border-gray-300">
+                    <motion.div className="w-full bg-white rounded-sm shadow-sm p-4 border border-gray-300"
+                        initial={{opacity:0, x:40}} animate={{opacity:1, x:0}} transition={{duration:0.3, ease:'easeInOut'}}>
                         <div className="flex border-b border-gray-300 pb-2">
                             <p className="text-black-text font-monts-semi-bold">
                                 Order Summary
@@ -123,7 +126,7 @@ const ShoppingCart = () => {
                         <CartTotal
                             subtotal={subtotal.toFixed(2)}
                         />
-                    </div>
+                    </motion.div>
                 </div>
 
             </div>
