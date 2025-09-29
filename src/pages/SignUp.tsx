@@ -51,7 +51,7 @@ const Signup = () => {
         transition={{ duration: 0.5 }}
         className="max-w-md w-full space-y-8"
       >
-        <div className="rounded-lg border border-gray-300 bg-white text-gray-900 shadow-sm p-8">
+        <div className="rounded-lg border border-gray-300 bg-white text-gray-900 shadow-sm py-8 px-5">
           <div className="text-center">
             <motion.h2 
               initial={{ opacity: 0 }}
