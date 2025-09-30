@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
@@ -19,10 +19,17 @@ const Account = () => {
     setIsloggedIn(false);
   };
 
+  useEffect(()=>{
+    if(activeTab === 'Logout') {
+      handleLogout();
+    }
+  },[activeTab]);
+
   const tabs = [
     { id: 'orders', name: 'Orders', icon: ShoppingBag },
     { id: 'wishlist', name: 'Wishlist', icon: Heart },
     { id: 'settings', name: 'Settings', icon: Settings },
+    { id: 'Logout', name: 'Logout', icon: LogOut },
   ];
 
   const orders = [
@@ -94,24 +101,19 @@ const Account = () => {
                 <User className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">John Doe</h1>
-                <p className="text-gray-600">john.doe@example.com</p>
+                <h1 className="text-xl font-monts-semi-bold text-black-text">John Doe</h1>
+                <p className="text-black-text text-sm">john.doe@example.com</p>
               </div>
             </div>
             <div className="flex items-center space-x-4">
               <Link 
                 to="/" 
-                className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 disabled:pointer-events-none disabled:opacity-50 bg-gray-100 text-gray-900 hover:bg-gray-200 border border-gray-300 h-9 px-3"
+                className="inline-flex items-center justify-center rounded-md text-xs font-monts-medium transition-all duration-200 
+                focus-visible:outline-none focus-visible:ring focus-visible:ring-orange-400  
+                bg-gray-100 text-black-text hover:bg-gray-200 border border-gray-300 h-9 px-3"
               >
                 Back to Shop
               </Link>
-              <button
-                onClick={handleLogout}
-                className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 disabled:pointer-events-none disabled:opacity-50 hover:bg-gray-100 hover:text-gray-900 text-red-600 h-9 px-3"
-              >
-                <LogOut className="h-4 w-4 mr-2" />
-                Logout
-              </button>
             </div>
           </div>
         </div>
@@ -134,7 +136,7 @@ const Account = () => {
                       className={`w-full flex items-center px-3 py-2 text-left rounded-md transition-colors ${
                         activeTab === tab.id
                           ? 'bg-orange-400 text-white'
-                          : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                          : 'text-black-text/70 hover:text-black-text hover:bg-gray-100'
                       }`}
                     >
                       <IconComponent className="h-5 w-5 mr-3" />

@@ -55,6 +55,9 @@ const Signup = () => {
       >
         <div className="rounded-lg border border-gray-300 bg-white text-black-text font-monts-medium shadow-sm py-8 px-5">
           <div className="text-center">
+            <h1 className={`text-2xl font-monster font-monts-bold transition-all duration-300 mb-2`}>
+                <span className="text-orange-500">SHOP</span><span className="text-orange-300">PER</span>
+            </h1>
             <motion.h2 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}

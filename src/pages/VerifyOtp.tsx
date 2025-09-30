@@ -51,6 +51,7 @@ const VerifyOtp = () => {
     
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1500));
+    toast.success("OTP is verified");
     
     setIsLoading(false);
     setIsVerified(true);
@@ -92,7 +93,7 @@ const VerifyOtp = () => {
           initial={{ scale: 0.95 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.3, delay: 0.1 }}
-          className="bg-white rounded-2xl shadow-xl p-8 border border-gray-300 text-black-text font-monts-medium"
+          className="bg-white rounded-2xl shadow-xl py-8 px-5 xs:px-8 border border-gray-300 text-black-text font-monts-medium"
         >
           {/* Logo/Brand */}
           <motion.div
@@ -101,7 +102,7 @@ const VerifyOtp = () => {
             transition={{ delay: 0.2 }}
             className="text-center mb-8"
           >
-            <h1 className={`text-xl sm:text-2xl font-monster font-monts-bold transition-all duration-300 mb-2`}>
+            <h1 className={`text-2xl font-monster font-monts-bold transition-all duration-300 mb-2`}>
                 <span className="text-orange-500">SHOP</span><span className="text-orange-300">PER</span>
             </h1>
             <p className="text-black-text text-sm">

@@ -3,11 +3,13 @@ import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { useAppContext } from "../../hooks/AppContext";
 import CategoriesBurgerDropdown from "./CategoriesBurgerDropdown";
+import { useNavigate } from "react-router-dom";
 
 
 const NavDropDown = () => {
-  const { showMenu, setShowMenu, setShowDropCategories, showDropCategories } = useAppContext();
+  const { showMenu, setShowMenu, setShowDropCategories, showDropCategories, setIsloggedIn, isloggedIn } = useAppContext();
   const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent)=> {
@@ -38,7 +40,7 @@ const NavDropDown = () => {
         ref={dropdownRef}>
 
         <div className="w-full flex flex-col items-center justify-center relative">
-          <div className="h-9 flex items-center gap-1" 
+          <div className="h-9 bg-gray-100 active:bg-gray-200 rounded-md px-6 flex items-center gap-1" 
             onClick={handleShowCategories}>
               <p className="">Categories</p>
               <ChevronDown 
@@ -52,12 +54,32 @@ const NavDropDown = () => {
           
         </div>
 
-        <div className="h-9 flex items-center">
-          <p className="text-black-text">About us</p>
-        </div>
+        <div className="w-full grid grid-cols-2 gap-x-8 gap-y-5">
 
-        <div className="h-9 flex items-center">
-          <p className="text-black-text">Support</p>
+          <div className="h-9 flex items-center justify-center active:bg-gray-200 rounded-md bg-gray-100">
+            <p className="text-black-text">About us</p>
+          </div>
+
+          <div className="h-9 flex items-center justify-center active:bg-gray-200 rounded-md bg-gray-100">
+            <p className="text-black-text">Support</p>
+          </div>
+
+          <div className="h-9 flex items-center justify-center active:bg-gray-200 rounded-md bg-gray-100"
+            onClick={()=> navigate('/account')}>
+            <p className="text-black-text">Account</p>
+          </div>
+
+          {
+            isloggedIn &&
+            <div className="h-9 flex items-center justify-center active:bg-red-200 rounded-md bg-gray-100"
+              onClick={()=>{
+                setIsloggedIn(false);
+                setShowMenu(false);
+              }}>
+              <p className="text-red-400">Logout</p>
+            </div>
+          }
+
         </div>
 
     </motion.div>
