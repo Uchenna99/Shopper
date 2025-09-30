@@ -26,6 +26,8 @@ const Account = () => {
     }
   },[activeTab]);
 
+   
+
   const tabs = [
     { id: 'orders', name: 'Orders', icon: ShoppingBag },
     { id: 'wishlist', name: 'Wishlist', icon: Heart },
@@ -247,88 +249,93 @@ const Account = () => {
                       <form className="space-y-4">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div>
-                            <label className="block text-sm font-medium text-gray-900 mb-2">
+                            <label className="block text-sm mb-2">
                               First Name
                             </label>
                             <input
                               type="text"
                               defaultValue="John"
-                              className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 disabled:cursor-not-allowed disabled:opacity-50"
+                              className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-all focus:ring-2 focus:ring-orange-400 outline-none disabled:cursor-not-allowed disabled:opacity-50"
                             />
                           </div>
                           <div>
-                            <label className="block text-sm font-medium text-gray-900 mb-2">
+                            <label className="block text-sm mb-2">
                               Last Name
                             </label>
                             <input
                               type="text"
                               defaultValue="Doe"
-                              className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 disabled:cursor-not-allowed disabled:opacity-50"
+                              className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-all focus:ring-2 focus:ring-orange-400 outline-none disabled:cursor-not-allowed disabled:opacity-50"
                             />
                           </div>
                         </div>
                         <div>
-                          <label className="block text-sm font-medium text-gray-900 mb-2">
+                          <label className="block text-sm mb-2">
                             Email Address
                           </label>
                           <input
                             type="email"
                             defaultValue="john.doe@example.com"
-                            className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 disabled:cursor-not-allowed disabled:opacity-50"
+                            className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-all focus:ring-2 focus:ring-orange-400 outline-none disabled:cursor-not-allowed disabled:opacity-50"
                           />
                         </div>
                         <div>
-                          <label className="block text-sm font-medium text-gray-900 mb-2">
+                          <label className="block text-sm mb-2">
                             Phone Number
                           </label>
                           <input
                             type="tel"
                             defaultValue="+1 (555) 123-4567"
-                            className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 disabled:cursor-not-allowed disabled:opacity-50"
+                            className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-all focus:ring-2 focus:ring-orange-400 outline-none disabled:cursor-not-allowed disabled:opacity-50"
                           />
                         </div>
-                        <button type="submit" className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 disabled:pointer-events-none disabled:opacity-50 bg-orange-400 text-white hover:bg-orange-500 shadow-sm active:scale-[0.98] h-10 px-4">
+                        <button 
+                          onClick={(e)=>{e.preventDefault()}}
+                          className="inline-flex items-center justify-center rounded-4xl text-sm font-medium transition-all duration-200 outline-none disabled:pointer-events-none disabled:opacity-50 bg-orange-400 text-white hover:bg-orange-500 shadow-sm active:scale-[0.98] h-10 px-4">
                           Save Changes
                         </button>
                       </form>
                     </div>
                   </div>
 
-                  <div className="rounded-lg border border-gray-300 bg-white text-gray-900 shadow-sm">
+
+                  <div className="rounded-lg border border-gray-300 bg-white text-black-text font-monts-medium shadow-sm">
                     <div className="flex flex-col space-y-1.5 p-6">
-                      <h2 className="text-xl font-semibold">Change Password</h2>
-                      <p className="text-gray-600">Update your password</p>
+                      <h2 className="text-lg font-monts-semi-bold">Change Password</h2>
+                      <p className="text-sm">Update your password</p>
                     </div>
                     <div className="p-6 pt-0">
                       <form className="space-y-4">
                         <div>
-                          <label className="block text-sm font-medium text-gray-900 mb-2">
+                          <label className="block text-sm mb-2">
                             Current Password
                           </label>
                           <input
                             type="password"
-                            className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 disabled:cursor-not-allowed disabled:opacity-50"
+                            className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-all focus:ring-2 focus:ring-orange-400 outline-none disabled:cursor-not-allowed disabled:opacity-50"
                           />
                         </div>
                         <div>
-                          <label className="block text-sm font-medium text-gray-900 mb-2">
+                          <label className="block text-sm mb-2">
                             New Password
                           </label>
                           <input
                             type="password"
-                            className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 disabled:cursor-not-allowed disabled:opacity-50"
+                            className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-all focus:ring-2 focus:ring-orange-400 outline-none disabled:cursor-not-allowed disabled:opacity-50"
                           />
                         </div>
                         <div>
-                          <label className="block text-sm font-medium text-gray-900 mb-2">
+                          <label className="block text-sm mb-2">
                             Confirm New Password
                           </label>
                           <input
                             type="password"
-                            className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 disabled:cursor-not-allowed disabled:opacity-50"
+                            className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-all focus:ring-2 focus:ring-orange-400 outline-none disabled:cursor-not-allowed disabled:opacity-50"
                           />
                         </div>
-                        <button type="submit" className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 disabled:pointer-events-none disabled:opacity-50 bg-orange-400 text-white hover:bg-orange-500 shadow-sm active:scale-[0.98] h-10 px-4">
+                        <button 
+                          onClick={(e)=>{e.preventDefault()}}
+                          className="inline-flex items-center justify-center rounded-4xl text-sm font-medium transition-all duration-200 outline-none disabled:pointer-events-none disabled:opacity-50 bg-orange-400 text-white hover:bg-orange-500 shadow-sm active:scale-[0.98] h-10 px-4">
                           Update Password
                         </button>
                       </form>
