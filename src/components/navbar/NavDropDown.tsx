@@ -65,7 +65,10 @@ const NavDropDown = () => {
           </div>
 
           <div className="h-9 flex items-center justify-center active:bg-gray-200 rounded-md bg-gray-100"
-            onClick={()=> navigate('/account')}>
+            onClick={()=>{
+              navigate('/account');
+              setShowMenu(false);
+            }}>
             <p className="text-black-text">Account</p>
           </div>
 
