@@ -3,6 +3,8 @@ import type { CartItem } from "../utils/Types";
 
 // Define the shape of your context
 interface AppContextType {
+  isloggedIn: boolean;
+  setIsloggedIn: React.Dispatch<React.SetStateAction<boolean>>;
   showMenu: boolean;
   setShowMenu: React.Dispatch<React.SetStateAction<boolean>>;
   showCategories: boolean;
@@ -24,6 +26,7 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 
 // Create the provider
 export const AppProvider = ({ children }: { children: ReactNode }) => {
+  const [isloggedIn, setIsloggedIn] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
   const [showDropCategories, setShowDropCategories] = useState(false);
@@ -88,7 +91,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   return (
     <AppContext.Provider value={{ showMenu, setShowMenu, showCategories, setShowCategories, 
       setShowDropCategories, showDropCategories, cartItems, addToCart, increaseQuantity, decreaseQuantity,
-      removeFromCart, clearCart, paymentSuccess, setPaymentSuccess
+      removeFromCart, clearCart, paymentSuccess, setPaymentSuccess, isloggedIn, setIsloggedIn
     }}>
       {children}
     </AppContext.Provider>

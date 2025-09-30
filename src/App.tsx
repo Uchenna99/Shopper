@@ -20,7 +20,7 @@ import Account from './pages/UserAccount'
 import { Toaster } from 'sonner'
 
 function App() {
-  const { paymentSuccess } = useAppContext();
+  const { paymentSuccess, isloggedIn } = useAppContext();
 
   return (
     <>
@@ -30,7 +30,7 @@ function App() {
 
         <Route path='/login' element={<Login/>} />
         <Route path='/signup' element={<Signup/>} />
-        <Route path='/account' element={<Account/>} />
+        <Route path='/account' element={isloggedIn? <Account/> : <Login/>} />
 
         <Route path='/' element={<Landing/>} >
 

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Eye, EyeOff } from 'lucide-react';
+import { useAppContext } from '../hooks/AppContext';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -9,6 +10,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { setIsloggedIn } = useAppContext();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,7 +20,8 @@ const Login = () => {
     setTimeout(() => {
       setIsLoading(false);
       // Simulate successful login
-      localStorage.setItem('isAuthenticated', 'true');
+      // localStorage.setItem('isAuthenticated', 'true');
+      setIsloggedIn(true);
       navigate('/account');
     }, 1000);
   };

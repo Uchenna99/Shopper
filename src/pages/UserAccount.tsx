@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
   User, 
@@ -8,14 +8,15 @@ import {
   Settings,
   LogOut
 } from 'lucide-react';
+import { useAppContext } from '../hooks/AppContext';
 
 const Account = () => {
   const [activeTab, setActiveTab] = useState('orders');
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const { setIsloggedIn } = useAppContext();
 
   const handleLogout = () => {
-    localStorage.removeItem('isAuthenticated');
-    navigate('/');
+    setIsloggedIn(false);
   };
 
   const tabs = [

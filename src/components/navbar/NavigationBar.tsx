@@ -99,7 +99,7 @@ const NavigationBar = () => {
 
                   <NavRightOption 
                     title="Account" 
-                    whenClicked={()=>{}}
+                    whenClicked={()=> navigate('/account')}
                   />
 
                   <NavRightOption 

@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Eye, EyeOff } from 'lucide-react';
+import { useAppContext } from '../hooks/AppContext';
 
 const Signup = () => {
+  const { setIsloggedIn } = useAppContext();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -31,7 +33,7 @@ const Signup = () => {
     setTimeout(() => {
       setIsLoading(false);
       // Simulate successful signup
-      localStorage.setItem('isAuthenticated', 'true');
+      setIsloggedIn(true);
       navigate('/account');
     }, 1000);
   };
