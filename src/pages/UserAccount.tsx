@@ -6,7 +6,8 @@ import {
   ShoppingBag, 
   Heart, 
   Settings,
-  LogOut
+  LogOut,
+  Trash2
 } from 'lucide-react';
 import { useAppContext } from '../hooks/AppContext';
 
@@ -94,7 +95,7 @@ const Account = () => {
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
       {/* Header */}
       <div className="bg-white border-b border-gray-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <div className="h-12 w-12 bg-orange-400 rounded-full flex items-center justify-center">
@@ -119,11 +120,12 @@ const Account = () => {
         </div>
       </div>
 
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Sidebar */}
           <div className="lg:col-span-1">
-            <div className="rounded-lg border border-gray-300 bg-white text-gray-900 shadow-sm p-6">
+            <div className="rounded-lg border border-gray-300 bg-white text-black-text shadow-sm p-5">
               <nav className="space-y-2">
                 {tabs.map((tab) => {
                   const IconComponent = tab.icon;
@@ -133,10 +135,10 @@ const Account = () => {
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       onClick={() => setActiveTab(tab.id)}
-                      className={`w-full flex items-center px-3 py-2 text-left rounded-md transition-colors ${
+                      className={`w-full flex items-center px-3 py-2 text-left rounded-md transition-all cursor-pointer ${
                         activeTab === tab.id
                           ? 'bg-orange-400 text-white'
-                          : 'text-black-text/70 hover:text-black-text hover:bg-gray-100'
+                          : 'text-black-text/70 hover:text-black-text hover:bg-gray-100 last:hover:text-red-500'
                       }`}
                     >
                       <IconComponent className="h-5 w-5 mr-3" />
@@ -148,6 +150,7 @@ const Account = () => {
             </div>
           </div>
 
+
           {/* Main Content */}
           <div className="lg:col-span-3">
             <motion.div
@@ -157,10 +160,10 @@ const Account = () => {
               transition={{ duration: 0.3 }}
             >
               {activeTab === 'orders' && (
-                <div className="rounded-lg border border-gray-300 bg-white text-gray-900 shadow-sm">
-                  <div className="flex flex-col space-y-1.5 p-6">
-                    <h2 className="text-xl font-semibold">Order History</h2>
-                    <p className="text-gray-600">Track and manage your orders</p>
+                <div className="rounded-lg border border-gray-300 bg-white text-black-text font-monts-medium shadow-sm">
+                  <div className="flex flex-col space-y-1.5 p-5">
+                    <h2 className="text-lg font-monts-semi-bold">Order History</h2>
+                    <p className="text-sm">Track and manage your orders</p>
                   </div>
                   <div className="p-6 pt-0">
                     <div className="space-y-4">
@@ -170,12 +173,12 @@ const Account = () => {
                           initial={{ opacity: 0, x: -20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: index * 0.1 }}
-                          className="border border-gray-300 rounded-lg p-4 hover:bg-gray-50 transition-colors"
+                          className="border border-gray-300 rounded-lg p-4 hover:bg-gray-100 transition-all"
                         >
                           <div className="flex items-center justify-between">
                             <div>
-                              <h3 className="font-medium text-gray-900">{order.id}</h3>
-                              <p className="text-sm text-gray-600">
+                              <h3 className="text-sm font-monts-semi-bold">{order.id}</h3>
+                              <p className="text-xs text-black-text/70">
                                 {order.date} • {order.items} items
                               </p>
                             </div>
@@ -183,7 +186,7 @@ const Account = () => {
                               <div className={`inline-flex px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(order.status)}`}>
                                 {order.status}
                               </div>
-                              <p className="text-lg font-semibold text-gray-900 mt-1">
+                              <p className="font-monts-semi-bold mt-1">
                                 {order.total}
                               </p>
                             </div>
@@ -196,10 +199,10 @@ const Account = () => {
               )}
 
               {activeTab === 'wishlist' && (
-                <div className="rounded-lg border border-gray-300 bg-white text-gray-900 shadow-sm">
-                  <div className="flex flex-col space-y-1.5 p-6">
-                    <h2 className="text-xl font-semibold">Wishlist</h2>
-                    <p className="text-gray-600">Items you want to buy later</p>
+                <div className="rounded-lg border border-gray-300 bg-white shadow-sm font-monts-medium">
+                  <div className="flex flex-col space-y-1.5 p-5">
+                    <h2 className="text-lg font-monts-semi-bold">Wishlist</h2>
+                    <p className="text-sm">Items you want to buy later</p>
                   </div>
                   <div className="p-6 pt-0">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -209,21 +212,21 @@ const Account = () => {
                           initial={{ opacity: 0, scale: 0.9 }}
                           animate={{ opacity: 1, scale: 1 }}
                           transition={{ delay: index * 0.1 }}
-                          className="border border-gray-300 rounded-lg p-4 hover:shadow-md transition-shadow"
+                          className="border border-gray-300 rounded-lg p-3 xs:p-4 hover:shadow-md transition-shadow"
                         >
                           <div className="flex items-center space-x-4">
-                            <div className="h-16 w-16 bg-gray-100 rounded-md flex-shrink-0"></div>
+                            <div className="h-12 w-12 xs:h-16 xs:w-16 bg-gray-100 rounded-md flex-shrink-0"></div>
                             <div className="flex-1">
-                              <h3 className="font-medium text-gray-900">{item.name}</h3>
-                              <p className="text-lg font-semibold text-orange-400">{item.price}</p>
+                              <h3 className="text-sm">{item.name}</h3>
+                              <p className="font-monts-semi-bold text-orange-400">{item.price}</p>
                             </div>
-                            <div className="flex flex-col space-y-2">
-                              <button className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 disabled:pointer-events-none disabled:opacity-50 bg-orange-400 text-white hover:bg-orange-500 shadow-sm active:scale-[0.98] h-9 px-3">
+                            <div className="flex flex-col space-y-2 items-end">
+                              <button className="inline-flex items-center justify-center rounded-4xl text-xs font-medium transition-all 
+                                duration-200 text-orange-400 hover:bg-orange-400 shadow-sm active:scale-[0.98] h-7 px-3
+                                border border-orange-400 hover:text-white cursor-pointer">
                                 Add to Cart
                               </button>
-                              <button className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 disabled:pointer-events-none disabled:opacity-50 hover:bg-gray-100 hover:text-gray-900 text-red-600 h-9 px-3">
-                                Remove
-                              </button>
+                              <Trash2 size={18} className='text-red-400 hover:text-red-500 cursor-pointer'/>
                             </div>
                           </div>
                         </motion.div>
@@ -235,10 +238,10 @@ const Account = () => {
 
               {activeTab === 'settings' && (
                 <div className="space-y-6">
-                  <div className="rounded-lg border border-gray-300 bg-white text-gray-900 shadow-sm">
+                  <div className="rounded-lg border border-gray-300 bg-white text-black-text font-monts-medium shadow-sm">
                     <div className="flex flex-col space-y-1.5 p-6">
-                      <h2 className="text-xl font-semibold">Profile Information</h2>
-                      <p className="text-gray-600">Update your account details</p>
+                      <h2 className="text-lg font-monts-semi-bold">Profile Information</h2>
+                      <p className="text-sm">Update your account details</p>
                     </div>
                     <div className="p-6 pt-0">
                       <form className="space-y-4">
