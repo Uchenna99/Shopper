@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { CircleCheck, LockKeyhole } from "lucide-react";
 import { toast } from "sonner";
 
@@ -182,7 +182,7 @@ const VerifyOtp = () => {
                         className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
                         />
                     ) : (
-                        'Send OTP'
+                        'Verify OTP'
                     )}
                 </motion.button>
 
@@ -277,7 +277,7 @@ const VerifyOtp = () => {
                         className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
                         />
                     ) : (
-                        'Create Account'
+                        'Create New Password'
                     )}
                 </motion.button>
               </motion.form>
@@ -290,12 +290,12 @@ const VerifyOtp = () => {
             transition={{ delay: 0.5 }}
             className="mt-6 text-center"
           >
-            <a
-              href="/forgot-password"
+            <Link
+              to="/forgot-password"
               className="text-sm text-orange-400 hover:text-orange-500 active:text-orange-500 transition-all duration-200"
             >
               ← Back
-            </a>
+            </Link>
           </motion.div>
         </motion.div>
       </motion.div>
