@@ -111,7 +111,7 @@ const ForgotPassword = () => {
           >
             <a
               href="/"
-              className="text-sm text-orange-400 hover:text-orange-500 active:bg-orange-500 transition-colors"
+              className="text-sm text-orange-400 hover:text-orange-500 active:text-orange-500 transition-all"
             >
               ← Back to Home
             </a>
