@@ -83,7 +83,7 @@ const Signup = () => {
                   value={formData.firstName}
                   onChange={handleChange}
                   required
-                  className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-colors 
+                  className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-all 
                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400"
                   placeholder="John"
                 />
@@ -101,7 +101,7 @@ const Signup = () => {
                   value={formData.lastName}
                   onChange={handleChange}
                   required
-                  className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-colors 
+                  className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-all 
                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400"
                   placeholder="Doe"
                 />
@@ -121,7 +121,7 @@ const Signup = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-colors 
+                className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-all 
                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400"
                 placeholder="john@example.com"
               />
@@ -141,7 +141,7 @@ const Signup = () => {
                   value={formData.password}
                   onChange={handleChange}
                   required
-                  className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-color 
+                  className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-all 
                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 pr-10"
                   placeholder="Create a password"
                 />
@@ -173,7 +173,7 @@ const Signup = () => {
                   value={formData.confirmPassword}
                   onChange={handleChange}
                   required
-                  className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-color 
+                  className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-all 
                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 pr-10"
                   placeholder="Confirm your password"
                 />

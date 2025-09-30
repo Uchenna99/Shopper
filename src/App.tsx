@@ -18,6 +18,9 @@ import Login from './pages/Login'
 import Signup from './pages/SignUp'
 import Account from './pages/UserAccount'
 import { Toaster } from 'sonner'
+import ForgotPassword from './pages/ForgotPassword'
+import VerifyOtp from './pages/VerifyOtp'
+import About from './pages/AboutUs'
 
 function App() {
   const { paymentSuccess, isloggedIn } = useAppContext();
@@ -30,6 +33,8 @@ function App() {
 
         <Route path='/login' element={<Login/>} />
         <Route path='/signup' element={<Signup/>} />
+        <Route path='/forgot-password' element={<ForgotPassword/>} />
+        <Route path='/verify-otp' element={<VerifyOtp/>} />
         <Route path='/account' element={isloggedIn? <Account/> : <Login/>} />
 
         <Route path='/' element={<Landing/>} >
@@ -44,6 +49,7 @@ function App() {
           <Route path=':category/productdetails' element={<ProductDetailsPage/>} />
           <Route path='/cart' element={<ShoppingCart/>} />
           <Route path='/buynow/checkout' element={<Checkout/>} />
+          <Route path='/about' element={<About/>} />
           
         </Route>
         
