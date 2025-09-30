@@ -45,7 +45,7 @@ const Login = () => {
               Welcome Back
             </motion.h2>
             <p className="text-black-text/70 text-sm">
-              Sign in to your account to continue shopping
+              Login to your account and continue shopping
             </p>
           </div>
 
