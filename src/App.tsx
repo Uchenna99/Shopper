@@ -21,9 +21,18 @@ import { Toaster } from 'sonner'
 import ForgotPassword from './pages/ForgotPassword'
 import VerifyOtp from './pages/VerifyOtp'
 import About from './pages/AboutUs'
+import { useEffect } from 'react'
+import { getUserFromToken } from './utils/auth'
 
 function App() {
-  const { paymentSuccess, isloggedIn } = useAppContext();
+  const { paymentSuccess, isloggedIn, setIsloggedIn } = useAppContext();
+
+  useEffect(()=>{
+    const user = getUserFromToken();
+    if(user) {
+      setIsloggedIn(true);
+    }
+  },[]);
 
   return (
     <>

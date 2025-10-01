@@ -6,6 +6,7 @@ import { useAppContext } from '../hooks/AppContext';
 import { HOST } from '../utils/Host';
 import { toast } from 'sonner';
 import { fetchWithRetry } from '../utils/FetchWithRetry';
+import type { AxiosResponse } from 'axios';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -22,7 +23,7 @@ const Login = () => {
     const payload = { email: email, password: password };
 
     try {
-      const response = await fetchWithRetry(
+      const response: AxiosResponse = await fetchWithRetry(
         {
           method: "POST",
           url: `${HOST}/api/v1/auth/login`,
@@ -32,7 +33,7 @@ const Login = () => {
         2000 // delay
       );
 
-      localStorage.setItem('shopper token', response.data as string);
+      localStorage.setItem('shopper token', response.data.accessToken as string);
       setIsloggedIn(true);
       navigate('/account');
       toast.success("Login successful");
