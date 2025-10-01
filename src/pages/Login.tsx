@@ -3,9 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Eye, EyeOff } from 'lucide-react';
 import { useAppContext } from '../hooks/AppContext';
-import axios from 'axios';
 import { HOST } from '../utils/Host';
 import { toast } from 'sonner';
+import { fetchWithRetry } from '../utils/FetchWithRetry';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -21,17 +21,26 @@ const Login = () => {
 
     const payload = { email: email, password: password };
 
-    axios.post(`${HOST}/api/v1/auth/login`, payload)
-    .then((response)=>{
-      localStorage.setItem('shopper token', response.data);
+    try {
+      const response = await fetchWithRetry(
+        {
+          method: "POST",
+          url: `${HOST}/api/v1/auth/login`,
+          data: payload,
+        },
+        3, // retries
+        2000 // delay
+      );
+
+      localStorage.setItem('shopper token', response.data as string);
       setIsloggedIn(true);
       navigate('/account');
       toast.success("Login successful");
-    })
-    .catch((error)=>{
-      toast.error(error.response.data.message || "Network error");
-    })
-    .finally(()=> setIsLoading(false));
+    } catch (error: any) {
+      toast.error(error?.response?.data?.message || "Network error, please try again");
+    } finally {
+      setIsLoading(false);
+    };
     
   };
 

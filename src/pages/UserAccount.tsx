@@ -18,6 +18,7 @@ const Account = () => {
 
   const handleLogout = () => {
     setIsloggedIn(false);
+    localStorage.removeItem('shopper token');
   };
 
   useEffect(()=>{

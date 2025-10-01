@@ -3,9 +3,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Eye, EyeOff } from 'lucide-react';
 import { useAppContext } from '../hooks/AppContext';
+import { toast } from 'sonner';
+import { type AxiosResponse } from 'axios';
+import { HOST } from '../utils/Host';
+import { fetchWithRetry } from '../utils/FetchWithRetry';
 
 const Signup = () => {
-  const { setIsloggedIn } = useAppContext();
+  const {  } = useAppContext();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -21,21 +25,49 @@ const Signup = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    
+
     // Basic validation
     if (formData.password !== formData.confirmPassword) {
-      alert('Passwords do not match');
+      toast.warning('Passwords do not match');
       setIsLoading(false);
       return;
     }
     
-    // Simulate API call
-    setTimeout(() => {
+    const payload = {
+      firstName: formData.firstName, lastName: formData.lastName, email: formData.email, password: formData.password
+    };
+
+    try {
+      const response: AxiosResponse = await fetchWithRetry(
+        {
+          method: "POST",
+          url: `${HOST}/api/v1/auth/signup`,
+          data: payload,
+        },
+        3, // retries
+        2000 // delay
+      );
+
+      navigate('/login');
+      toast.success(response.data.message || "");
+
+    } catch (error: any) {
+      toast.error(error?.response?.data?.message || "Network error, please try again");
+    } finally {
       setIsLoading(false);
-      // Simulate successful signup
-      setIsloggedIn(true);
-      navigate('/account');
-    }, 1000);
+    };
+
+    // axios.post(`${HOST}/api/v1/auth/signup`, payload)
+    // .then((response)=>{
+    //   console.log(response.data);
+    //   navigate('/login');
+    //   toast.success('');
+    // })
+    // .catch((error)=>{
+    //   toast.error(error.response.data.message || "Network error")
+    // })
+    // .finally(()=> setIsLoading(false));
+
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
