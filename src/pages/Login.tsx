@@ -3,6 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Eye, EyeOff } from 'lucide-react';
 import { useAppContext } from '../hooks/AppContext';
+import axios from 'axios';
+import { HOST } from '../utils/Host';
+import { toast } from 'sonner';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -15,15 +18,21 @@ const Login = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    
-    // Simulate API call
-    setTimeout(() => {
-      setIsLoading(false);
-      // Simulate successful login
-      // localStorage.setItem('isAuthenticated', 'true');
+
+    const payload = { email: email, password: password };
+
+    axios.post(`${HOST}/api/v1/auth/login`, payload)
+    .then((response)=>{
+      localStorage.setItem('shopper token', response.data);
       setIsloggedIn(true);
       navigate('/account');
-    }, 1000);
+      toast.success("Login successful");
+    })
+    .catch((error)=>{
+      toast.error(error.response.data.message || "Network error");
+    })
+    .finally(()=> setIsLoading(false));
+    
   };
 
   return (
