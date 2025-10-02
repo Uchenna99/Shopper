@@ -8,6 +8,7 @@ import { jwtDecode } from "jwt-decode";
     loadingSecurePage: boolean;
     setLoadingSecurePage: React.Dispatch<React.SetStateAction<boolean>>;
     setUser: React.Dispatch<React.SetStateAction<DecodedToken | null>>;
+    restoreUser: (token: string)=>void;
     isloggedIn: boolean;
     setIsloggedIn: React.Dispatch<React.SetStateAction<boolean>>;
     showMenu: boolean;
@@ -56,11 +57,15 @@ import { jwtDecode } from "jwt-decode";
       }
     };
 
-    const login = (token: string) => {
-      saveToken(token);
+    const restoreUser = (token: string) =>{
       const decoded = jwtDecode<DecodedToken>(token);
       setUser(decoded);
       setIsloggedIn(true);
+    };
+
+    const login = (token: string) => {
+      saveToken(token);
+      restoreUser(token);
     };
 
     const logout = () => {
@@ -68,6 +73,7 @@ import { jwtDecode } from "jwt-decode";
       setUser(null);
       setIsloggedIn(false);
     };
+    
 
     useEffect(() => {
       const verifyToken = async () => {
@@ -77,6 +83,9 @@ import { jwtDecode } from "jwt-decode";
           logout();
           setLoadingSecurePage(false);
           return;
+        }else {
+          restoreUser(token);
+          setLoadingSecurePage(false);
         }
 
       };
@@ -144,7 +153,7 @@ import { jwtDecode } from "jwt-decode";
       <AppContext.Provider value={{ showMenu, setShowMenu, showCategories, setShowCategories, 
         setShowDropCategories, showDropCategories, cartItems, addToCart, increaseQuantity, decreaseQuantity,
         removeFromCart, clearCart, paymentSuccess, setPaymentSuccess, isloggedIn, setIsloggedIn, user, setUser,
-        loadingSecurePage, setLoadingSecurePage, login, logout
+        loadingSecurePage, setLoadingSecurePage, login, logout, restoreUser
       }}>
         {children}
       </AppContext.Provider>
