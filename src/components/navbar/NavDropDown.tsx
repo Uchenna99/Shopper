@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { useAppContext } from "../../hooks/AppContext";
 import CategoriesBurgerDropdown from "./CategoriesBurgerDropdown";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 
 const NavDropDown = () => {
@@ -78,6 +79,7 @@ const NavDropDown = () => {
               onClick={()=>{
                 logout();
                 setShowMenu(false);
+                toast.success("Your account is logged out");
               }}>
               <p className="text-red-400">Logout</p>
             </div>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
   User, 
@@ -10,20 +10,17 @@ import {
   Trash2
 } from 'lucide-react';
 import { useAppContext } from '../hooks/AppContext';
+import { toast } from 'sonner';
 
 const Account = () => {
   const [activeTab, setActiveTab] = useState('orders');
-  const navigate = useNavigate();
   const { logout } = useAppContext();
 
-  const handleLogout = () => {
-    logout();
-    navigate('/');
-  };
 
   useEffect(()=>{
     if(activeTab === 'Logout') {
-      handleLogout();
+      logout();
+      toast.success("Your account is logged out");
     }
   },[activeTab]);
 
