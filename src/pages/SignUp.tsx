@@ -49,7 +49,7 @@ const Signup = () => {
       );
 
       navigate('/login');
-      toast.success(response.data.message || "");
+      toast.success(response.data.message || "User registered");
 
     } catch (error: any) {
       toast.error(error?.response?.data?.message || "Network error, please try again");

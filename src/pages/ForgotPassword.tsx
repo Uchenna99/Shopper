@@ -2,6 +2,10 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Mail } from "lucide-react";
+import type { AxiosResponse } from "axios";
+import { fetchWithRetry } from "../utils/FetchWithRetry";
+import { HOST } from "../utils/Host";
+import { toast } from "sonner";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -11,12 +15,26 @@ const ForgotPassword = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+
+    const payload = { email: email };
+    try {
+      const response: AxiosResponse = await fetchWithRetry(
+        {
+          method: "POST",
+          url: `${HOST}/api/v1/auth/forgot-password`,
+          data: payload,
+        },
+        3, // retries
+        2000 // delay
+      );
+      navigate("/verify-otp", { state: { email } });
+      toast.success(response.data.message);
+    } catch (error: any) {
+      toast.error(error?.response?.data?.message || "Network error, please try again");
+    } finally {
+      setIsLoading(false);
+    };
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    setIsLoading(false);
-    navigate("/verify-otp", { state: { email } });
   };
 
   return (
