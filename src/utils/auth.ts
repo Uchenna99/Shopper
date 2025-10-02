@@ -17,6 +17,9 @@ export const isTokenValid = (token: string): boolean => {
 
 export const getUserFromToken = (): DecodedToken | null => {
   const token = getToken();
-  if (!token || !isTokenValid(token)) return null;
+  if (!token || !isTokenValid(token)) {
+    localStorage.removeItem('shopper token');
+    return null;
+  };
   return jwtDecode<DecodedToken>(token);
 };

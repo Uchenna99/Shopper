@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import './App.css'
 import HomePage from './pages/HomePage'
 import MensCategory from './components/categories/MensCategory'
@@ -21,18 +21,11 @@ import { Toaster } from 'sonner'
 import ForgotPassword from './pages/ForgotPassword'
 import VerifyOtp from './pages/VerifyOtp'
 import About from './pages/AboutUs'
-import { useEffect } from 'react'
-import { getUserFromToken } from './utils/auth'
+import ProtectedRoute from './pages/ProtectedRoute'
 
 function App() {
-  const { paymentSuccess, isloggedIn, setIsloggedIn } = useAppContext();
+  const { paymentSuccess, isloggedIn } = useAppContext();
 
-  useEffect(()=>{
-    const user = getUserFromToken();
-    if(user) {
-      setIsloggedIn(true);
-    }
-  },[]);
 
   return (
     <>
@@ -40,11 +33,11 @@ function App() {
 
       <Routes>
 
-        <Route path='/login' element={<Login/>} />
-        <Route path='/signup' element={<Signup/>} />
-        <Route path='/forgot-password' element={<ForgotPassword/>} />
-        <Route path='/verify-otp' element={<VerifyOtp/>} />
-        <Route path='/account' element={isloggedIn? <Account/> : <Login/>} />
+        <Route path='/login' element={isloggedIn? <Navigate to="/account" replace /> : <Login/>} />
+        <Route path='/signup' element={isloggedIn? <Navigate to="/account" replace /> : <Signup/>} />
+        <Route path='/forgot-password' element={isloggedIn? <Navigate to="/account" replace /> : <ForgotPassword/>} />
+        <Route path='/verify-otp' element={isloggedIn? <Navigate to="/account" replace /> : <VerifyOtp/>} />
+        <Route path='/account' element={<ProtectedRoute><Account/></ProtectedRoute>} />
 
         <Route path='/' element={<Landing/>} >
 

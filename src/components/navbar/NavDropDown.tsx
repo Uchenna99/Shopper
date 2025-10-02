@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const NavDropDown = () => {
-  const { showMenu, setShowMenu, setShowDropCategories, showDropCategories, setIsloggedIn, isloggedIn } = useAppContext();
+  const { showMenu, setShowMenu, setShowDropCategories, showDropCategories, isloggedIn, logout } = useAppContext();
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const navigate = useNavigate();
 
@@ -76,7 +76,7 @@ const NavDropDown = () => {
             isloggedIn &&
             <div className="h-9 flex items-center justify-center active:bg-red-200 rounded-md bg-gray-100"
               onClick={()=>{
-                setIsloggedIn(false);
+                logout();
                 setShowMenu(false);
               }}>
               <p className="text-red-400">Logout</p>

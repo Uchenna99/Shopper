@@ -14,7 +14,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const { setIsloggedIn } = useAppContext();
+  const { login } = useAppContext();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,8 +33,7 @@ const Login = () => {
         2000 // delay
       );
 
-      localStorage.setItem('shopper token', response.data.accessToken as string);
-      setIsloggedIn(true);
+      login(response.data.accessToken);
       navigate('/account');
       toast.success("Login successful");
     } catch (error: any) {

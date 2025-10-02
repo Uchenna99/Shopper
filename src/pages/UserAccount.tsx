@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
   User, 
@@ -13,12 +13,12 @@ import { useAppContext } from '../hooks/AppContext';
 
 const Account = () => {
   const [activeTab, setActiveTab] = useState('orders');
-  // const navigate = useNavigate();
-  const { setIsloggedIn } = useAppContext();
+  const navigate = useNavigate();
+  const { logout } = useAppContext();
 
   const handleLogout = () => {
-    setIsloggedIn(false);
-    localStorage.removeItem('shopper token');
+    logout();
+    navigate('/');
   };
 
   useEffect(()=>{
