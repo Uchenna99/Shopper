@@ -3,6 +3,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { CircleCheck, LockKeyhole } from "lucide-react";
 import { toast } from "sonner";
+import type { AxiosResponse } from "axios";
+import { fetchWithRetry } from "../utils/FetchWithRetry";
+import { HOST } from "../utils/Host";
+
 
 const VerifyOtp = () => {
   const [otp, setOtp] = useState<string[]>(["", "", "", "", "", ""]);
@@ -11,14 +15,26 @@ const VerifyOtp = () => {
   const [isVerified, setIsVerified] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [resending, setResending] = useState(false);
+  const [seconds, setSeconds] = useState(40);
+  const [canResend, setCanResend] = useState(false);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
   const navigate = useNavigate();
   const location = useLocation();
-  const email = location.state?.email || "";
+  const email: string = location.state?.email || "";
 
   useEffect(() => {
     inputRefs.current[0]?.focus();
   }, []);
+
+  useEffect(() => {
+    if (seconds > 0) {
+      const timer = setTimeout(() => setSeconds((prev) => prev - 1), 1000);
+      return () => clearTimeout(timer);
+    } else {
+      setCanResend(true);
+    }
+  }, [seconds]);
 
   const handleOtpChange = (index: number, value: string) => {
     if (value.length > 1) value = value[0];
@@ -48,13 +64,27 @@ const VerifyOtp = () => {
 
     setIsLoading(true);
     setError("");
+
+    const payload = { email: email, otp: otpCode };
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    toast.success("OTP is verified");
+    try {
+      const response: AxiosResponse = await fetchWithRetry(
+        {
+          method: "POST",
+          url: `${HOST}/api/v1/auth/verify-otp`,
+          data: payload,
+        },
+        3, // retries
+        2000 // delay
+      );
+      setIsVerified(true);
+      toast.success(response.data.message || "OTP is verified");
+    } catch (error: any) {
+      toast.error(error?.response?.data?.message || "Network error, please try again");
+    } finally {
+      setIsLoading(false);
+    };
     
-    setIsLoading(false);
-    setIsVerified(true);
   };
 
   const handleResetPassword = async (e: React.FormEvent) => {
@@ -79,6 +109,28 @@ const VerifyOtp = () => {
     setIsLoading(false);
     navigate("/login", { state: { passwordReset: true } });
     toast.success("Your new password has been saved");
+  };
+
+  const handleResend = async(e: React.FormEvent)=>{
+    e.preventDefault();
+    setResending(true);
+    const payload = { email: email };
+    try {
+      const response: AxiosResponse = await fetchWithRetry(
+        {
+          method: "POST",
+          url: `${HOST}/api/v1/auth/forgot-password`,
+          data: payload,
+        },
+        3, // retries
+        2000 // delay
+      );
+      toast.success(response.data.message);
+    } catch (error: any) {
+      toast.error(error?.response?.data?.message || "Network error, please try again");
+    } finally {
+      setResending(false);
+    };
   };
 
   return (
@@ -188,8 +240,12 @@ const VerifyOtp = () => {
 
                 <p className="text-center text-sm mt-4">
                   Didn't receive code?{" "}
-                  <button className="text-orange-400 hover:text-orange-500 active:text-orange-500 cursor-pointer">
-                    Resend
+                  <button className={`text-orange-400 hover:text-orange-500 active:text-orange-500 cursor-pointer
+                    ${resending || !canResend? 'pointer-events-none':''}`}
+                    onClick={handleResend}>
+                    {
+                      resending? 'Resending...' : !canResend? `Resend in ${seconds}s` : 'Resend' 
+                    }
                   </button>
                 </p>
               </motion.div>
