@@ -14,11 +14,12 @@ import CartTotal from "../components/CartTotal";
 import CartItemDisplay from "../components/CartItemDisplay";
 import DeliveryInfo from "../components/DeliveryInfo";
 import DeliveryInfoSaved from "../components/DeliveryInfoSaved";
+import { toast } from "sonner";
 
 
 const ShoppingCart = () => {
     const navigate = useNavigate();
-    const { cartItems } = useAppContext();
+    const { cartItems, user } = useAppContext();
     const [selectedPayment, setSelectedPayment] = useState<'card' | 'delivery' | 'paystack'>('paystack');
     const [subtotal, setSubtotal] = useState(0);
     const [savedAddress, setSavedAddress] = useState(false);
@@ -73,7 +74,7 @@ const ShoppingCart = () => {
                     <CheckBox
                         option="Use saved address?"
                         isSelected={savedAddress}
-                        select={()=>setSavedAddress(!savedAddress)}
+                        select={()=> user? setSavedAddress(!savedAddress) : toast.warning("Login to use saved address")}
                     />
 
                     {

@@ -43,7 +43,7 @@ const PaymentSuccessful = () => {
                 <button className="w-fit px-4 py-2 bg-orange-400 text-white text-sm rounded-3xl cursor-pointer hover:bg-orange-500
                     transition-all duration-200"
                     onClick={()=>{
-                        navigate('/', {state: {scrollTo:500}});
+                        navigate('/', {state: {scrollTo:520}});
                         setPaymentSuccess(false);
                     }}>
                     Continue Shopping

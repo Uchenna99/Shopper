@@ -41,7 +41,7 @@ const PaystackPayButton: React.FC<PayButtonProps> = ({ email, amount }) => {
         cursor-pointer hover:bg-orange-500 active:bg-orange-500 active:scale-95 transition-all duration-200
         disabled:pointer-events-none"
     >
-      {loading ? "Processing..." : "Pay $" + amount}
+      {loading ? "Processing..." : "Pay ₦" + amount.toLocaleString()}
     </button>
   );
 };
