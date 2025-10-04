@@ -19,9 +19,7 @@ const PaymentSuccessful = () => {
 
   return (
     <>
-        <div className="w-full h-screen fixed top-0 left-0 z-90 bg-black/40" onClick={()=>{
-            setPaymentSuccess(false);
-        }}/>
+        <div className="w-full h-screen fixed top-0 left-0 z-90 bg-black/40" />
         
         <motion.div className="fixed top-1/5 left-1/2 -translate-x-1/2 w-[360px] max-w-[calc(100%-24px)] bg-white rounded-xl
             z-100 overflow-hidden bg-gradient-to-tr from-white to-blue-100"

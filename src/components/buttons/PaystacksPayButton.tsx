@@ -21,6 +21,7 @@ const PaystackPayButton: React.FC<PayButtonProps> = ({ email, amount }) => {
       // 1️⃣ Initialize payment on backend
       const res = await axios.post(`${HOST}/api/v1/paystack/init`, { email, amount });
       const { authorization_url } = res.data;
+      toast.loading('Redirecting to paystack');
 
       // 2️⃣ Redirect user to Paystack payment page
       window.location.href = authorization_url;
