@@ -1,5 +1,5 @@
 import { useAppContext } from "../hooks/AppContext";
-import PaystackPayButton from "./buttons/paystackPayButton";
+import PaystackPayButton from "./buttons/PaystacksPayButton";
 
 interface Props {
     subtotal: number;
