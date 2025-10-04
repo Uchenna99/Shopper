@@ -1,11 +1,12 @@
 import { useAppContext } from "../hooks/AppContext";
+import PaystackPayButton from "./buttons/paystackPayButton";
 
 interface Props {
-    subtotal: any;
+    subtotal: number;
 }
 
 const CartTotal = ({ subtotal }:Props) => {
-    const { setPaymentSuccess, clearCart } = useAppContext();
+    const { user, nonUserEmail } = useAppContext();
 
   return (
     <div className="w-full flex flex-col py-5 gap-3 text-black-text">
@@ -37,14 +38,19 @@ const CartTotal = ({ subtotal }:Props) => {
             </p>
         </div>
 
-        <button className="w-full border-none outline-none bg-orange-400 rounded-4xl py-2 text-white font-monts-medium
+        {/* <button className="w-full border-none outline-none bg-orange-400 rounded-4xl py-2 text-white font-monts-medium
             cursor-pointer hover:bg-orange-500 active:bg-orange-500 active:scale-95 transition-all duration-200"
             onClick={()=>{
                 setPaymentSuccess(true);
                 clearCart();
             }}>
             Pay ${subtotal}
-        </button>
+        </button> */}
+        
+            <PaystackPayButton
+                amount={Math.ceil(subtotal)}
+                email={user?.email || nonUserEmail}
+            />
 
     </div>
   )

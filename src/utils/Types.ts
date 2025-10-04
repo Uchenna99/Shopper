@@ -15,5 +15,6 @@ export interface DecodedToken {
     iat: number;
     id: string; 
     name: string; 
+    email: string;
     role: string;
 };

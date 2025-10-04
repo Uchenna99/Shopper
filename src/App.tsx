@@ -22,6 +22,7 @@ import ForgotPassword from './pages/ForgotPassword'
 import VerifyOtp from './pages/VerifyOtp'
 import About from './pages/AboutUs'
 import ProtectedRoute from './pages/ProtectedRoute'
+import PaymentSuccess from './components/PaymentSuccess'
 
 function App() {
   const { paymentSuccess, isloggedIn } = useAppContext();
@@ -52,6 +53,7 @@ function App() {
           <Route path='/cart' element={<ShoppingCart/>} />
           <Route path='/buynow/checkout' element={<Checkout/>} />
           <Route path='/about' element={<About/>} />
+          <Route path='/payment-result' element={<PaymentSuccess/>} />
           
         </Route>
         

@@ -102,13 +102,25 @@ const VerifyOtp = () => {
     }
 
     setIsLoading(true);
+    const payload = { email: email, password: password };
+    try {
+      const response: AxiosResponse = await fetchWithRetry(
+        {
+          method: "POST",
+          url: `${HOST}/api/v1/auth/reset-password`,
+          data: payload,
+        },
+        3, // retries
+        2000 // delay
+      );
+      navigate("/login");
+      toast.success(response.data.message || "Password changed successfully");
+    } catch (error: any) {
+      toast.error(error?.response?.data?.message || "Network error, please try again");
+    } finally {
+      setIsLoading(false);
+    };
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    setIsLoading(false);
-    navigate("/login", { state: { passwordReset: true } });
-    toast.success("Your new password has been saved");
   };
 
   const handleResend = async(e: React.FormEvent)=>{

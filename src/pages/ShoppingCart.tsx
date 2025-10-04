@@ -124,7 +124,7 @@ const ShoppingCart = () => {
                         </div>
 
                         <CartTotal
-                            subtotal={subtotal.toFixed(2)}
+                            subtotal={subtotal}
                         />
                     </motion.div>
                 </div>

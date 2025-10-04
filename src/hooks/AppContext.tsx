@@ -27,6 +27,8 @@ import { jwtDecode } from "jwt-decode";
     setPaymentSuccess: React.Dispatch<React.SetStateAction<boolean>>;
     login: (token: string) => void;
     logout: () => void;
+    nonUserEmail: string;
+    setNonUserEmail: React.Dispatch<React.SetStateAction<string>>;
   }
 
   // Create the context with default undefined
@@ -42,6 +44,7 @@ import { jwtDecode } from "jwt-decode";
     const [paymentSuccess, setPaymentSuccess] = useState(false);
     const [user, setUser] = useState<DecodedToken | null>(null);
     const [loadingSecurePage, setLoadingSecurePage] = useState(true);
+    const [nonUserEmail, setNonUserEmail] = useState('');
 
 
     const saveToken = (token: string) => localStorage.setItem('shopper token', token);
@@ -153,7 +156,7 @@ import { jwtDecode } from "jwt-decode";
       <AppContext.Provider value={{ showMenu, setShowMenu, showCategories, setShowCategories, 
         setShowDropCategories, showDropCategories, cartItems, addToCart, increaseQuantity, decreaseQuantity,
         removeFromCart, clearCart, paymentSuccess, setPaymentSuccess, isloggedIn, setIsloggedIn, user, setUser,
-        loadingSecurePage, setLoadingSecurePage, login, logout, restoreUser
+        loadingSecurePage, setLoadingSecurePage, login, logout, restoreUser, nonUserEmail, setNonUserEmail
       }}>
         {children}
       </AppContext.Provider>
