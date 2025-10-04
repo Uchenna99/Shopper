@@ -7,6 +7,7 @@ interface Props {
 
 const CartTotal = ({ subtotal }:Props) => {
     const { user, nonUserEmail } = useAppContext();
+    const amountToPay = (Math.ceil(subtotal)) * 1500;
 
   return (
     <div className="w-full flex flex-col py-5 gap-3 text-black-text">
@@ -48,7 +49,7 @@ const CartTotal = ({ subtotal }:Props) => {
         </button> */}
         
             <PaystackPayButton
-                amount={Math.ceil(subtotal)}
+                amount={amountToPay}
                 email={user?.email || nonUserEmail}
             />
 

@@ -22,11 +22,11 @@ const PaymentSuccess = () => {
         return;
       };
       try {
-        const res = await axios.get(`${HOST}/api/paystack/verify/${reference}`);
+        const res = await axios.get(`${HOST}/api/v1/paystack/verify/${reference}`);
         console.log("Verification result:", res.data);
         setPaymentSuccess(true);
       } catch {
-        setMessage('Verification failed!');
+        setMessage('Verification failed! Check status in account section.');
         toast.error("Verification failed!");
       } finally {
         setVerifying(false);
@@ -42,7 +42,7 @@ const PaymentSuccess = () => {
         verifying?
         <h2 className="font-monts-semi-bold text-lg">Verifying Payment Status...</h2>
         :
-        <h2 className={`font-monts-semi-bold text-lg ${!reference && 'text-red-400'}`}>{message}</h2>
+        <h2 className={`font-monts-semi-bold text-lg text-center text-red-400`}>{message}</h2>
       }
 
     </div>
