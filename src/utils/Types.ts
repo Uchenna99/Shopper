@@ -3,7 +3,6 @@ export interface DB_User {
   firstName: string;
   lastName: string;
   email: string;
-  password: string;
   phone: string;
   role: 'CUSTOMER' | 'ADMIN';
   addresses: any[];
@@ -45,4 +44,10 @@ export interface Cart {
   items: CartItem[];
   createdAt: Date;
   updatedAt: Date;
+}
+
+
+export interface LoginData {
+    accessToken: string;
+    user: DB_User;
 }

@@ -7,6 +7,7 @@ import { HOST } from '../utils/Host';
 import { toast } from 'sonner';
 import { fetchWithRetry } from '../utils/FetchWithRetry';
 import type { AxiosResponse } from 'axios';
+import type { DB_User } from '../utils/Types';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -32,8 +33,7 @@ const Login = () => {
         3, // retries
         2000 // delay
       );
-
-      login(response.data.accessToken);
+      login(response.data.accessToken as string, response.data.user as DB_User);
       navigate('/account');
       toast.success("Login successful");
     } catch (error: any) {

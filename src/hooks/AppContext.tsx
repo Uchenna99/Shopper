@@ -1,14 +1,14 @@
   import React, { createContext, useContext, useEffect, useState, type ReactNode } from "react";
-  import type { CartItem, DecodedToken } from "../utils/Types";
+  import type { CartItem, DB_User, DecodedToken } from "../utils/Types";
 import { jwtDecode } from "jwt-decode";
 
   // Define the shape of your context
   interface AppContextType {
-    user: DecodedToken | null;
+    user: DB_User | null;
     loadingSecurePage: boolean;
     setLoadingSecurePage: React.Dispatch<React.SetStateAction<boolean>>;
-    setUser: React.Dispatch<React.SetStateAction<DecodedToken | null>>;
-    restoreUser: (token: string)=>void;
+    setUser: React.Dispatch<React.SetStateAction<DB_User | null>>;
+    restoreUser: (user: DB_User)=>void;
     isloggedIn: boolean;
     setIsloggedIn: React.Dispatch<React.SetStateAction<boolean>>;
     showMenu: boolean;
@@ -25,7 +25,7 @@ import { jwtDecode } from "jwt-decode";
     decreaseQuantity: (item: CartItem)=>void;
     paymentSuccess: boolean;
     setPaymentSuccess: React.Dispatch<React.SetStateAction<boolean>>;
-    login: (token: string) => void;
+    login: (token: string, user: DB_User) => void;
     logout: () => void;
     nonUserEmail: string;
     setNonUserEmail: React.Dispatch<React.SetStateAction<string>>;
@@ -42,14 +42,19 @@ import { jwtDecode } from "jwt-decode";
     const [showDropCategories, setShowDropCategories] = useState(false);
     const [cartItems, setCartItems] = useState<CartItem[]>([]); 
     const [paymentSuccess, setPaymentSuccess] = useState(false);
-    const [user, setUser] = useState<DecodedToken | null>(null);
+    const [user, setUser] = useState<DB_User | null>(null);
     const [loadingSecurePage, setLoadingSecurePage] = useState(true);
     const [nonUserEmail, setNonUserEmail] = useState('');
 
 
     const saveToken = (token: string) => localStorage.setItem('shopper token', token);
-    const removeToken = () => localStorage.removeItem('shopper token');
+    const saveUser = (user: DB_User) => localStorage.setItem('shopper user', JSON.stringify(user));
+    const removeCredentials = () =>{
+      localStorage.removeItem('shopper token');
+      localStorage.removeItem('shopper user');
+    };
     const getToken = () => localStorage.getItem('shopper token');
+    const getUser = () => localStorage.getItem('shopper user');
 
     const isTokenExpired = (token: string) => {
       try {
@@ -60,19 +65,19 @@ import { jwtDecode } from "jwt-decode";
       }
     };
 
-    const restoreUser = (token: string) =>{
-      const decoded = jwtDecode<DecodedToken>(token);
-      setUser(decoded);
+    const restoreUser = (user: DB_User) =>{
+      setUser(user);
       setIsloggedIn(true);
     };
 
-    const login = (token: string) => {
+    const login = (token: string, user: DB_User) => {
       saveToken(token);
-      restoreUser(token);
+      saveUser(user);
+      restoreUser(user);
     };
 
     const logout = () => {
-      removeToken();
+      removeCredentials();
       setUser(null);
       setIsloggedIn(false);
     };
@@ -87,8 +92,11 @@ import { jwtDecode } from "jwt-decode";
           setLoadingSecurePage(false);
           return;
         }else {
-          restoreUser(token);
-          setLoadingSecurePage(false);
+          const user = getUser();
+          if(user) {
+            restoreUser(JSON.parse(user) as DB_User);
+            setLoadingSecurePage(false);
+          }else { logout(); }
         }
 
       };
