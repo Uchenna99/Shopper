@@ -22,7 +22,7 @@ const CardGrid = () => {
                         description={item.description}
                         price={item.price}
                         rating={item.rating}
-                        onCardSelect={()=> navigate(`/${item.category}/productdetails`, {state: {item}})}
+                        onCardSelect={()=> navigate(`/${item.categoryName}/productdetails`, {state: {item}})}
                     />
                 ))
             }

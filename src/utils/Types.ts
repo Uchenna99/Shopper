@@ -37,11 +37,27 @@ export interface CartItem {
 };
 
 
+export interface DB_CartItem {
+  id:string;
+  name: string;
+  price: number;
+  rating: number;
+  category: any;
+  categoryName: 'men' | 'women' | 'children' | 'bags' | 'shoes' | 'accessories';
+  order: any;
+  orderId: string;
+  color: string;
+  image: string;
+  quantity: number;
+  cart: any;
+  cartId: string;
+};
+
 export interface Cart {
   id: string;
   user: any;
   userId: string;
-  items: CartItem[];
+  items: DB_CartItem[];
   createdAt: Date;
   updatedAt: Date;
 }

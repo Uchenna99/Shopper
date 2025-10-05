@@ -9,7 +9,7 @@ import products from "../assets/Data/Items.json";
 import LikeButton from "./LikeButton";
 import Footer from "./Footer";
 import { useAppContext } from "../hooks/AppContext";
-import type { CartItem } from "../utils/Types";
+import type { DB_CartItem } from "../utils/Types";
 
 
 const ProductDetailsPage = () => {
@@ -17,9 +17,18 @@ const ProductDetailsPage = () => {
     const { item } = location.state;
     const colors: string[] = item.colors;
     const navigate = useNavigate();
-    const { addToCart } = useAppContext();
+    const { addToCart, addingToCart } = useAppContext();
     const [quantity, setQuantity] = useState(1);
-    const [addingToCart, setAddingToCart] = useState(false);
+    const itemToSend: Partial<DB_CartItem> = {
+        name: item.name,
+        price: item.price,
+        rating: item.rating,
+        categoryName: item.categoryName,
+        color: colors[0] || "",
+        image: item.image,
+        quantity: quantity,
+        cartId: item.cartId
+    }
 
     const handleMinus = ()=>{
         if(quantity !== 1) { setQuantity(quantity - 1) }
@@ -27,15 +36,6 @@ const ProductDetailsPage = () => {
 
     const handlePlus = ()=>{
         setQuantity(quantity + 1);
-    };
-
-    const addItemToCart = ()=>{
-        setAddingToCart(true);
-        setTimeout(() => {
-            const cartItem: CartItem = {...item, quantity};
-            addToCart(cartItem);
-            setAddingToCart(false);
-        }, 500);
     };
     
     
@@ -77,7 +77,7 @@ const ProductDetailsPage = () => {
 
                         <p className="text-black-text text-sm font-monts-regular">{item.description}</p>
 
-                        <StarRatingDisplay 
+                        <StarRatingDisplay
                             rating={item.rating}
                             size={18}
                         />
@@ -140,7 +140,7 @@ const ProductDetailsPage = () => {
                         <ProductCardButton
                             adding={addingToCart}
                             onAdd={()=>{
-                                addItemToCart();
+                                addToCart(itemToSend);
                             }}
                         />
                     </div>

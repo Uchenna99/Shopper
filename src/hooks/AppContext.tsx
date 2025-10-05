@@ -1,6 +1,10 @@
   import React, { createContext, useContext, useEffect, useState, type ReactNode } from "react";
-  import type { CartItem, DB_User, DecodedToken } from "../utils/Types";
+  import type { CartItem, DB_CartItem, DB_User, DecodedToken } from "../utils/Types";
 import { jwtDecode } from "jwt-decode";
+import { fetchWithRetry } from "../utils/FetchWithRetry";
+import { HOST } from "../utils/Host";
+import type { AxiosResponse } from "axios";
+import { toast } from "sonner";
 
   // Define the shape of your context
   interface AppContextType {
@@ -17,8 +21,9 @@ import { jwtDecode } from "jwt-decode";
     setShowCategories: React.Dispatch<React.SetStateAction<boolean>>;
     showDropCategories: boolean;
     setShowDropCategories: React.Dispatch<React.SetStateAction<boolean>>;
-    cartItems: CartItem[];
-    addToCart: (item: CartItem)=>void;
+    cartItems: DB_CartItem[];
+    addToCart: (item: Partial<DB_CartItem>)=>void;
+    addingToCart: boolean;
     removeFromCart: (item: CartItem)=>void;
     clearCart: ()=>void;
     increaseQuantity: (cartItem: CartItem)=>void;
@@ -40,7 +45,8 @@ import { jwtDecode } from "jwt-decode";
     const [showMenu, setShowMenu] = useState(false);
     const [showCategories, setShowCategories] = useState(false);
     const [showDropCategories, setShowDropCategories] = useState(false);
-    const [cartItems, setCartItems] = useState<CartItem[]>([]); 
+    const [cartItems, setCartItems] = useState<DB_CartItem[]>([]); 
+    const [addingToCart, setAddingToCart] = useState(false);
     const [paymentSuccess, setPaymentSuccess] = useState(false);
     const [user, setUser] = useState<DB_User | null>(null);
     const [loadingSecurePage, setLoadingSecurePage] = useState(true);
@@ -67,6 +73,7 @@ import { jwtDecode } from "jwt-decode";
 
     const restoreUser = (user: DB_User) =>{
       setUser(user);
+      setCartItems(user.cart.items);
       setIsloggedIn(true);
     };
 
@@ -105,20 +112,27 @@ import { jwtDecode } from "jwt-decode";
     }, []);
 
 
-    const addToCart = (newItem: CartItem) => {
-      setCartItems((prevItems) => {
-        const exists = prevItems.find((item) => item.name === newItem.name);
+    const addToCart = async(newItem: Partial<DB_CartItem>) => {
+      setAddingToCart(true);
+      try {
+        const response: AxiosResponse = await fetchWithRetry(
+          {
+            method: "POST",
+            url: `${HOST}/api/v1/products/add-to-cart`,
+            data: newItem,
+          }, 3, // retries
+          2000 // delay
+        );
+        console.log(response.data);
+        setCartItems(response.data);
+        toast.success("Item added to cart");
+      } catch (error: any) {
+        console.log(error);
+        toast.error(error?.response?.data?.message || "Network error, please try again");
+      } finally {
+        setAddingToCart(false);
+      };
 
-        if (exists) {
-          // increment quantity
-          return prevItems.map((item) =>
-            item.name === newItem.name ? { ...item, quantity: item.quantity + newItem.quantity } : item
-          );
-        }
-
-        // else add new item
-        return [...prevItems, newItem];
-      });
     };
 
     const removeFromCart = (item: CartItem)=>{
@@ -164,7 +178,8 @@ import { jwtDecode } from "jwt-decode";
       <AppContext.Provider value={{ showMenu, setShowMenu, showCategories, setShowCategories, 
         setShowDropCategories, showDropCategories, cartItems, addToCart, increaseQuantity, decreaseQuantity,
         removeFromCart, clearCart, paymentSuccess, setPaymentSuccess, isloggedIn, setIsloggedIn, user, setUser,
-        loadingSecurePage, setLoadingSecurePage, login, logout, restoreUser, nonUserEmail, setNonUserEmail
+        loadingSecurePage, setLoadingSecurePage, login, logout, restoreUser, nonUserEmail, setNonUserEmail,
+        addingToCart
       }}>
         {children}
       </AppContext.Provider>
