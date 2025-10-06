@@ -25,18 +25,6 @@ export interface DecodedToken {
 };
 
 
-export interface CartItem {
-    name: string; 
-    description: string; 
-    price: number;
-    rating: number;
-    category: 'men' | 'women' | 'children' | 'bags' | 'shoes' | 'accessories';
-    colors:  string[];
-    image: string;
-    quantity: number;
-};
-
-
 export interface DB_CartItem {
   id:string;
   name: string;

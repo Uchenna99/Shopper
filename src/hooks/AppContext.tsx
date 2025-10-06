@@ -1,5 +1,5 @@
   import React, { createContext, useContext, useEffect, useState, type ReactNode } from "react";
-  import type { CartItem, DB_CartItem, DB_User, DecodedToken } from "../utils/Types";
+  import type { DB_CartItem, DB_User, DecodedToken } from "../utils/Types";
 import { jwtDecode } from "jwt-decode";
 import { fetchWithRetry } from "../utils/FetchWithRetry";
 import { HOST } from "../utils/Host";
@@ -22,12 +22,13 @@ import { toast } from "sonner";
     showDropCategories: boolean;
     setShowDropCategories: React.Dispatch<React.SetStateAction<boolean>>;
     cartItems: DB_CartItem[];
-    addToCart: (item: Partial<DB_CartItem>)=>void;
+    // localCartItems: DB_CartItem[];
+    addToCart: (item: Partial<DB_CartItem>)=>void
     addingToCart: boolean;
-    removeFromCart: (item: CartItem)=>void;
+    removeFromCart: (data: { cartId: string; itemId: string; })=>void;
     clearCart: ()=>void;
-    increaseQuantity: (cartItem: CartItem)=>void;
-    decreaseQuantity: (item: CartItem)=>void;
+    increaseQuantity: (cartItem: DB_CartItem)=>void;
+    decreaseQuantity: (item: DB_CartItem)=>void;
     paymentSuccess: boolean;
     setPaymentSuccess: React.Dispatch<React.SetStateAction<boolean>>;
     login: (token: string, user: DB_User) => void;
@@ -114,36 +115,77 @@ import { toast } from "sonner";
 
     const addToCart = async(newItem: Partial<DB_CartItem>) => {
       setAddingToCart(true);
-      try {
-        const response: AxiosResponse = await fetchWithRetry(
-          {
-            method: "POST",
-            url: `${HOST}/api/v1/products/add-to-cart`,
-            data: newItem,
-          }, 3, // retries
-          2000 // delay
-        );
-        console.log(response.data);
-        setCartItems(response.data);
-        toast.success("Item added to cart");
-      } catch (error: any) {
-        console.log(error);
-        toast.error(error?.response?.data?.message || "Network error, please try again");
-      } finally {
-        setAddingToCart(false);
-      };
+      if(user) {
+        try {
+          const response: AxiosResponse = await fetchWithRetry(
+            {
+              method: "POST",
+              url: `${HOST}/api/v1/products/add-to-cart`,
+              data: newItem,
+            }, 3, // retries
+            2000 // delay
+          );
+          // get user from local and update cart
+          const user = getUser();
+          if(user) {
+            const parsedUser: DB_User = JSON.parse(user);
+            parsedUser.cart.items = response.data as DB_CartItem[];
+            saveUser(parsedUser);
+          }
+          setCartItems(response.data);
+          toast.success("Item added to cart");
+        } catch (error: any) {
+          toast.error(error?.response?.data?.message || "Network error, please try again");
+        } finally {
+          setAddingToCart(false);
+        };
+
+      }else {
+        const cart = JSON.parse(localStorage.getItem("shopper cart") || "[]");
+        cart.push(newItem);
+        localStorage.setItem("shopper cart", JSON.stringify(cart));
+      }
 
     };
 
-    const removeFromCart = (item: CartItem)=>{
-      setCartItems((prev)=> prev.filter((filterItem)=> filterItem.name !== item.name))
+    const removeFromCart = async(data: { cartId: string; itemId: string; })=>{
+      if(user) {
+        try {
+          const response: AxiosResponse = await fetchWithRetry(
+            {
+              method: "POST",
+              url: `${HOST}/api/v1/products/remove-from-cart`,
+              data: data,
+            }, 3, // retries
+            2000 // delay
+          );
+          // get user from local and update cart
+          const user = getUser();
+          if(user) {
+            const parsedUser: DB_User = JSON.parse(user);
+            parsedUser.cart.items = response.data as DB_CartItem[];
+            saveUser(parsedUser);
+          }
+          setCartItems(response.data);
+          toast.success("Item removed from cart");
+        } catch (error: any) {
+          toast.error(error?.response?.data?.message || "Network error, please try again");
+        } finally {
+          setAddingToCart(false);
+        };
+
+      }else {
+        const cart: DB_CartItem[] = JSON.parse(localStorage.getItem("shopper cart") || "[]");
+        const filterCart = cart.filter((item)=> item.id !== data.itemId);
+        localStorage.setItem("shopper cart", JSON.stringify(filterCart));
+      }
     };
 
     const clearCart = ()=>{
       setCartItems([]);
     };
 
-    const increaseQuantity = (cartItem: CartItem)=>{
+    const increaseQuantity = (cartItem: DB_CartItem)=>{
       setCartItems((prevItems) => {
         const exists = prevItems.find((item) => item.name === cartItem.name);
 
@@ -158,7 +200,7 @@ import { toast } from "sonner";
       });
     };
 
-    const decreaseQuantity = (cartItem: CartItem)=>{
+    const decreaseQuantity = (cartItem: DB_CartItem)=>{
       setCartItems((prevItems) => {
         const exists = prevItems.find((item) => item.name === cartItem.name);
 

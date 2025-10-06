@@ -1,17 +1,15 @@
 import { Minus, Plus, Trash2 } from "lucide-react";
-// import { useState } from "react";
-import type { CartItem } from "../utils/Types";
 import { useAppContext } from "../hooks/AppContext";
 import { useState } from "react";
 import RemoveCartItem from "./confirmations/RemoveCartItem";
+import type { DB_CartItem } from "../utils/Types";
 
 interface Props {
-    // onRemove: ()=>void;
-    item: CartItem;
+    item: DB_CartItem;
 }
 
 const CartItemDisplay = ({ item }:Props) => {
-    const { increaseQuantity, decreaseQuantity, removeFromCart } = useAppContext();
+    const { increaseQuantity, decreaseQuantity, removeFromCart, user } = useAppContext();
     const [confirmRemove, setConfirmRemove] = useState(false);
     const [deleting, setDeleting] = useState(false);
 
@@ -27,7 +25,7 @@ const CartItemDisplay = ({ item }:Props) => {
         setDeleting(true);
 
         setTimeout(() => {
-            removeFromCart(item);
+            removeFromCart({itemId: item.id, cartId: user?.cart.id || ""});
             setConfirmRemove(false);
             setDeleting(false);
         }, 800);
