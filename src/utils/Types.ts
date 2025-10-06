@@ -62,6 +62,24 @@ export interface Cart {
   updatedAt: Date;
 }
 
+export interface DB_Product {
+  id: string;
+  name: string;
+  description?: string;
+  price: number;
+  rating: number;
+  images: string[];
+  colors: string[];
+  brand?: string;
+  categoryName: string;
+  category?: any;
+  size?: string;
+  stock: number;
+  reviews?: any;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 
 export interface LoginData {
     accessToken: string;

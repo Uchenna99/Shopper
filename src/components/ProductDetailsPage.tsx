@@ -17,7 +17,7 @@ const ProductDetailsPage = () => {
     const { item } = location.state;
     const colors: string[] = item.colors;
     const navigate = useNavigate();
-    const { addToCart, addingToCart } = useAppContext();
+    const { addToCart, addingToCart, user } = useAppContext();
     const [quantity, setQuantity] = useState(1);
     const itemToSend: Partial<DB_CartItem> = {
         name: item.name,
@@ -27,7 +27,7 @@ const ProductDetailsPage = () => {
         color: colors[0] || "",
         image: item.image,
         quantity: quantity,
-        cartId: item.cartId
+        cartId: user?.cart.id || ""
     }
 
     const handleMinus = ()=>{

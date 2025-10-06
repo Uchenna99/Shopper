@@ -5,7 +5,6 @@
         "price":32,
         "rating":4,
         "categoryName":"shoes",
-        "cartId": "cmge7py360002ld04y2q3pvqd",
         "colors":[],
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1739398357/samples/ecommerce/shoes.png"
     },
@@ -15,7 +14,6 @@
         "price":24.25,
         "rating":5,
         "categoryName":"accessories",
-        "cartId": "cmge7py360002ld04y2q3pvqd",
         "colors":["blue", "black", "red"],
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1739398356/samples/ecommerce/analog-classic.jpg"
     },
@@ -26,7 +24,6 @@
         "rating":5,
         "colors":[],
         "categoryName":"bags",
-        "cartId": "cmge7py360002ld04y2q3pvqd",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757797959/leather-bag-gray-min_iqoio7.jpg"
     },
     {
@@ -36,7 +33,6 @@
         "rating":5,
         "colors":[],
         "categoryName":"shoes",
-        "cartId": "cmge7py360002ld04y2q3pvqd",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757715384/96609-min_1_cpflb0.jpg"
     },
     {
@@ -46,7 +42,6 @@
         "rating":5,
         "colors":[],
         "categoryName":"shoes",
-        "cartId": "cmge7py360002ld04y2q3pvqd",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757712085/Y19maWxsLHdfMjAwMCxoXzIwMDAsZ19hdXRv-min_qauqoq.jpg"
     },
     {
@@ -56,7 +51,6 @@
         "rating":4,
         "colors":[],
         "categoryName":"bags",
-        "cartId": "cmge7py360002ld04y2q3pvqd",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757712443/bag-1194459_1280-min_zeh3e4.jpg"
     },
     {
@@ -66,7 +60,6 @@
         "rating":5,
         "colors":[],
         "categoryName":"men",
-        "cartId": "cmge7py360002ld04y2q3pvqd",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757801810/13706225_2012.i211.010..man_s_suit_realistic-min_owxge2.jpg"
     },
     {
@@ -76,7 +69,6 @@
         "rating":5,
         "colors":[],
         "categoryName":"accessories",
-        "cartId": "cmge7py360002ld04y2q3pvqd",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757801810/409092869_ea0bb1c0-dad9-4050-876c-ffc086e62f13-min_pyqovw.jpg"
     },
     {
@@ -86,7 +78,6 @@
         "rating":4,
         "colors":[],
         "categoryName":"women",
-        "cartId": "cmge7py360002ld04y2q3pvqd",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757801810/Screenshot_2025-09-13_225841-min_utnqza.png"
     },
     {
@@ -96,7 +87,6 @@
         "rating":5,
         "colors":[],
         "categoryName":"women",
-        "cartId": "cmge7py360002ld04y2q3pvqd",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757801809/Screenshot_2025-09-13_230233-min_yq97o5.png"
     },
     {
@@ -106,7 +96,6 @@
         "rating":5,
         "colors":[],
         "categoryName":"women",
-        "cartId": "cmge7py360002ld04y2q3pvqd",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757800388/6543-min_wa7azx.jpg"
     },
     {
@@ -116,7 +105,6 @@
         "rating":5,
         "colors":[],
         "categoryName":"men",
-        "cartId": "cmge7py360002ld04y2q3pvqd",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757800388/12971-min_uprbv7.jpg"
     },
     {
@@ -126,7 +114,6 @@
         "rating":5,
         "colors":[],
         "categoryName":"men",
-        "cartId": "cmge7py360002ld04y2q3pvqd",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757800387/7648-min_gbmxew.jpg"
     },
     {
@@ -136,7 +123,6 @@
         "rating":4,
         "colors":[],
         "categoryName":"men",
-        "cartId": "cmge7py360002ld04y2q3pvqd",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757801809/Screenshot_2025-09-13_225558-min_lu8ohk.png"
     },
     {
@@ -146,7 +132,6 @@
         "rating":4,
         "colors":[],
         "categoryName":"men",
-        "cartId": "cmge7py360002ld04y2q3pvqd",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757801809/8005-min_rdnkj3.jpg"
     },
     {
@@ -156,7 +141,6 @@
         "rating":5,
         "colors":[],
         "categoryName":"children",
-        "cartId": "cmge7py360002ld04y2q3pvqd",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757801810/Screenshot_2025-09-13_230811-min_wx3qr8.png"
     },
     {
@@ -166,7 +150,6 @@
         "rating":5,
         "colors":[],
         "categoryName":"children",
-        "cartId": "cmge7py360002ld04y2q3pvqd",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757801810/Screenshot_2025-09-13_230121-min_axhza2.png"
     },
     {
@@ -176,7 +159,6 @@
         "rating":5,
         "colors":[],
         "categoryName":"children",
-        "cartId": "cmge7py360002ld04y2q3pvqd",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1757801809/8302-min_yzc6cb.jpg"
     },
     {
@@ -186,7 +168,6 @@
         "rating":5,
         "colors":[],
         "categoryName":"shoes",
-        "cartId": "cmge7py360002ld04y2q3pvqd",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1758403695/409868915_b6e9634d-c83b-4344-996f-4e7de82c6a65-removebg-preview-min_wmskmq.png"
     },
     {
@@ -196,7 +177,6 @@
         "rating":5,
         "colors":[],
         "categoryName":"shoes",
-        "cartId": "cmge7py360002ld04y2q3pvqd",
         "image":"https://res.cloudinary.com/df6xz7bqp/image/upload/v1758405383/Screenshot_2025-09-20_225318-min_sz17ew.png"
     }
 ]
