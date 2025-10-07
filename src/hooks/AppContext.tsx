@@ -141,9 +141,20 @@ import { toast } from "sonner";
         };
 
       }else {
-        const cart = JSON.parse(localStorage.getItem("shopper cart") || "[]");
-        cart.push(newItem);
-        localStorage.setItem("shopper cart", JSON.stringify(cart));
+        const cart: DB_CartItem[] = JSON.parse(localStorage.getItem("shopper cart") || "[]");
+        const exists = cart.find((item)=> item.name === newItem.name);
+        let updatedCart;
+        if (exists) {
+          // increment quantity
+          updatedCart = cart.map((item) =>
+            item.name === newItem.name ? { ...item, quantity: item.quantity + newItem.quantity! } : item
+          );
+        }else{
+          // else add new item
+          updatedCart  = [...cart, newItem];
+        }
+        localStorage.setItem("shopper cart", JSON.stringify(updatedCart ));
+        setAddingToCart(false);
       }
 
     };

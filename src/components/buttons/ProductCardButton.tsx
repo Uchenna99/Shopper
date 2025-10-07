@@ -10,8 +10,7 @@ const ProductCardButton = ({ onAdd, adding }:Props) => {
       {
         adding?
         <button className="border-none outline outline-transparent text-nowrap text-sm font-monts-medium rounded-4xl h-10 w-32 mt-1 
-            cursor-not-allowed transition-all duration-200 text-white px-5 bg-orange-500"
-            onClick={onAdd}>
+            cursor-not-allowed transition-all duration-200 text-white px-5 bg-orange-500">
 
             Adding...
         </button>

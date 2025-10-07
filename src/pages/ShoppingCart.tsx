@@ -15,14 +15,17 @@ import CartItemDisplay from "../components/CartItemDisplay";
 import DeliveryInfo from "../components/DeliveryInfo";
 import DeliveryInfoSaved from "../components/DeliveryInfoSaved";
 import { toast } from "sonner";
+import type { DB_CartItem } from "../utils/Types";
 
 
 const ShoppingCart = () => {
     const navigate = useNavigate();
-    const { cartItems, user } = useAppContext();
+    const { cartItems, user, addToCart, removeFromCart } = useAppContext();
     const [selectedPayment, setSelectedPayment] = useState<'card' | 'delivery' | 'paystack'>('paystack');
     const [subtotal, setSubtotal] = useState(0);
     const [savedAddress, setSavedAddress] = useState(false);
+    const [localCart, setLocalCart] = useState<DB_CartItem[]>([]);
+    
 
     useEffect(()=>{
         let sum = 0;
@@ -30,12 +33,17 @@ const ShoppingCart = () => {
         setSubtotal(sum);
     },[cartItems]);
 
+    useEffect(()=>{
+        const localCart: DB_CartItem[] = JSON.parse(localStorage.getItem("shopper cart") || "[]");
+        setLocalCart(localCart);
+    },[addToCart, removeFromCart]);
+
   return (
     <div className="w-full flex flex-col items-center relative">
         <NavigationBar/>
 
         {
-            cartItems.length >= 1?
+            (cartItems.length >= 1 && user) || (localCart.length >= 1 && !user)?
             <div className="w-[1300px] max-w-full flex flex-col md:flex-row py-15 px-3 gap-5 relative">
                 <X
                     size={30}
@@ -55,7 +63,15 @@ const ShoppingCart = () => {
                         </div>
 
                         {
+                            user?
                             cartItems.map((cartItem, index)=>(
+                                <CartItemDisplay
+                                    key={index}
+                                    item={cartItem}
+                                />
+                            ))
+                            :
+                            localCart.map((cartItem, index)=>(
                                 <CartItemDisplay
                                     key={index}
                                     item={cartItem}
