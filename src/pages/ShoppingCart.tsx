@@ -4,7 +4,6 @@ import Coupon from "../components/Coupon";
 import NavigationBar from "../components/navbar/NavigationBar";
 import CheckBox from "../components/buttons/CheckBox";
 import CardsSlide from "../components/CardsSlide";
-import products from "../assets/Data/Items.json";
 import Footer from "../components/Footer";
 import { X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -15,14 +14,16 @@ import CartItemDisplay from "../components/CartItemDisplay";
 import DeliveryInfo from "../components/DeliveryInfo";
 import DeliveryInfoSaved from "../components/DeliveryInfoSaved";
 import { toast } from "sonner";
+import { getRandomItems } from "../utils/UtilityFunctions";
 
 
 const ShoppingCart = () => {
     const navigate = useNavigate();
-    const { cartItems, user, localCartItems } = useAppContext();
+    const { cartItems, user, localCartItems, allProducts } = useAppContext();
     const [selectedPayment, setSelectedPayment] = useState<'card' | 'delivery' | 'paystack'>('paystack');
     const [subtotal, setSubtotal] = useState(0);
     const [savedAddress, setSavedAddress] = useState(false);
+    const slideCards = getRandomItems(allProducts, 12);
     
 
     useEffect(()=>{
@@ -33,6 +34,14 @@ const ShoppingCart = () => {
             localCartItems.forEach((cartItem)=> sum = sum + (cartItem.price * cartItem.quantity));
         }
         setSubtotal(sum);
+    },[cartItems]);
+
+    useEffect(()=>{
+        if(user) {
+            setSavedAddress(true);
+        }else {
+            setSavedAddress(false);
+        }
     },[cartItems]);
 
 
@@ -130,12 +139,12 @@ const ShoppingCart = () => {
                             <CheckBox
                                 option="Debit Card"
                                 isSelected={selectedPayment === 'card'}
-                                select={()=>setSelectedPayment('card')}
+                                select={()=> toast.warning("This option is currently unavailable")}
                             />
                             <CheckBox
                                 option="Cash on Delivery"
                                 isSelected={selectedPayment === 'delivery'}
-                                select={()=>setSelectedPayment('delivery')}
+                                select={()=> toast.warning("This option is currently unavailable")}
                             />
                         </div>
 
@@ -155,7 +164,7 @@ const ShoppingCart = () => {
         <CardsSlide
             title="More Items You Might Like"
             customClass="slide1"
-            products={products}
+            products={slideCards}
         />
 
         <Footer/>

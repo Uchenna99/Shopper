@@ -4,16 +4,19 @@ import DealsOfDay from "../components/homepage/DealsOfDay"
 import Hero from "../components/homepage/Hero"
 import TopCategories from "../components/homepage/TopCategories"
 import NavigationBar from "../components/navbar/NavigationBar";
-import products from "../assets/Data/Items.json";
 import OurServices from "../components/homepage/OurServices"
 import Footer from "../components/Footer"
 import { useLocation, useNavigate } from "react-router-dom"
 import { useEffect } from "react"
+import { useAppContext } from "../hooks/AppContext"
+import { getRandomItems } from "../utils/UtilityFunctions"
 
 
 const HomePage = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { allProducts} = useAppContext();
+  const slideCards = getRandomItems(allProducts, 12);
 
   useEffect(() => {
     if (location.state?.scrollTo) {
@@ -41,7 +44,7 @@ const HomePage = () => {
 
       <CardsSlide
         title="Best Sellers"
-        products={products}
+        products={slideCards}
         customClass="slider2"
       />
 

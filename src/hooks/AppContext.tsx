@@ -108,6 +108,7 @@ import { toast } from "sonner";
           if(user) {
             restoreUser(JSON.parse(user) as DB_User);
             setLoadingSecurePage(false);
+            console.log('user found')
           }else { logout(); }
         }
 

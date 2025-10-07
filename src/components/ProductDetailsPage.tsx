@@ -5,12 +5,12 @@ import { Minus, NotepadText, Plus, Truck, X } from "lucide-react";
 import { useState } from "react";
 import ProductCardButton from "./buttons/ProductCardButton";
 import CardsSlide from "./CardsSlide";
-import products from "../assets/Data/Items.json";
 import LikeButton from "./LikeButton";
 import Footer from "./Footer";
 import { useAppContext } from "../hooks/AppContext";
 import type { DB_CartItem, DB_Product } from "../utils/Types";
 import { toast } from "sonner";
+import { getRandomItems } from "../utils/UtilityFunctions";
 
 
 const ProductDetailsPage = () => {
@@ -19,9 +19,10 @@ const ProductDetailsPage = () => {
     const product: DB_Product = item;
     const colors: string[] = product.colors;
     const navigate = useNavigate();
-    const { addToCart, user } = useAppContext();
+    const { addToCart, user, allProducts } = useAppContext();
     const [isAdding, setIsAdding] = useState(false);
     const [quantity, setQuantity] = useState(1);
+    const slideCards = getRandomItems(allProducts, 12);
     const itemToSend: DB_CartItem = {
         name: product.name,
         price: product.price,
@@ -191,7 +192,7 @@ const ProductDetailsPage = () => {
         <CardsSlide
             title="Similar Items You Might Like"
             customClass="slide4"
-            products={products}
+            products={slideCards}
         />
         <Footer/>
     </div>

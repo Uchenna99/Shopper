@@ -17,7 +17,7 @@ const DeliveryInfoSaved = () => {
                 John Wick
             </p>
             <p className="text-black-text/70 text-xs font-monts-medium">
-                4 Wawuna street, Rumuigbo, PH.
+                Room 47, The Continental.
             </p>
             <p className="text-black-text/70 text-xs font-monts-medium">
                 johnwick@continental.com

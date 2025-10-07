@@ -5,16 +5,19 @@ import "swiper/css/navigation";    // for navigation buttons
 import ProductCard2 from "./ProductCard2";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import type { DB_Product } from "../utils/Types";
+import { useAppContext } from "../hooks/AppContext";
 
 
 interface Props {
-    products: any[];
+    products: DB_Product[];
     title: string;
     customClass: string;
 }
 
 const CardsSlide = ({ title, products, customClass }:Props) => {
     const navigate = useNavigate();
+    const {loadingProducts} = useAppContext();
     
   return (
     <>
@@ -40,17 +43,31 @@ const CardsSlide = ({ title, products, customClass }:Props) => {
                         spaceBetween={25} 
                         modules={[Navigation]}
                         >
-                        {products.map((product, index) => (
-                            <SwiperSlide key={index}>
-                                <ProductCard2
-                                    name={product.name}
-                                    price={product.price}
-                                    image={product.image}
-                                    rating={product.rating}
-                                    onCardSelect={()=> navigate(`/${product.category}/productdetails`, {state: {item: product}})}
-                                />
-                            </SwiperSlide>
-                        ))}
+                        {
+                            loadingProducts?
+                            Array.from({ length: 4 }).map((_, index) => (
+                                <SwiperSlide key={index}>
+                                {/* Skeleton Card */}
+                                <div className="flex flex-col gap-3 bg-gray-100 p-3 rounded-xl animate-pulse">
+                                    <div className="w-full h-40 bg-gray-200 rounded-lg"></div>
+                                    <div className="w-3/4 h-4 bg-gray-200 rounded"></div>
+                                    <div className="w-1/2 h-4 bg-gray-200 rounded"></div>
+                                </div>
+                                </SwiperSlide>
+                            ))
+                            :
+                            products.map((product, index) => (
+                                <SwiperSlide key={index}>
+                                    <ProductCard2
+                                        name={product.name}
+                                        price={product.price}
+                                        image={product.images[0]}
+                                        rating={product.rating}
+                                        onCardSelect={()=> navigate(`/${product.category}/productdetails`, {state: {item: product}})}
+                                    />
+                                </SwiperSlide>
+                            ))
+                        }
                     </Swiper>
 
                     <button className={`${customClass}-prev-custom absolute left-0 -top-11 bg-white text-black-text w-9 h-9 
