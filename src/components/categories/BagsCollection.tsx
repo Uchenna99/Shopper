@@ -29,7 +29,7 @@ const BagsCollection = () => {
                 const response: AxiosResponse = await fetchWithRetry(
                     {
                     method: "GET",
-                    url: `${HOST}/api/v1/products/categories/men`,
+                    url: `${HOST}/api/v1/products/categories/bags`,
                     },
                     5, // retries
                     2000 // delay

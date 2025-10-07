@@ -1,5 +1,5 @@
   import React, { createContext, useContext, useEffect, useState, type ReactNode } from "react";
-  import type { DB_CartItem, DB_User, DecodedToken, RemoveItemDTO } from "../utils/Types";
+  import type { DB_CartItem, DB_Product, DB_User, DecodedToken, RemoveItemDTO } from "../utils/Types";
 import { jwtDecode } from "jwt-decode";
 import { fetchWithRetry } from "../utils/FetchWithRetry";
 import { HOST } from "../utils/Host";
@@ -21,6 +21,10 @@ import { toast } from "sonner";
     setShowCategories: React.Dispatch<React.SetStateAction<boolean>>;
     showDropCategories: boolean;
     setShowDropCategories: React.Dispatch<React.SetStateAction<boolean>>;
+    allProducts: DB_Product[];
+    setAllProducts: React.Dispatch<React.SetStateAction<DB_Product[] | []>>;
+    loadingProducts: boolean;
+    setLoadingProducts: React.Dispatch<React.SetStateAction<boolean>>;
     cartItems: DB_CartItem[];
     localCartItems: DB_CartItem[];
     setLocalCartItems: React.Dispatch<React.SetStateAction<DB_CartItem[]>>;
@@ -50,6 +54,8 @@ import { toast } from "sonner";
     const [user, setUser] = useState<DB_User | null>(null);
     const [loadingSecurePage, setLoadingSecurePage] = useState(true);
     const [nonUserEmail, setNonUserEmail] = useState('');
+    const [allProducts, setAllProducts] = useState<DB_Product[] | []>([]);
+    const [loadingProducts, setLoadingProducts] = useState(true);
 
 
     const saveToken = (token: string) => localStorage.setItem('shopper token', token);
@@ -109,6 +115,28 @@ import { toast } from "sonner";
 
       verifyToken();
     }, []);
+
+    useEffect(()=>{
+        const fetchProducts = async()=>{
+          setLoadingProducts(true);
+            try {
+                const response: AxiosResponse = await fetchWithRetry(
+                    {
+                    method: "GET",
+                    url: `${HOST}/api/v1/products/all-products`,
+                    },
+                    5, // retries
+                    2000 // delay
+                );
+                setAllProducts(response.data);
+            } catch (error: any) {
+                toast.error(error?.response?.data?.message || "Network error, please refresh page");
+            } finally {
+                setLoadingProducts(false);
+            };
+        };
+        fetchProducts();
+    },[]);
 
 
     const addToCart = async (newItem: DB_CartItem): Promise<DB_CartItem[]> => {
@@ -202,6 +230,7 @@ import { toast } from "sonner";
         setShowDropCategories, showDropCategories, cartItems, addToCart, localCartItems, setLocalCartItems,
         removeFromCart, clearCart, paymentSuccess, setPaymentSuccess, isloggedIn, setIsloggedIn, user, setUser,
         loadingSecurePage, setLoadingSecurePage, login, logout, restoreUser, nonUserEmail, setNonUserEmail, 
+        allProducts, setAllProducts, loadingProducts, setLoadingProducts
       }}>
         {children}
       </AppContext.Provider>
