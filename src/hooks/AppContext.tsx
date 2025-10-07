@@ -23,11 +23,8 @@ import { toast } from "sonner";
     setShowDropCategories: React.Dispatch<React.SetStateAction<boolean>>;
     cartItems: DB_CartItem[];
     addToCart: (item: DB_CartItem)=> Promise<DB_CartItem[]>
-    addingToCart: boolean;
     removeFromCart: (data: RemoveItemDTO)=>void;
     clearCart: ()=>void;
-    increaseQuantity: (cartItem: DB_CartItem)=>void;
-    decreaseQuantity: (item: DB_CartItem)=>void;
     paymentSuccess: boolean;
     setPaymentSuccess: React.Dispatch<React.SetStateAction<boolean>>;
     login: (token: string, user: DB_User) => void;
@@ -46,7 +43,6 @@ import { toast } from "sonner";
     const [showCategories, setShowCategories] = useState(false);
     const [showDropCategories, setShowDropCategories] = useState(false);
     const [cartItems, setCartItems] = useState<DB_CartItem[]>([]); 
-    const [addingToCart, setAddingToCart] = useState(false);
     const [paymentSuccess, setPaymentSuccess] = useState(false);
     const [user, setUser] = useState<DB_User | null>(null);
     const [loadingSecurePage, setLoadingSecurePage] = useState(true);
@@ -154,12 +150,11 @@ import { toast } from "sonner";
          throw error;
       }
       
-
     };
 
-    const removeFromCart = async(data: RemoveItemDTO)=>{
-      if(user) {
-        try {
+    const removeFromCart = async(data: RemoveItemDTO): Promise<DB_CartItem[]> =>{
+      try {
+        if(user) {
           const response: AxiosResponse = await fetchWithRetry(
             {
               method: "POST",
@@ -177,60 +172,31 @@ import { toast } from "sonner";
           }
           setCartItems(response.data);
           toast.success("Item removed from cart");
-        } catch (error: any) {
-          toast.error(error?.response?.data?.message || "Network error, please try again");
-        } finally {
-          setAddingToCart(false);
-        };
-
-      }else {
-        const cart: DB_CartItem[] = JSON.parse(localStorage.getItem("shopper cart") || "[]");
-        const filterCart = cart.filter((item)=> item.name !== data.itemName);
-        localStorage.setItem("shopper cart", JSON.stringify(filterCart));
+          return response.data;
+  
+        }else {
+          const cart: DB_CartItem[] = JSON.parse(localStorage.getItem("shopper cart") || "[]");
+          const filterCart = cart.filter((item)=> item.name !== data.itemName);
+          localStorage.setItem("shopper cart", JSON.stringify(filterCart));
+          return filterCart;
+        }
+        
+      } catch (error) {
+        throw error;
       }
     };
 
     const clearCart = ()=>{
       setCartItems([]);
+      localStorage.setItem("shopper cart", "[]");
     };
-
-    const increaseQuantity = (cartItem: DB_CartItem)=>{
-      setCartItems((prevItems) => {
-        const exists = prevItems.find((item) => item.name === cartItem.name);
-
-        if (exists) {
-          // increment quantity
-          return prevItems.map((item) =>
-            item.name === cartItem.name ? { ...item, quantity: item.quantity + 1 } : item
-          );
-        }
-
-        return prevItems;
-      });
-    };
-
-    const decreaseQuantity = (cartItem: DB_CartItem)=>{
-      setCartItems((prevItems) => {
-        const exists = prevItems.find((item) => item.name === cartItem.name);
-
-        if (exists) {
-          return prevItems.map((item) =>
-            item.name === cartItem.name && item.quantity > 1? { ...item, quantity: item.quantity -   1 } : item
-          );
-        }
-
-        return prevItems;
-      });
-    };
-
 
 
     return (
       <AppContext.Provider value={{ showMenu, setShowMenu, showCategories, setShowCategories, 
-        setShowDropCategories, showDropCategories, cartItems, addToCart, increaseQuantity, decreaseQuantity,
+        setShowDropCategories, showDropCategories, cartItems, addToCart,
         removeFromCart, clearCart, paymentSuccess, setPaymentSuccess, isloggedIn, setIsloggedIn, user, setUser,
-        loadingSecurePage, setLoadingSecurePage, login, logout, restoreUser, nonUserEmail, setNonUserEmail,
-        addingToCart
+        loadingSecurePage, setLoadingSecurePage, login, logout, restoreUser, nonUserEmail, setNonUserEmail, 
       }}>
         {children}
       </AppContext.Provider>

@@ -1,4 +1,4 @@
-import { Minus, Plus, Trash2 } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import { useAppContext } from "../hooks/AppContext";
 import { useState } from "react";
 import RemoveCartItem from "./confirmations/RemoveCartItem";
@@ -9,17 +9,10 @@ interface Props {
 }
 
 const CartItemDisplay = ({ item }:Props) => {
-    const { increaseQuantity, decreaseQuantity, removeFromCart, user } = useAppContext();
+    const { removeFromCart, user } = useAppContext();
     const [confirmRemove, setConfirmRemove] = useState(false);
     const [deleting, setDeleting] = useState(false);
 
-    const handleMinus = ()=>{
-        decreaseQuantity(item);
-    };
-
-    const handlePlus = ()=>{
-        increaseQuantity(item);
-    };
 
     const removeItem = ()=>{
         setDeleting(true);
@@ -83,29 +76,8 @@ const CartItemDisplay = ({ item }:Props) => {
                 ${item.price}
             </p>
 
-            <div className="flex flex-col items-end sm:flex-row sm:items-center gap-4">
-                <p className="text-black-text text-xs font-monts-medium">Quantity :</p>
+            <p className="text-black-text text-xs font-monts-medium">Quantity : {item.quantity}</p>
 
-                <div className="flex items-center gap-4 text-black-text">
-                    <div className="w-6 h-6 rounded-full border border-gray-300 grid place-items-center cursor-pointer 
-                        text-red-400" onClick={handleMinus}>
-                        <Minus 
-                            size={14}
-                            className="transition-all duration-200"
-                        />
-                    </div>
-
-                    <p className="text-black-text text-sm font-monts-medium">{item.quantity}</p>
-
-                    <div className="w-6 h-6 rounded-full border border-gray-300 grid place-items-center cursor-pointer 
-                        text-green-600" onClick={handlePlus}>
-                        <Plus 
-                            size={14}
-                            className="transition-all duration-200"
-                        />
-                    </div>
-                </div>
-            </div>
         </div>
 
     </div>
