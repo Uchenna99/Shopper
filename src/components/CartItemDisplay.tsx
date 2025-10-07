@@ -3,25 +3,31 @@ import { useAppContext } from "../hooks/AppContext";
 import { useState } from "react";
 import RemoveCartItem from "./confirmations/RemoveCartItem";
 import type { DB_CartItem } from "../utils/Types";
+import { toast } from "sonner";
 
 interface Props {
     item: DB_CartItem;
 }
 
 const CartItemDisplay = ({ item }:Props) => {
-    const { removeFromCart, user } = useAppContext();
-    const [confirmRemove, setConfirmRemove] = useState(false);
+    const { user, removeFromCart, setLocalCartItems } = useAppContext();
     const [deleting, setDeleting] = useState(false);
-
+    const [confirmRemove, setConfirmRemove] = useState(false);
 
     const removeItem = ()=>{
         setDeleting(true);
-
-        setTimeout(() => {
-            removeFromCart({itemId: item.id, cartId: user?.cart.id || "", itemName: item.name});
+        removeFromCart({itemId: item.id, cartId: user?.cart.id || "", itemName: item.name})
+        .then((response)=>{
+            setLocalCartItems(response);
+            toast.success("Item removed from cart");
+        })
+        .catch((error)=> {
+            toast.error(error?.response?.data?.message || "Network error, please try again");
+        })
+        .finally(()=>{
             setConfirmRemove(false);
             setDeleting(false);
-        }, 800);
+        })
     };
 
 

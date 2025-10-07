@@ -8,33 +8,14 @@ import { HOST } from "../utils/Host";
 import type { DB_Product } from "../utils/Types";
 import { toast } from "sonner";
 
+interface Props {
+    products: DB_Product[];
+}
 
-const CardGrid = () => {
+const CardGrid = ({ products }: Props) => {
     const navigate = useNavigate();
     const [currentPage, setCurrentPage] = useState(1);
-    const [products, setProducts] = useState<DB_Product[] | null>(null);
     
-
-    useEffect(()=>{
-        const fetchProducts = async()=>{
-            try {
-                const response: AxiosResponse = await fetchWithRetry(
-                    {
-                    method: "GET",
-                    url: `${HOST}/api/v1/products/all-products`,
-                    },
-                    3, // retries
-                    2000 // delay
-                );
-                setProducts(response.data);
-            } catch (error: any) {
-                toast.error(error?.response?.data?.message || "Network error, please try again");
-            } finally {
-                // setIsLoading(false);
-            };
-        };
-        fetchProducts();
-    },[]);
     
   return (
     <div className="w-full flex flex-col items-center gap-5">

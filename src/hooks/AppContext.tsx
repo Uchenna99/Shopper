@@ -22,8 +22,10 @@ import { toast } from "sonner";
     showDropCategories: boolean;
     setShowDropCategories: React.Dispatch<React.SetStateAction<boolean>>;
     cartItems: DB_CartItem[];
+    localCartItems: DB_CartItem[];
+    setLocalCartItems: React.Dispatch<React.SetStateAction<DB_CartItem[]>>;
     addToCart: (item: DB_CartItem)=> Promise<DB_CartItem[]>
-    removeFromCart: (data: RemoveItemDTO)=>void;
+    removeFromCart: (data: RemoveItemDTO)=>Promise<DB_CartItem[]>;
     clearCart: ()=>void;
     paymentSuccess: boolean;
     setPaymentSuccess: React.Dispatch<React.SetStateAction<boolean>>;
@@ -43,6 +45,7 @@ import { toast } from "sonner";
     const [showCategories, setShowCategories] = useState(false);
     const [showDropCategories, setShowDropCategories] = useState(false);
     const [cartItems, setCartItems] = useState<DB_CartItem[]>([]); 
+    const [localCartItems, setLocalCartItems] = useState<DB_CartItem[]>(JSON.parse(localStorage.getItem("shopper cart") || "[]"));
     const [paymentSuccess, setPaymentSuccess] = useState(false);
     const [user, setUser] = useState<DB_User | null>(null);
     const [loadingSecurePage, setLoadingSecurePage] = useState(true);
@@ -144,6 +147,7 @@ import { toast } from "sonner";
             updatedCart  = [...cart, newItem];
           }
           localStorage.setItem("shopper cart", JSON.stringify(updatedCart ));
+          setLocalCartItems(updatedCart);
           return updatedCart;
         }
       } catch (error) {
@@ -178,6 +182,7 @@ import { toast } from "sonner";
           const cart: DB_CartItem[] = JSON.parse(localStorage.getItem("shopper cart") || "[]");
           const filterCart = cart.filter((item)=> item.name !== data.itemName);
           localStorage.setItem("shopper cart", JSON.stringify(filterCart));
+          setLocalCartItems(filterCart);
           return filterCart;
         }
         
@@ -194,7 +199,7 @@ import { toast } from "sonner";
 
     return (
       <AppContext.Provider value={{ showMenu, setShowMenu, showCategories, setShowCategories, 
-        setShowDropCategories, showDropCategories, cartItems, addToCart,
+        setShowDropCategories, showDropCategories, cartItems, addToCart, localCartItems, setLocalCartItems,
         removeFromCart, clearCart, paymentSuccess, setPaymentSuccess, isloggedIn, setIsloggedIn, user, setUser,
         loadingSecurePage, setLoadingSecurePage, login, logout, restoreUser, nonUserEmail, setNonUserEmail, 
       }}>

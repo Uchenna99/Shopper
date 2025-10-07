@@ -1,7 +1,6 @@
 import { ShoppingCart, User2 } from "lucide-react";
 import { useState } from "react";
 import { useAppContext } from "../../hooks/AppContext";
-import type { DB_CartItem } from "../../utils/Types";
 import { motion } from "framer-motion";
 
 interface Props {
@@ -10,9 +9,8 @@ interface Props {
 }
 
 const NavRightOption = ({ title, whenClicked }:Props) => {
-    const { cartItems, user } = useAppContext();
+    const { cartItems, user, localCartItems } = useAppContext();
     const [hovering, setHovering] = useState(false);
-    const localCart: DB_CartItem[] = JSON.parse(localStorage.getItem("shopper cart") || "[]");
 
   return (
     <div className="flex items-center gap-[6px] max-md:hidden cursor-pointer"
@@ -36,12 +34,12 @@ const NavRightOption = ({ title, whenClicked }:Props) => {
                     className={`${hovering? 'scale-130' : ''} transition-all duration-200 z-10`}
                 />
                 <motion.div className={`min-w-5 min-h-5 bg-orange-400 rounded-full absolute -top-4 left-0 grid place-items-center
-                        ${cartItems.length === 0 && user? 'hidden': localCart.length ===0 && !user? 'hidden':''}`}
+                        ${cartItems.length === 0 && user? 'hidden': localCartItems.length ===0 && !user? 'hidden':''}`}
                         initial={{opacity:0, scale:0.5}}
                         animate={{opacity:1, scale:1}}
                         transition={{duration:0.2, ease:'easeInOut'}}>
                     <p className="text-white text-xs font-monts-medium">
-                        {user? cartItems.length : localCart.length}
+                        {user? cartItems.length : localCartItems.length}
                     </p>
                 </motion.div>
 

@@ -10,6 +10,7 @@ import LikeButton from "./LikeButton";
 import Footer from "./Footer";
 import { useAppContext } from "../hooks/AppContext";
 import type { DB_CartItem, DB_Product } from "../utils/Types";
+import { toast } from "sonner";
 
 
 const ProductDetailsPage = () => {
@@ -44,10 +45,10 @@ const ProductDetailsPage = () => {
         setIsAdding(true);
         addToCart(itemToSend)
         .then(()=>{
-            console.log('added to cart');
+            toast.success("Item added to cart");
         })
         .catch((error)=>{
-            console.log(error);
+            toast.error(error?.response?.data?.message || "Network error, please try again");
         }).finally(()=> setIsAdding(false));
     };
     
