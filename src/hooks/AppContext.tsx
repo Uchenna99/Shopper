@@ -130,10 +130,10 @@ import { toast } from "sonner";
                     2000 // delay
                 );
                 setAllProducts(response.data);
+                setLoadingProducts(false);
             } catch (error: any) {
                 toast.error(error?.response?.data?.message || "Network error, please refresh page");
             } finally {
-                setLoadingProducts(false);
             };
         };
         fetchProducts();

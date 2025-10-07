@@ -44,8 +44,8 @@ const CardsSlide = ({ title, products, customClass }:Props) => {
                         modules={[Navigation]}
                         >
                         {
-                            loadingProducts?
-                            Array.from({ length: 4 }).map((_, index) => (
+                            loadingProducts || products.length ===0?
+                            Array.from({ length: 12 }).map((_, index) => (
                                 <SwiperSlide key={index}>
                                 {/* Skeleton Card */}
                                 <div className="flex flex-col gap-3 bg-gray-100 p-3 rounded-xl animate-pulse">

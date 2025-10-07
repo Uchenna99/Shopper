@@ -5,7 +5,6 @@ import CardsSlide from "../CardsSlide";
 import NavigationBar from "../navbar/NavigationBar";
 import SortSelector from "../SortSelector";
 import { motion } from "framer-motion";
-import productses from "../../assets/Data/Items.json";
 import Footer from "../Footer";
 import { useScreenWidth } from "../../hooks/WidthQuery";
 import { useEffect, useState } from "react";
@@ -15,13 +14,14 @@ import { HOST } from "../../utils/Host";
 import type { DB_Product } from "../../utils/Types";
 import { toast } from "sonner";
 import LoadingGrid from "../LoadingGrid";
+import { getRandomItems } from "../../utils/UtilityFunctions";
 
 
 
 const MensCategory = () => {
-    const {  } = useAppContext();
+    const { allProducts} = useAppContext();
+    const slideCards = getRandomItems(allProducts, 12);
     const smallWidth = useScreenWidth(450);
-    const popular = productses.slice(0, 6);
     const [products, setProducts] = useState<DB_Product[] | null>(null);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -106,7 +106,7 @@ const MensCategory = () => {
 
           <CardsSlide
             title="Popular this week"
-            products={popular}
+            products={slideCards}
             customClass="slide1"
           />
 
