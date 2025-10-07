@@ -1,12 +1,8 @@
 import ProductCard from "./ProductCard";
 import Pagination from "./Pagination";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import type { AxiosResponse } from "axios";
-import { fetchWithRetry } from "../utils/FetchWithRetry";
-import { HOST } from "../utils/Host";
 import type { DB_Product } from "../utils/Types";
-import { toast } from "sonner";
 
 interface Props {
     products: DB_Product[];

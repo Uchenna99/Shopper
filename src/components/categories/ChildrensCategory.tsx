@@ -4,14 +4,45 @@ import CardsSlide from "../CardsSlide";
 import NavigationBar from "../navbar/NavigationBar";
 import SortSelector from "../SortSelector";
 import { motion } from "framer-motion";
-import products from "../../assets/Data/Items.json";
+import productses from "../../assets/Data/Items.json";
 import Footer from "../Footer";
 import { useScreenWidth } from "../../hooks/WidthQuery";
+import { useEffect, useState } from "react";
+import type { DB_Product } from "../../utils/Types";
+import type { AxiosResponse } from "axios";
+import { fetchWithRetry } from "../../utils/FetchWithRetry";
+import { HOST } from "../../utils/Host";
+import { toast } from "sonner";
+import LoadingGrid from "../LoadingGrid";
 
 
 const ChildrensCategory = () => {
-    const popular = products.slice(0, 6);
+    const popular = productses.slice(0, 6);
     const smallWidth = useScreenWidth(470);
+    const [products, setProducts] = useState<DB_Product[] | null>(null);
+    const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(()=>{
+        const fetchProducts = async()=>{
+          setIsLoading(true);
+            try {
+                const response: AxiosResponse = await fetchWithRetry(
+                    {
+                    method: "GET",
+                    url: `${HOST}/api/v1/products/categories/children`,
+                    },
+                    5, // retries
+                    2000 // delay
+                );
+                setProducts(response.data);
+            } catch (error: any) {
+                toast.error(error?.response?.data?.message || "Network error, please refresh page");
+            } finally {
+                setIsLoading(false);
+            };
+        };
+        fetchProducts();
+    },[]);
 
   return (
     <>
@@ -56,7 +87,17 @@ const ChildrensCategory = () => {
 
             </div>
 
-            <CardGrid/>
+            {
+              isLoading?
+              <LoadingGrid/>
+              :
+              products && products.length >=1?
+              <CardGrid
+                products={products}
+              />
+              :
+              <p>No items found</p>
+            }
           </div>
 
 
