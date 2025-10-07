@@ -20,7 +20,7 @@ import type { DB_CartItem } from "../utils/Types";
 
 const ShoppingCart = () => {
     const navigate = useNavigate();
-    const { cartItems, user, addToCart, removeFromCart } = useAppContext();
+    const { cartItems, user } = useAppContext();
     const [selectedPayment, setSelectedPayment] = useState<'card' | 'delivery' | 'paystack'>('paystack');
     const [subtotal, setSubtotal] = useState(0);
     const [savedAddress, setSavedAddress] = useState(false);
@@ -36,7 +36,7 @@ const ShoppingCart = () => {
     useEffect(()=>{
         const localCart: DB_CartItem[] = JSON.parse(localStorage.getItem("shopper cart") || "[]");
         setLocalCart(localCart);
-    },[addToCart, removeFromCart]);
+    },[]);
 
   return (
     <div className="w-full flex flex-col items-center relative">

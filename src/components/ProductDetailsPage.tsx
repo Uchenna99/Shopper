@@ -9,23 +9,25 @@ import products from "../assets/Data/Items.json";
 import LikeButton from "./LikeButton";
 import Footer from "./Footer";
 import { useAppContext } from "../hooks/AppContext";
-import type { DB_CartItem } from "../utils/Types";
+import type { DB_CartItem, DB_Product } from "../utils/Types";
 
 
 const ProductDetailsPage = () => {
     const location = useLocation();
     const { item } = location.state;
-    const colors: string[] = item.colors;
+    const product: DB_Product = item;
+    const colors: string[] = product.colors;
     const navigate = useNavigate();
-    const { addToCart, addingToCart, user } = useAppContext();
+    const { addToCart, user } = useAppContext();
+    const [isAdding, setIsAdding] = useState(false);
     const [quantity, setQuantity] = useState(1);
-    const itemToSend: Partial<DB_CartItem> = {
-        name: item.name,
-        price: item.price,
-        rating: item.rating,
-        categoryName: item.categoryName,
+    const itemToSend: DB_CartItem = {
+        name: product.name,
+        price: product.price,
+        rating: product.rating,
+        categoryName: product.categoryName,
         color: colors[0] || "",
-        image: item.image,
+        image: product.images[0],
         quantity: quantity,
         cartId: user?.cart.id || ""
     }
@@ -36,6 +38,17 @@ const ProductDetailsPage = () => {
 
     const handlePlus = ()=>{
         setQuantity(quantity + 1);
+    };
+
+    const handleAddToCart = async()=>{
+        setIsAdding(true);
+        addToCart(itemToSend)
+        .then(()=>{
+            console.log('added to cart');
+        })
+        .catch((error)=>{
+            console.log(error);
+        }).finally(()=> setIsAdding(false));
     };
     
     
@@ -54,7 +67,7 @@ const ProductDetailsPage = () => {
 
                 <div className="flex-1 flex flex-col gap-5 sm:px-5">
                     <div className="w-full aspect-[3/2.5] bg-gray-200 rounded-md bg-center bg-cover bg-no-repeat relative" 
-                        style={{backgroundImage:`url('${item.image}')`}}>
+                        style={{backgroundImage:`url('${product.images[0]}')`}}>
                         <LikeButton
                             initialLiked={false}
                             toggle={()=>{}}
@@ -64,7 +77,7 @@ const ProductDetailsPage = () => {
                     
                     <div className="w-full flex gap-2">
                         <div className="w-20 aspect-[3/2.5] bg-gray-100 rounded-md bg-center bg-cover bg-no-repeat"
-                            style={{backgroundImage:`url('${item.image}')`}}
+                            style={{backgroundImage:`url('${product.images[0]}')`}}
                         />
                     </div>
                 </div>
@@ -73,19 +86,19 @@ const ProductDetailsPage = () => {
                 <div className="flex-1 flex flex-col sm:px-5">
 
                     <div className="w-full flex flex-col gap-2 border-b border-gray-300 py-5">
-                        <h1 className="text-3xl text-black-text font-monts-bold leading-normal"> {item.name} </h1>
+                        <h1 className="text-3xl text-black-text font-monts-bold leading-normal"> {product.name} </h1>
 
-                        <p className="text-black-text text-sm font-monts-regular">{item.description}</p>
+                        <p className="text-black-text text-sm font-monts-regular">{product.description}</p>
 
                         <StarRatingDisplay
-                            rating={item.rating}
+                            rating={product.rating}
                             size={18}
                         />
                     </div>
 
                     <div className="w-full flex flex-col gap-2 border-b border-gray-300 py-5">
                         <p className="text-black-text text-2xl font-monts-semi-bold">
-                            ${item.price.toFixed(2)}
+                            ${product.price.toFixed(2)}
                         </p>
                         <p className="text-black-text text-xs font-monts-medium">No discount applied</p>
                     </div>
@@ -138,10 +151,8 @@ const ProductDetailsPage = () => {
                         </div>
 
                         <ProductCardButton
-                            adding={addingToCart}
-                            onAdd={()=>{
-                                addToCart(itemToSend);
-                            }}
+                            adding={isAdding}
+                            onAdd={handleAddToCart}
                         />
                     </div>
 

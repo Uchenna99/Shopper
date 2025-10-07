@@ -1,5 +1,5 @@
   import React, { createContext, useContext, useEffect, useState, type ReactNode } from "react";
-  import type { DB_CartItem, DB_User, DecodedToken } from "../utils/Types";
+  import type { DB_CartItem, DB_User, DecodedToken, RemoveItemDTO } from "../utils/Types";
 import { jwtDecode } from "jwt-decode";
 import { fetchWithRetry } from "../utils/FetchWithRetry";
 import { HOST } from "../utils/Host";
@@ -22,10 +22,9 @@ import { toast } from "sonner";
     showDropCategories: boolean;
     setShowDropCategories: React.Dispatch<React.SetStateAction<boolean>>;
     cartItems: DB_CartItem[];
-    // localCartItems: DB_CartItem[];
-    addToCart: (item: Partial<DB_CartItem>)=>void
+    addToCart: (item: DB_CartItem)=> Promise<DB_CartItem[]>
     addingToCart: boolean;
-    removeFromCart: (data: { cartId: string; itemId: string; })=>void;
+    removeFromCart: (data: RemoveItemDTO)=>void;
     clearCart: ()=>void;
     increaseQuantity: (cartItem: DB_CartItem)=>void;
     decreaseQuantity: (item: DB_CartItem)=>void;
@@ -113,10 +112,9 @@ import { toast } from "sonner";
     }, []);
 
 
-    const addToCart = async(newItem: Partial<DB_CartItem>) => {
-      setAddingToCart(true);
-      if(user) {
-        try {
+    const addToCart = async (newItem: DB_CartItem): Promise<DB_CartItem[]> => {
+      try {
+        if(user) {
           const response: AxiosResponse = await fetchWithRetry(
             {
               method: "POST",
@@ -126,40 +124,40 @@ import { toast } from "sonner";
             2000 // delay
           );
           // get user from local and update cart
-          const user = getUser();
-          if(user) {
-            const parsedUser: DB_User = JSON.parse(user);
+          const localUser = getUser();
+          if(localUser) {
+            const parsedUser: DB_User = JSON.parse(localUser);
             parsedUser.cart.items = response.data as DB_CartItem[];
             saveUser(parsedUser);
           }
           setCartItems(response.data);
           toast.success("Item added to cart");
-        } catch (error: any) {
-          toast.error(error?.response?.data?.message || "Network error, please try again");
-        } finally {
-          setAddingToCart(false);
-        };
-
-      }else {
-        const cart: DB_CartItem[] = JSON.parse(localStorage.getItem("shopper cart") || "[]");
-        const exists = cart.find((item)=> item.name === newItem.name);
-        let updatedCart;
-        if (exists) {
-          // increment quantity
-          updatedCart = cart.map((item) =>
-            item.name === newItem.name ? { ...item, quantity: item.quantity + newItem.quantity! } : item
-          );
-        }else{
-          // else add new item
-          updatedCart  = [...cart, newItem];
+          return response.data;
+          
+        }else {
+          const cart: DB_CartItem[] = JSON.parse(localStorage.getItem("shopper cart") || "[]");
+          const exists = cart.find((item)=> item.name === newItem.name);
+          let updatedCart: DB_CartItem[];
+          if (exists) {
+            // increment quantity
+            updatedCart = cart.map((item) =>
+              item.name === newItem.name ? { ...item, quantity: item.quantity + newItem.quantity! } : item
+            );
+          }else{
+            // else add new item
+            updatedCart  = [...cart, newItem];
+          }
+          localStorage.setItem("shopper cart", JSON.stringify(updatedCart ));
+          return updatedCart;
         }
-        localStorage.setItem("shopper cart", JSON.stringify(updatedCart ));
-        setAddingToCart(false);
+      } catch (error) {
+         throw error;
       }
+      
 
     };
 
-    const removeFromCart = async(data: { cartId: string; itemId: string; })=>{
+    const removeFromCart = async(data: RemoveItemDTO)=>{
       if(user) {
         try {
           const response: AxiosResponse = await fetchWithRetry(
@@ -187,7 +185,7 @@ import { toast } from "sonner";
 
       }else {
         const cart: DB_CartItem[] = JSON.parse(localStorage.getItem("shopper cart") || "[]");
-        const filterCart = cart.filter((item)=> item.id !== data.itemId);
+        const filterCart = cart.filter((item)=> item.name !== data.itemName);
         localStorage.setItem("shopper cart", JSON.stringify(filterCart));
       }
     };

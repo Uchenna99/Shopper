@@ -25,7 +25,7 @@ const CartItemDisplay = ({ item }:Props) => {
         setDeleting(true);
 
         setTimeout(() => {
-            removeFromCart({itemId: item.id, cartId: user?.cart.id || ""});
+            removeFromCart({itemId: item.id, cartId: user?.cart.id || "", itemName: item.name});
             setConfirmRemove(false);
             setDeleting(false);
         }, 800);

@@ -26,18 +26,18 @@ export interface DecodedToken {
 
 
 export interface DB_CartItem {
-  id:string;
+  id?:string;
   name: string;
   price: number;
   rating: number;
-  category: any;
+  category?: any;
   categoryName: 'men' | 'women' | 'children' | 'bags' | 'shoes' | 'accessories';
-  order: any;
-  orderId: string;
+  order?: any;
+  orderId?: string;
   color: string;
   image: string;
   quantity: number;
-  cart: any;
+  cart?: any;
   cartId: string;
 };
 
@@ -59,7 +59,7 @@ export interface DB_Product {
   images: string[];
   colors: string[];
   brand?: string;
-  categoryName: string;
+  categoryName: 'men' | 'women' | 'children' | 'bags' | 'shoes' | 'accessories';
   category?: any;
   size?: string;
   stock: number;
@@ -72,4 +72,10 @@ export interface DB_Product {
 export interface LoginData {
     accessToken: string;
     user: DB_User;
+}
+
+export interface RemoveItemDTO { 
+  cartId?: string; 
+  itemId?: string; 
+  itemName: string 
 }
