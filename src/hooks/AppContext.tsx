@@ -37,6 +37,8 @@ import { toast } from "sonner";
     logout: () => void;
     nonUserEmail: string;
     setNonUserEmail: React.Dispatch<React.SetStateAction<string>>;
+    saveUser: (user: DB_User)=>void;
+    fetchUser: (id: string)=>void;
   }
 
   // Create the context with default undefined
@@ -93,6 +95,20 @@ import { toast } from "sonner";
       setUser(null);
       setIsloggedIn(false);
     };
+
+    const fetchUser = async(id: string) =>{
+      await fetchWithRetry(
+        {
+        method: "GET",
+        url: `${HOST}/api/v1/user/get-user/${id}`,
+        },
+        5, 2000 // retries and delay
+      )
+      .then((response)=>{
+        saveUser(response.data as DB_User);
+        restoreUser(response.data as DB_User);
+      })
+    };
     
 
     useEffect(() => {
@@ -108,7 +124,6 @@ import { toast } from "sonner";
           if(user) {
             restoreUser(JSON.parse(user) as DB_User);
             setLoadingSecurePage(false);
-            console.log('user found')
           }else { logout(); }
         }
 
@@ -231,7 +246,7 @@ import { toast } from "sonner";
         setShowDropCategories, showDropCategories, cartItems, addToCart, localCartItems, setLocalCartItems,
         removeFromCart, clearCart, paymentSuccess, setPaymentSuccess, isloggedIn, setIsloggedIn, user, setUser,
         loadingSecurePage, setLoadingSecurePage, login, logout, restoreUser, nonUserEmail, setNonUserEmail, 
-        allProducts, setAllProducts, loadingProducts, setLoadingProducts
+        allProducts, setAllProducts, loadingProducts, setLoadingProducts, saveUser, fetchUser
       }}>
         {children}
       </AppContext.Provider>

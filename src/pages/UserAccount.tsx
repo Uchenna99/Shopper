@@ -11,11 +11,32 @@ import {
 } from 'lucide-react';
 import { useAppContext } from '../hooks/AppContext';
 import { toast } from 'sonner';
+import type { DB_Order, DB_User } from '../utils/Types';
+import { fetchUser } from '../lib/api';
+import { HOST } from '../utils/Host';
 
 const Account = () => {
   const [activeTab, setActiveTab] = useState('orders');
-  const { logout, user } = useAppContext();
+  const { logout, user, setUser, saveUser } = useAppContext();
+  const [fetching, setFetching] = useState(true);
 
+
+  useEffect(()=>{
+    fetchUser({
+      method: 'GET',
+      url: `${HOST}/api/v1/user/get-user/${user!.id}`
+    })
+    .then((response)=>{
+      setUser(response.data as DB_User);
+      saveUser(response.data as DB_User);
+    })
+    .catch((error)=>{
+      toast.error(error?.response?.data?.message || 'Refresh failed')
+    })
+    .finally(()=>{
+      setFetching(false);
+    })
+  },[]);
 
   useEffect(()=>{
     if(activeTab === 'Logout') {
@@ -33,29 +54,31 @@ const Account = () => {
     { id: 'Logout', name: 'Logout', icon: LogOut },
   ];
 
-  const orders = [
-    {
-      id: '#ORD-001',
-      date: '2024-01-15',
-      status: 'Delivered',
-      total: '$299.99',
-      items: 3
-    },
-    {
-      id: '#ORD-002',
-      date: '2024-01-10',
-      status: 'Processing',
-      total: '$149.99',
-      items: 2
-    },
-    {
-      id: '#ORD-003',
-      date: '2024-01-05',
-      status: 'Shipped',
-      total: '$89.99',
-      items: 1
-    }
-  ];
+  const userOrders: DB_Order[] = user!.orders
+
+  // const orders = [
+  //   {
+  //     id: '#ORD-001',
+  //     date: '2024-01-15',
+  //     status: 'Delivered',
+  //     total: '$299.99',
+  //     items: 3
+  //   },
+  //   {
+  //     id: '#ORD-002',
+  //     date: '2024-01-10',
+  //     status: 'Processing',
+  //     total: '$149.99',
+  //     items: 2
+  //   },
+  //   {
+  //     id: '#ORD-003',
+  //     date: '2024-01-05',
+  //     status: 'Shipped',
+  //     total: '$89.99',
+  //     items: 1
+  //   }
+  // ];
 
   const wishlistItems = [
     {
@@ -91,6 +114,13 @@ const Account = () => {
     }
   };
 
+  if(fetching) {
+  return ( <div className="w-full h-screen flex items-center justify-center">
+    <p className='text-lg font-monts-semi-bold'>Loading . . .</p>
+  </div> )
+
+  }
+  
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
       {/* Header */}
@@ -167,7 +197,7 @@ const Account = () => {
                   </div>
                   <div className="p-6 pt-0">
                     <div className="space-y-4">
-                      {orders.map((order, index) => (
+                      {userOrders.map((order, index) => (
                         <motion.div
                           key={order.id}
                           initial={{ opacity: 0, x: -20 }}
@@ -178,8 +208,10 @@ const Account = () => {
                           <div className="flex items-center justify-between">
                             <div>
                               <h3 className="text-sm font-monts-semi-bold">{order.id}</h3>
-                              <p className="text-xs text-black-text/70">
-                                {order.date} • {order.items} items
+                              <p className="text-xs text-black-text/70" onClick={()=>console.log(user?.orders)}>
+                                {new Date(order.createdAt)
+                                .toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} •
+                                {' ' + order.totalItems} {order.totalItems <= 1? 'item' : 'items'}
                               </p>
                             </div>
                             <div className="text-right">
@@ -187,7 +219,7 @@ const Account = () => {
                                 {order.status}
                               </div>
                               <p className="font-monts-semi-bold mt-1">
-                                {order.total}
+                                {order.totalAmount}
                               </p>
                             </div>
                           </div>

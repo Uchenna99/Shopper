@@ -7,7 +7,7 @@ export interface DB_User {
   role: 'CUSTOMER' | 'ADMIN';
   addresses: any[];
   cart: Cart;
-  orders: any[];
+  orders: DB_Order[];
   reviews: any[];
   wishlist: any[];
   createdAt: Date;
@@ -78,4 +78,15 @@ export interface RemoveItemDTO {
   cartId?: string; 
   itemId?: string; 
   itemName: string 
+}
+
+export interface DB_Order {
+  id: string;
+  userId: string;
+  totalAmount: number;
+  totalItems: number;
+  status: 'PENDING' | 'PAID' | 'SHIPPED' | 'DELIVERED' | 'CANCELLED';
+  addressId: string | null;
+  createdAt: Date;
+  updatedAt: Date;
 }

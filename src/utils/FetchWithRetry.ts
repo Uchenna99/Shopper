@@ -5,7 +5,7 @@ import axios from "axios";
 export async function fetchWithRetry<T>(
   config: AxiosRequestConfig,
   retries: number = 3,
-  delay: number = 1000
+  delay: number = 2000
 ): Promise<AxiosResponse<T>> {
   for (let attempt = 1; attempt <= retries; attempt++) {
     try {

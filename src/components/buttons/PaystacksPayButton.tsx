@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import { HOST } from "../../utils/Host";
 import { toast } from "sonner";
+import { fetchWithRetry } from "../../utils/FetchWithRetry";
+import { useAppContext } from "../../hooks/AppContext";
+import type { DB_Order } from "../../utils/Types";
 
 interface PayButtonProps {
   email: string;
@@ -10,6 +13,8 @@ interface PayButtonProps {
 
 const PaystackPayButton: React.FC<PayButtonProps> = ({ email, amount }) => {
   const [loading, setLoading] = useState(false);
+  const { user, setUser, saveUser } = useAppContext();
+
 
   const handlePay = async () => {
     if(email === '') {
@@ -18,20 +23,48 @@ const PaystackPayButton: React.FC<PayButtonProps> = ({ email, amount }) => {
     }
     try {
       setLoading(true);
+      
       // 1️⃣ Initialize payment on backend
       const res = await axios.post(`${HOST}/api/v1/paystack/init`, { email, amount });
-      const { authorization_url } = res.data;
-      toast.loading('Redirecting to paystack');
+      const { authorization_url, reference } = res.data;
 
-      // 2️⃣ Redirect user to Paystack payment page
-      window.location.href = authorization_url;
+      if(user) {
+        //  Create new order in db
+        const payload = {cartId: user.cart.id, reference: reference}
+        await fetchWithRetry({
+            method: "POST",
+            url: `${HOST}/api/v1/order/new-order`,
+            data: payload,
+          },
+          3, 2000 // retry and delay
+        )
+        .then((response)=>{
+          setUser((prev)=>{
+            if(!prev){return prev}
+            return { ...prev, orders: [ ...prev.orders, response.data as DB_Order ] }
+          });
+          saveUser(user);
+        })
+        .catch(()=>{
+          toast.error('Order failed, please try again');
+        })
+        .finally(()=>{
+          // 2️⃣ Redirect user to Paystack payment page
+          window.location.href = authorization_url;
+        })
+
+      }else{
+        // 2️⃣ Redirect user to Paystack payment page
+        window.location.href = authorization_url;
+      }
     } catch (error) {
-      console.error(error);
-      alert("Unable to initialize payment");
+      toast.error("Unable to initialize payment");
     } finally {
       setLoading(false);
     }
   };
+
+  loading && toast.loading('Redirecting to paystack');
 
   return (
     <button
