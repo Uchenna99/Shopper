@@ -14,7 +14,7 @@ import { toast } from 'sonner';
 
 const Account = () => {
   const [activeTab, setActiveTab] = useState('orders');
-  const { logout } = useAppContext();
+  const { logout, user } = useAppContext();
 
 
   useEffect(()=>{
@@ -102,8 +102,8 @@ const Account = () => {
                 <User className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-monts-semi-bold text-black-text">John Doe</h1>
-                <p className="text-black-text text-sm">john.doe@example.com</p>
+                <h1 className="text-xl font-monts-semi-bold text-black-text">{user!.firstName + ' ' + user!.lastName}</h1>
+                <p className="text-black-text text-sm">{user?.email || ''}</p>
               </div>
             </div>
             <div className="flex items-center space-x-4">

@@ -1,5 +1,4 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-// import pic from "../../assets/YV9oZmxpcA==.png";
 import { useScreenHeight } from "../../hooks/HeightQuery";
 import HeroButton from "../buttons/HeroButton";
 import { Autoplay, EffectFade, Pagination } from "swiper/modules";
