@@ -1,4 +1,5 @@
 import ProductCard from "./ProductCard";
+import { motion } from "framer-motion";
 import Pagination from "./Pagination";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -15,8 +16,11 @@ const CardGrid = ({ products }: Props) => {
     
   return (
     <div className="w-full flex flex-col items-center gap-5">
-        <div className="w-[1300px] max-w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5
-            gap-1 sm:gap-x-3 gap-y-10 py-10 px-2">
+        <motion.div className="w-[1300px] max-w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5
+            gap-1 sm:gap-x-3 gap-y-10 py-10 px-2"
+            initial={{opacity:0, y:50}}
+            animate={{opacity:1, y:0}}
+            transition={{duration:0.3, delay:0.3, ease:'easeInOut'}}>
             {   products &&
                 products.map((item, index)=>(
                     <ProductCard
@@ -30,7 +34,7 @@ const CardGrid = ({ products }: Props) => {
                     />
                 ))
             }
-        </div>
+        </motion.div>
 
 
         <Pagination 

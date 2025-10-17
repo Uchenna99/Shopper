@@ -103,11 +103,11 @@ const Account = () => {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'Delivered':
+      case 'DELIVERED':
         return 'bg-green-100 text-green-800';
-      case 'Processing':
+      case 'PAID':
         return 'bg-orange-100 text-orange-800';
-      case 'Shipped':
+      case 'SHIPPED':
         return 'bg-blue-100 text-blue-800';
       default:
         return 'bg-gray-100 text-gray-800';

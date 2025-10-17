@@ -120,3 +120,20 @@
   background-size: 200% 200%;
   animation: gradient-x 4s ease infinite;
 }
+
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-200%);
+  }
+  100% {
+    transform: translateX(300%);
+  }
+}
+
+.animate-shimmer {
+  position: absolute;
+  width: 40%;
+  height: 100%;
+  animation: shimmer 2s infinite linear;
+}
