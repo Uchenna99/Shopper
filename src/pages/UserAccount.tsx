@@ -237,7 +237,9 @@ const Account = () => {
                             className="border border-gray-300 rounded-lg p-3 xs:p-4 hover:shadow-md transition-shadow"
                           >
                             <div className="flex items-center space-x-4">
-                              <div className="h-12 w-12 xs:h-16 xs:w-16 bg-gray-100 rounded-md flex-shrink-0"></div>
+                              <div className="h-12 w-12 xs:h-16 xs:w-16 bg-gray-100 rounded-md flex-shrink-0 bg-center
+                                bg-cover bg-no-repeat"
+                              style={{backgroundImage:`url(${item.image})`}}></div>
                               <div className="flex-1">
                                 <h3 className="text-sm">{item.name}</h3>
                                 <p className="font-monts-semi-bold text-orange-400">{item.price}</p>
