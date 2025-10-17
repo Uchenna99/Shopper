@@ -71,8 +71,7 @@ const ProductDetailsPage = () => {
                     <div className="w-full aspect-[3/2.5] bg-gray-200 rounded-md bg-center bg-cover bg-no-repeat relative" 
                         style={{backgroundImage:`url('${product.images[0]}')`}}>
                         <LikeButton
-                            initialLiked={false}
-                            toggle={()=>{}}
+                            id={product.id}
                         />
                     </div>
                     
