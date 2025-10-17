@@ -25,11 +25,7 @@ const CardGrid = ({ products }: Props) => {
                 products.map((item, index)=>(
                     <ProductCard
                         key={index}
-                        name={item.name}
-                        image={item.images[0]}
-                        description={item.description}
-                        price={item.price}
-                        rating={item.rating}
+                        item={item}
                         onCardSelect={()=> navigate(`/${item.categoryName}/productdetails`, {state: {item}})}
                     />
                 ))

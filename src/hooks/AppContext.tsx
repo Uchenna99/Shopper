@@ -5,6 +5,7 @@ import { fetchWithRetry } from "../utils/FetchWithRetry";
 import { HOST } from "../utils/Host";
 import type { AxiosResponse } from "axios";
 import { toast } from "sonner";
+import { apiRequest } from "../lib/api";
 
   // Define the shape of your context
   interface AppContextType {
@@ -39,6 +40,7 @@ import { toast } from "sonner";
     setNonUserEmail: React.Dispatch<React.SetStateAction<string>>;
     saveUser: (user: DB_User)=>void;
     fetchUser: (id: string)=>void;
+    refreshUser: ()=>void;
   }
 
   // Create the context with default undefined
@@ -107,6 +109,14 @@ import { toast } from "sonner";
       .then((response)=>{
         saveUser(response.data as DB_User);
         restoreUser(response.data as DB_User);
+      })
+    };
+
+    const refreshUser = async()=>{
+      await apiRequest('GET', `${HOST}/api/v1/user/get-user/${user!.id}`)
+      .then((response)=>{
+        setUser(response.data as DB_User);
+        saveUser(response.data as DB_User);
       })
     };
     
@@ -246,7 +256,7 @@ import { toast } from "sonner";
         setShowDropCategories, showDropCategories, cartItems, addToCart, localCartItems, setLocalCartItems,
         removeFromCart, clearCart, paymentSuccess, setPaymentSuccess, isloggedIn, setIsloggedIn, user, setUser,
         loadingSecurePage, setLoadingSecurePage, login, logout, restoreUser, nonUserEmail, setNonUserEmail, 
-        allProducts, setAllProducts, loadingProducts, setLoadingProducts, saveUser, fetchUser
+        allProducts, setAllProducts, loadingProducts, setLoadingProducts, saveUser, fetchUser, refreshUser
       }}>
         {children}
       </AppContext.Provider>

@@ -55,6 +55,7 @@ const Account = () => {
   ];
 
   const userOrders: DB_Order[] = user!.orders
+  const wishlistItems = user!.wishlist.items;
 
   // const orders = [
   //   {
@@ -80,26 +81,6 @@ const Account = () => {
   //   }
   // ];
 
-  const wishlistItems = [
-    {
-      id: 1,
-      name: 'Wireless Headphones',
-      price: '$199.99',
-      image: '/api/placeholder/100/100'
-    },
-    {
-      id: 2,
-      name: 'Smart Watch',
-      price: '$299.99',
-      image: '/api/placeholder/100/100'
-    },
-    {
-      id: 3,
-      name: 'Laptop Stand',
-      price: '$49.99',
-      image: '/api/placeholder/100/100'
-    }
-  ];
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -197,34 +178,41 @@ const Account = () => {
                   </div>
                   <div className="p-6 pt-0">
                     <div className="space-y-4">
-                      {userOrders.map((order, index) => (
-                        <motion.div
-                          key={order.id}
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: index * 0.1 }}
-                          className="border border-gray-300 rounded-lg p-4 hover:bg-gray-100 transition-all"
-                        >
-                          <div className="flex items-center justify-between">
-                            <div>
-                              <h3 className="text-sm font-monts-semi-bold">{order.id}</h3>
-                              <p className="text-xs text-black-text/70" onClick={()=>console.log(user?.orders)}>
-                                {new Date(order.createdAt)
-                                .toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} •
-                                {' ' + order.totalItems} {order.totalItems <= 1? 'item' : 'items'}
-                              </p>
-                            </div>
-                            <div className="text-right">
-                              <div className={`inline-flex px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(order.status)}`}>
-                                {order.status}
+                      {
+                        userOrders.length > 0?
+                        userOrders.map((order, index) => (
+                          <motion.div
+                            key={order.id}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: index * 0.1 }}
+                            className="border border-gray-300 rounded-lg p-4 hover:bg-gray-100 transition-all"
+                          >
+                            <div className="flex items-center justify-between">
+                              <div>
+                                <h3 className="text-sm font-monts-semi-bold">{order.id}</h3>
+                                <p className="text-xs text-black-text/70" onClick={()=>console.log(user?.orders)}>
+                                  {new Date(order.createdAt)
+                                  .toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} •
+                                  {' ' + order.totalItems} {order.totalItems <= 1? 'item' : 'items'}
+                                </p>
                               </div>
-                              <p className="font-monts-semi-bold mt-1">
-                                {order.totalAmount}
-                              </p>
+                              <div className="text-right">
+                                <div className={`inline-flex px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(order.status)}`}>
+                                  {order.status}
+                                </div>
+                                <p className="font-monts-semi-bold mt-1">
+                                  {order.totalAmount}
+                                </p>
+                              </div>
                             </div>
-                          </div>
-                        </motion.div>
-                      ))}
+                          </motion.div>
+                        ))
+                        :
+                        <p className='font-monts-medium text-orange-400 py-7'>
+                          You have no orders yet  
+                        </p>
+                      }
                     </div>
                   </div>
                 </div>
@@ -238,31 +226,38 @@ const Account = () => {
                   </div>
                   <div className="p-6 pt-0">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {wishlistItems.map((item, index) => (
-                        <motion.div
-                          key={item.id}
-                          initial={{ opacity: 0, scale: 0.9 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ delay: index * 0.1 }}
-                          className="border border-gray-300 rounded-lg p-3 xs:p-4 hover:shadow-md transition-shadow"
-                        >
-                          <div className="flex items-center space-x-4">
-                            <div className="h-12 w-12 xs:h-16 xs:w-16 bg-gray-100 rounded-md flex-shrink-0"></div>
-                            <div className="flex-1">
-                              <h3 className="text-sm">{item.name}</h3>
-                              <p className="font-monts-semi-bold text-orange-400">{item.price}</p>
+                      {
+                        wishlistItems.length > 0?
+                        wishlistItems.map((item, index) => (
+                          <motion.div
+                            key={item.id}
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: index * 0.1 }}
+                            className="border border-gray-300 rounded-lg p-3 xs:p-4 hover:shadow-md transition-shadow"
+                          >
+                            <div className="flex items-center space-x-4">
+                              <div className="h-12 w-12 xs:h-16 xs:w-16 bg-gray-100 rounded-md flex-shrink-0"></div>
+                              <div className="flex-1">
+                                <h3 className="text-sm">{item.name}</h3>
+                                <p className="font-monts-semi-bold text-orange-400">{item.price}</p>
+                              </div>
+                              <div className="flex flex-col space-y-2 items-end">
+                                <button className="inline-flex items-center justify-center rounded-4xl text-xs font-medium transition-all 
+                                  duration-200 text-orange-400 hover:bg-orange-400 shadow-sm active:scale-[0.98] h-7 px-3
+                                  border border-orange-400 hover:text-white cursor-pointer">
+                                  Add to Cart
+                                </button>
+                                <Trash2 size={18} className='text-red-400 hover:text-red-500 cursor-pointer'/>
+                              </div>
                             </div>
-                            <div className="flex flex-col space-y-2 items-end">
-                              <button className="inline-flex items-center justify-center rounded-4xl text-xs font-medium transition-all 
-                                duration-200 text-orange-400 hover:bg-orange-400 shadow-sm active:scale-[0.98] h-7 px-3
-                                border border-orange-400 hover:text-white cursor-pointer">
-                                Add to Cart
-                              </button>
-                              <Trash2 size={18} className='text-red-400 hover:text-red-500 cursor-pointer'/>
-                            </div>
-                          </div>
-                        </motion.div>
-                      ))}
+                          </motion.div>
+                        ))
+                        :
+                        <p className='font-monts-medium text-orange-400 py-7'>
+                          Your wishlist is empty
+                        </p>
+                      }
                     </div>
                   </div>
                 </div>

@@ -9,7 +9,7 @@ export interface DB_User {
   cart: Cart;
   orders: DB_Order[];
   reviews: any[];
-  wishlist: any[];
+  wishlist: Wishlist;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -89,4 +89,23 @@ export interface DB_Order {
   addressId: string | null;
   createdAt: Date;
   updatedAt: Date;
+}
+
+export interface Wishlist {
+  id: string;
+  user: DB_User;
+  userId: string;
+  items: WishlistItem[];
+  createdAt: Date;
+}
+
+export interface WishlistItem {
+  id: string;
+  wishlist: Wishlist;
+  wishlistId: string;
+  name: string;
+  price: number;
+  image: string;
+  productId: string;
+  createdAt: Date;
 }
