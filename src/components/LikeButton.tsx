@@ -11,14 +11,18 @@ type LikeButtonProps = {
 
 const LikeButton = ({ id }:LikeButtonProps) => {
   const { user, refreshUser } = useAppContext();
-  const isLiked = user?.wishlist.items.some((listItem)=> listItem.productId === id)
+  const isLiked = user?.wishlist.items.some((listItem)=> listItem.productId === id);
+  const wishlistItem = user?.wishlist.items.find((listItem)=> listItem.productId === id);
   const [liked, setLiked] = useState(!!isLiked);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleLike = async()=>{
     const newState = !liked;
     const payload = {wishlistId: user?.wishlist.id, itemId: id}
+    const payload2 = {wishlistId: user?.wishlist.id, itemId: wishlistItem?.id}
 
     if(newState) {
+      setIsLoading(true);
       await apiRequest<any>('POST', `${HOST}/api/v1/user/add-to-wishlist`, payload)
       .then((response)=>{
         console.log(response.data)
@@ -29,10 +33,12 @@ const LikeButton = ({ id }:LikeButtonProps) => {
       })
       .finally(()=>{
         setLiked(newState);
+        setIsLoading(false);
         refreshUser();
       })
     }else {
-      await apiRequest<any>('POST', `${HOST}/api/v1/user/remove-from-wishlist`, payload)
+      setIsLoading(true);
+      await apiRequest<any>('POST', `${HOST}/api/v1/user/remove-from-wishlist`, payload2)
       .then((response)=>{
         console.log(response.data)
         toast.success(response.data.message)
@@ -42,6 +48,7 @@ const LikeButton = ({ id }:LikeButtonProps) => {
       })
       .finally(()=>{
         setLiked(newState);
+        setIsLoading(false);
         refreshUser();
       })
     }
@@ -54,7 +61,7 @@ const LikeButton = ({ id }:LikeButtonProps) => {
         onClick={handleLike}>
         <Heart
             size={18}
-            className={`transition-all duration-300 ${liked? 'fill-red-400':''}`}
+            className={`transition-all duration-300 ${isLoading? 'fill-red-200' : liked? 'fill-red-400':''}`}
             strokeWidth={liked? 0 : 1}
         />
     </div>
