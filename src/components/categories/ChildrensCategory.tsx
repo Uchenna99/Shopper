@@ -84,8 +84,6 @@ const ChildrensCategory = () => {
                   className="w-[250px] absolute top-0 sm:-top-10 right-0 sm:right-0 lg:right-1/6 max-sm:opacity-70"
                 />
 
-                {/* <div className="absolute inset-0 max-sm:bg-white/30"></div> */}
-
               </div>
             </div>
           }
