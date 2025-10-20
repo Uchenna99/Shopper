@@ -41,6 +41,8 @@ import { apiRequest } from "../lib/api";
     saveUser: (user: DB_User)=>void;
     fetchUser: (id: string)=>void;
     refreshUser: ()=>void;
+    searching: boolean;
+    setSearching: React.Dispatch<React.SetStateAction<boolean>>;
   }
 
   // Create the context with default undefined
@@ -60,6 +62,7 @@ import { apiRequest } from "../lib/api";
     const [nonUserEmail, setNonUserEmail] = useState('');
     const [allProducts, setAllProducts] = useState<DB_Product[] | []>([]);
     const [loadingProducts, setLoadingProducts] = useState(true);
+    const [searching, setSearching] = useState(false);
 
 
     const saveToken = (token: string) => localStorage.setItem('shopper token', token);
@@ -256,7 +259,8 @@ import { apiRequest } from "../lib/api";
         setShowDropCategories, showDropCategories, cartItems, addToCart, localCartItems, setLocalCartItems,
         removeFromCart, clearCart, paymentSuccess, setPaymentSuccess, isloggedIn, setIsloggedIn, user, setUser,
         loadingSecurePage, setLoadingSecurePage, login, logout, restoreUser, nonUserEmail, setNonUserEmail, 
-        allProducts, setAllProducts, loadingProducts, setLoadingProducts, saveUser, fetchUser, refreshUser
+        allProducts, setAllProducts, loadingProducts, setLoadingProducts, saveUser, fetchUser, refreshUser,
+        searching, setSearching
       }}>
         {children}
       </AppContext.Provider>

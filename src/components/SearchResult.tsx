@@ -4,15 +4,18 @@ import { splitPrice } from "../utils/UtilityFunctions";
 import { useScreenWidth } from "../hooks/WidthQuery";
 import { Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import type { DB_Product } from "../utils/Types";
+import { useAppContext } from "../hooks/AppContext";
 
 interface Props {
-    result: any[];
+    result: DB_Product[];
     foundItems: boolean;
 }
 
 const SearchResult = ({ result, foundItems }:Props) => {
     const isSmall = useScreenWidth(640);
     const navigate = useNavigate();
+    const { setSearching } = useAppContext();
 
   return (
     <>
@@ -28,10 +31,13 @@ const SearchResult = ({ result, foundItems }:Props) => {
                         <div className="w-full flex items-center gap-3 justify-between py-2 border-b border-gray-300 text-black-text 
                             last:border-none"
                             key={index}
-                            onClick={()=> navigate(`${item.category}/productdetails`, {state: {item}})}>
+                            onClick={()=>{
+                                navigate(`/${item.categoryName}/productdetails`, {state: {item}});
+                                setSearching(false);
+                            }}>
 
                             <div className="min-w-8 min-h-8 rounded-sm bg-gray-100 bg-center bg-cover bg-no-repeat"
-                                style={{backgroundImage:`url(${item.image})`}}
+                                style={{backgroundImage:`url(${item.images[0]})`}}
                             />
 
                             <div className="w-[150px] min-w-[100px] sm:w-[220px]">

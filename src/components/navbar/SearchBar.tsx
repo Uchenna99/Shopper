@@ -1,7 +1,7 @@
 import { Search, X } from "lucide-react";
 import SearchResult from "../SearchResult";
-import products from "../../assets/Data/Items.json";
 import { useEffect, useState } from "react";
+import { useAppContext } from "../../hooks/AppContext";
 
 interface Props {
   searching: boolean;
@@ -10,6 +10,7 @@ interface Props {
 
 
 const SearchBar = ({ searching, close }:Props) => {
+  const { allProducts } = useAppContext();
   const [searchInput, setSearchInput] = useState('');
   const [showResult, setShowResult] = useState(false);
   const [foundItems, setFoundItems] = useState<any[]>([]);
@@ -20,7 +21,7 @@ const SearchBar = ({ searching, close }:Props) => {
       if(!showResult){
         setShowResult(true);
       }
-      const searchItems = products.filter((item)=> item.name.toLowerCase().includes(searchInput.toLowerCase()));
+      const searchItems = allProducts.filter((item)=> item.name.toLowerCase().includes(searchInput.toLowerCase()));
       setFoundItems(searchItems);
     }else{
       if(showResult){ setShowResult(false) }

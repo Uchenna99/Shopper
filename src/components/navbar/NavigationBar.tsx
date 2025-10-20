@@ -16,9 +16,8 @@ const NavigationBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const smallHeigth = useScreenHeight(500);
-  const { showMenu, setShowMenu, cartItems } = useAppContext();
+  const { showMenu, setShowMenu, cartItems, searching, setSearching } = useAppContext();
   const isMobile = useScreenWidth(530);
-  const [searching, setSearching] = useState(false);
   const [hideLogo, setHideLogo] = useState(false);
 
 
