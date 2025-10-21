@@ -82,8 +82,6 @@ const BagsCollection = () => {
                   className="w-[300px] sm:w-[400px] -bottom-5 absolute -right-2 sm:right-0 lg:right-1/6 max-sm:opacity-70"
                 />
 
-                {/* <div className="absolute inset-0 max-sm:bg-white/30"></div> */}
-
               </div>
             </div>
           }

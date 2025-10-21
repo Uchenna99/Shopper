@@ -82,8 +82,6 @@ const AccessoriesCategory = () => {
                   className="w-[300px] top-10 sm:top-0 absolute -right-5 sm:right-0 lg:right-1/7"
                 />
 
-                {/* <div className="absolute inset-0 max-sm:bg-white/30"></div> */}
-
               </div>
             </div>
           }
