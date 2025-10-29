@@ -2,9 +2,12 @@
 FROM node:18 AS build
 WORKDIR /app
 
+ARG VITE_MODE=production
+ENV NODE_ENV=$VITE_MODE
+
 # Copy package files and install dependencies
 COPY package*.json ./
-RUN npm install
+RUN npm ci --include=dev
 
 # Copy the rest of the source code and build the app
 COPY . .
