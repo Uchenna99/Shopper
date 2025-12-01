@@ -35,6 +35,7 @@ const Account = () => {
     })
     .finally(()=>{
       setFetching(false);
+      console.log(user);
     })
   },[]);
 
@@ -190,7 +191,7 @@ const Account = () => {
                           >
                             <div className="flex items-center justify-between">
                               <div>
-                                <h3 className="text-sm font-monts-semi-bold">{order.id}</h3>
+                                <h3 className="w-[130px] text-sm font-monts-semi-bold truncate">{order.id}</h3>
                                 <p className="text-xs text-black-text/70" onClick={()=>console.log(user?.orders)}>
                                   {new Date(order.createdAt)
                                   .toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} •
@@ -281,7 +282,7 @@ const Account = () => {
                             </label>
                             <input
                               type="text"
-                              defaultValue="John"
+                              defaultValue={user?.firstName}
                               className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-all focus:ring-2 focus:ring-orange-400 outline-none disabled:cursor-not-allowed disabled:opacity-50"
                             />
                           </div>
@@ -291,7 +292,7 @@ const Account = () => {
                             </label>
                             <input
                               type="text"
-                              defaultValue="Doe"
+                              defaultValue={user?.lastName}
                               className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-all focus:ring-2 focus:ring-orange-400 outline-none disabled:cursor-not-allowed disabled:opacity-50"
                             />
                           </div>
@@ -302,7 +303,7 @@ const Account = () => {
                           </label>
                           <input
                             type="email"
-                            defaultValue="john.doe@example.com"
+                            defaultValue={user?.email}
                             className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-all focus:ring-2 focus:ring-orange-400 outline-none disabled:cursor-not-allowed disabled:opacity-50"
                           />
                         </div>

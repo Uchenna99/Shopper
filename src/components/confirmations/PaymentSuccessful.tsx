@@ -12,6 +12,7 @@ const PaymentSuccessful = () => {
     const { setPaymentSuccess } = useAppContext();
 
     useEffect(()=>{
+        localStorage.setItem("shopper cart", JSON.stringify([]));
         setTimeout(() => {
             fireConfettiFromElement('spray');
         }, 400);

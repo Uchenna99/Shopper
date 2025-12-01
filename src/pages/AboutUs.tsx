@@ -125,7 +125,7 @@ const About = () => {
               <h2 className="text-4xl font-bold text-slate-900 mb-6">Our Story</h2>
               <div className="space-y-4 text-slate-700 leading-relaxed">
                 <p>
-                  Founded in 2020, Fashion Store began with a simple mission: to make high-quality, 
+                  Founded in 2020, Shopper began with a simple mission: to make high-quality, 
                   stylish clothing and accessories accessible to everyone.
                 </p>
                 <p>
@@ -162,7 +162,7 @@ const About = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-bold text-slate-900 mb-4">Why Choose Us</h2>
-            <p className="text-xl text-slate-600">Experience the difference of shopping with Fashion Store</p>
+            <p className="text-xl text-slate-600">Experience the difference of shopping with Shopper</p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -228,7 +228,7 @@ const About = () => {
           >
             <h2 className="text-4xl font-bold mb-6">Ready to Elevate Your Style?</h2>
             <p className="text-xl mb-8 text-purple-100">
-              Join thousands of satisfied customers who trust Fashion Store for their wardrobe needs
+              Join thousands of satisfied customers who trust Shopper for their wardrobe needs
             </p>
             <motion.a
               href="/"
