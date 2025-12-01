@@ -1,5 +1,6 @@
 import logo from "../assets/Icons/online-shopping_3081648.svg";
 import payments from "../assets/Data/PaymentMethods.json";
+import { Link } from "react-router-dom";
 
 
 const Footer = () => {
@@ -47,10 +48,10 @@ const Footer = () => {
                 <p className="font-monts-semi-bold mb-2 text-lg">
                   About us
                 </p>
-                <p className="w-fit font-monts-regular transition-all duration-200 cursor-pointer hover:text-orange-400 
+                <Link to={'/about'} className="w-fit font-monts-regular transition-all duration-200 cursor-pointer hover:text-orange-400 
                   hover:translate-x-1 active:text-orange-400">
                   About Shopper
-                </p>
+                </Link>
                 <p className="w-fit font-monts-regular transition-all duration-200 cursor-pointer hover:text-orange-400 
                   hover:translate-x-1 active:text-orange-400">
                   Careers

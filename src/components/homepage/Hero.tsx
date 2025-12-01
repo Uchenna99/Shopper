@@ -3,7 +3,7 @@ import { useScreenHeight } from "../../hooks/HeightQuery";
 import HeroButton from "../buttons/HeroButton";
 import { Autoplay, EffectFade, Pagination } from "swiper/modules";
 import "swiper/css";
-import "swiper/swiper-bundle.css";
+import "swiper/swiper-bundle.css";    
 
 
 const Hero = () => {

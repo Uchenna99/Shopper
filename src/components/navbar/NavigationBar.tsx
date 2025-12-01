@@ -57,9 +57,9 @@ const NavigationBar = () => {
                   
                   <NavOption />
 
-                  <p className="text-lg font-monts-medium cursor-pointer hover:text-orange-400 transition-all duration-250 text-nowrap">
+                  <Link to={'/about'} className="text-lg font-monts-medium cursor-pointer hover:text-orange-400 transition-all duration-250 text-nowrap">
                     About us
-                  </p>
+                  </Link>
 
                   <p className="text-lg font-monts-medium cursor-pointer hover:text-orange-400 transition-all duration-250">
                     Support

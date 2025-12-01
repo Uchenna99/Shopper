@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import NavigationBar from "../components/navbar/NavigationBar";
+import Footer from "../components/Footer";
 
 const About = () => {
   const features = [
@@ -76,17 +78,11 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="w-full bg-white">
+      <NavigationBar/>
+
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white py-24 px-4 overflow-hidden">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.1 }}
-          className="absolute inset-0"
-        >
-          <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500 rounded-full filter blur-3xl" />
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-indigo-500 rounded-full filter blur-3xl" />
-        </motion.div>
+      <section className="relative bg-gradient-to-br from-orange-600 via-orange-300 to-orange-600 text-white py-24 px-4 overflow-hidden">
 
         <div className="max-w-6xl mx-auto relative z-10">
           <motion.div
@@ -99,15 +95,15 @@ const About = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-5xl md:text-7xl font-bold mb-6"
+              className="text-3xl md:text-5xl font-bold mb-6"
             >
-              About Fashion Store
+              About Shopper
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-xl md:text-2xl text-purple-200 max-w-3xl mx-auto"
+              className="text-lg md:text-2xl max-w-3xl mx-auto"
             >
               Your destination for trendy clothing and premium accessories
             </motion.p>
@@ -117,7 +113,7 @@ const About = () => {
 
       {/* Our Story Section */}
       <section className="py-20 px-4 bg-slate-50">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-[1300px] mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -149,7 +145,8 @@ const About = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-gradient-to-br from-purple-600 to-indigo-600 rounded-2xl h-96 shadow-2xl"
+              className="rounded-2xl max-md:aspect-[5/3] md:h-96 shadow-2xl bg-center bg-cover bg-no-repeat border border-orange-500"
+              style={{backgroundImage:`url(https://res.cloudinary.com/df6xz7bqp/image/upload/v1764613711/Screenshot_2025-12-01_192156-min_cdm2ss.png)`}}
             />
           </motion.div>
         </div>
@@ -179,7 +176,7 @@ const About = () => {
                 whileHover={{ y: -5 }}
                 className="bg-white p-6 rounded-xl shadow-lg border border-slate-200 hover:shadow-xl transition-shadow duration-300"
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-lg flex items-center justify-center text-white mb-4">
+                <div className="w-16 h-16 bg-gradient-to-br from-orange-300 to-orange-600 rounded-lg flex items-center justify-center text-white mb-4">
                   {feature.icon}
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-2">{feature.title}</h3>
@@ -213,7 +210,7 @@ const About = () => {
                 transition={{ delay: index * 0.15 }}
                 className="bg-slate-800 p-8 rounded-xl border border-slate-700"
               >
-                <h3 className="text-2xl font-bold mb-4 text-purple-400">{value.title}</h3>
+                <h3 className="text-2xl font-bold mb-4 text-orange-400">{value.title}</h3>
                 <p className="text-slate-300">{value.description}</p>
               </motion.div>
             ))}
@@ -222,7 +219,7 @@ const About = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
+      <section className="py-20 px-4 bg-gradient-to-r from-orange-300 to-orange-600 text-white">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -237,7 +234,7 @@ const About = () => {
               href="/"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-block bg-white text-purple-600 px-8 py-4 rounded-lg font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-200"
+              className="inline-block bg-white text-black px-8 py-4 rounded-lg font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-200"
             >
               Start Shopping
             </motion.a>
@@ -245,12 +242,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-slate-900 text-slate-400 py-8 px-4">
-        <div className="max-w-6xl mx-auto text-center">
-          <p>© 2024 Fashion Store. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer/>
     </div>
   );
 };
