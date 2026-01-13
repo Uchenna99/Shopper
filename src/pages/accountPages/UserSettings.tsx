@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { useAppContext } from "../../hooks/AppContext";
 
 
 
 const UserSettings = () => {
     const { user } = useAppContext();
+    const [phoneNumber, setPhoneNumber] = useState('');
     
   return (
     <div className="space-y-6">
@@ -21,7 +23,7 @@ const UserSettings = () => {
                 </label>
                 <input
                     type="text"
-                    defaultValue={user?.firstName}
+                    value={user?.firstName}
                     className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-all focus:ring-2 focus:ring-orange-400 outline-none disabled:cursor-not-allowed disabled:opacity-50"
                 />
                 </div>
@@ -31,7 +33,7 @@ const UserSettings = () => {
                 </label>
                 <input
                     type="text"
-                    defaultValue={user?.lastName}
+                    value={user?.lastName}
                     className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-all focus:ring-2 focus:ring-orange-400 outline-none disabled:cursor-not-allowed disabled:opacity-50"
                 />
                 </div>
@@ -42,7 +44,7 @@ const UserSettings = () => {
                 </label>
                 <input
                 type="email"
-                defaultValue={user?.email}
+                value={user?.email}
                 className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-all focus:ring-2 focus:ring-orange-400 outline-none disabled:cursor-not-allowed disabled:opacity-50"
                 />
             </div>
@@ -52,7 +54,10 @@ const UserSettings = () => {
                 </label>
                 <input
                 type="tel"
-                defaultValue="+1 (555) 123-4567"
+                placeholder="+1 (555) 123-4567"
+                defaultValue={user?.phone}
+                value={phoneNumber}
+                onChange={(e)=> setPhoneNumber(e.target.value)}
                 className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-all focus:ring-2 focus:ring-orange-400 outline-none disabled:cursor-not-allowed disabled:opacity-50"
                 />
             </div>
