@@ -1,11 +1,25 @@
 import { useState } from "react";
 import { useAppContext } from "../../hooks/AppContext";
+import { apiRequest } from "../../lib/api";
+import { HOST } from "../../utils/Host";
 
 
 
 const UserSettings = () => {
     const { user } = useAppContext();
     const [phoneNumber, setPhoneNumber] = useState('');
+    const [saving, setSaving] = useState(false);
+    const userPayload = { id: user!.id, phoneNumber: phoneNumber}
+
+    const handleSaveChanges = async()=>{
+        setSaving(true);
+
+        apiRequest("POST", `${HOST}/api/v1/user/update-user`, userPayload)
+        .then((response)=>{
+            console.log(response.data);
+        })
+        .finally(()=> setSaving(false))
+    };
     
   return (
     <div className="space-y-6">
@@ -24,6 +38,7 @@ const UserSettings = () => {
                 <input
                     type="text"
                     value={user?.firstName}
+                    onChange={()=>{}}
                     className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-all focus:ring-2 focus:ring-orange-400 outline-none disabled:cursor-not-allowed disabled:opacity-50"
                 />
                 </div>
@@ -34,6 +49,7 @@ const UserSettings = () => {
                 <input
                     type="text"
                     value={user?.lastName}
+                    onChange={()=>{}}
                     className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-all focus:ring-2 focus:ring-orange-400 outline-none disabled:cursor-not-allowed disabled:opacity-50"
                 />
                 </div>
@@ -45,6 +61,7 @@ const UserSettings = () => {
                 <input
                 type="email"
                 value={user?.email}
+                onChange={()=>{}}
                 className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-all focus:ring-2 focus:ring-orange-400 outline-none disabled:cursor-not-allowed disabled:opacity-50"
                 />
             </div>
@@ -56,14 +73,16 @@ const UserSettings = () => {
                 type="tel"
                 placeholder="+1 (555) 123-4567"
                 defaultValue={user?.phone}
-                value={phoneNumber}
                 onChange={(e)=> setPhoneNumber(e.target.value)}
                 className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-all focus:ring-2 focus:ring-orange-400 outline-none disabled:cursor-not-allowed disabled:opacity-50"
                 />
             </div>
             <button 
-                onClick={(e)=>{e.preventDefault()}}
-                className="inline-flex items-center justify-center rounded-4xl text-sm font-medium transition-all duration-200 outline-none disabled:pointer-events-none disabled:opacity-50 bg-orange-400 text-white hover:bg-orange-500 shadow-sm active:scale-[0.98] h-10 px-4">
+                onClick={handleSaveChanges}
+                disabled={saving}
+                className="inline-flex items-center justify-center rounded-4xl text-sm font-medium transition-all duration-200 outline-none 
+                disabled:pointer-events-none disabled:opacity-50 bg-orange-400 text-white hover:bg-orange-500 shadow-sm active:scale-[0.98] 
+                h-10 px-4 cursor-pointer">
                 Save Changes
             </button>
             </form>
