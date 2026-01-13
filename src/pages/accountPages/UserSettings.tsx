@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAppContext } from "../../hooks/AppContext";
 import { apiRequest } from "../../lib/api";
 import { HOST } from "../../utils/Host";
+import { toast } from "sonner";
 
 
 
@@ -16,7 +17,8 @@ const UserSettings = () => {
 
         apiRequest("POST", `${HOST}/api/v1/user/update-user`, userPayload)
         .then((response)=>{
-            console.log(response.data);
+            const res: any = response.data;
+            toast.success(res.message)
         })
         .finally(()=> setSaving(false))
     };
