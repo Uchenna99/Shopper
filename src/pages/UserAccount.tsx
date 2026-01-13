@@ -1,19 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { 
-  User, 
-  ShoppingBag, 
-  Heart, 
-  Settings,
-  LogOut,
-  Trash2
-} from 'lucide-react';
+import { User, ShoppingBag, Heart, Settings, LogOut, Trash2 } from 'lucide-react';
 import { useAppContext } from '../hooks/AppContext';
 import { toast } from 'sonner';
 import type { DB_Order, DB_User } from '../utils/Types';
 import { fetchUser } from '../lib/api';
 import { HOST } from '../utils/Host';
+import UserSettings from './accountPages/UserSettings';
 
 const Account = () => {
   const [activeTab, setActiveTab] = useState('orders');
@@ -57,30 +51,6 @@ const Account = () => {
 
   const userOrders: DB_Order[] = user!.orders
   const wishlistItems = user!.wishlist.items;
-
-  // const orders = [
-  //   {
-  //     id: '#ORD-001',
-  //     date: '2024-01-15',
-  //     status: 'Delivered',
-  //     total: '$299.99',
-  //     items: 3
-  //   },
-  //   {
-  //     id: '#ORD-002',
-  //     date: '2024-01-10',
-  //     status: 'Processing',
-  //     total: '$149.99',
-  //     items: 2
-  //   },
-  //   {
-  //     id: '#ORD-003',
-  //     date: '2024-01-05',
-  //     status: 'Shipped',
-  //     total: '$89.99',
-  //     items: 1
-  //   }
-  // ];
 
 
   const getStatusColor = (status: string) => {
@@ -267,109 +237,7 @@ const Account = () => {
               )}
 
               {activeTab === 'settings' && (
-                <div className="space-y-6">
-                  <div className="rounded-lg border border-gray-300 bg-white text-black-text font-monts-medium shadow-sm">
-                    <div className="flex flex-col space-y-1.5 p-6">
-                      <h2 className="text-lg font-monts-semi-bold">Profile Information</h2>
-                      <p className="text-sm">Update your account details</p>
-                    </div>
-                    <div className="p-6 pt-0">
-                      <form className="space-y-4">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          <div>
-                            <label className="block text-sm mb-2">
-                              First Name
-                            </label>
-                            <input
-                              type="text"
-                              defaultValue={user?.firstName}
-                              className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-all focus:ring-2 focus:ring-orange-400 outline-none disabled:cursor-not-allowed disabled:opacity-50"
-                            />
-                          </div>
-                          <div>
-                            <label className="block text-sm mb-2">
-                              Last Name
-                            </label>
-                            <input
-                              type="text"
-                              defaultValue={user?.lastName}
-                              className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-all focus:ring-2 focus:ring-orange-400 outline-none disabled:cursor-not-allowed disabled:opacity-50"
-                            />
-                          </div>
-                        </div>
-                        <div>
-                          <label className="block text-sm mb-2">
-                            Email Address
-                          </label>
-                          <input
-                            type="email"
-                            defaultValue={user?.email}
-                            className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-all focus:ring-2 focus:ring-orange-400 outline-none disabled:cursor-not-allowed disabled:opacity-50"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-sm mb-2">
-                            Phone Number
-                          </label>
-                          <input
-                            type="tel"
-                            defaultValue="+1 (555) 123-4567"
-                            className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-all focus:ring-2 focus:ring-orange-400 outline-none disabled:cursor-not-allowed disabled:opacity-50"
-                          />
-                        </div>
-                        <button 
-                          onClick={(e)=>{e.preventDefault()}}
-                          className="inline-flex items-center justify-center rounded-4xl text-sm font-medium transition-all duration-200 outline-none disabled:pointer-events-none disabled:opacity-50 bg-orange-400 text-white hover:bg-orange-500 shadow-sm active:scale-[0.98] h-10 px-4">
-                          Save Changes
-                        </button>
-                      </form>
-                    </div>
-                  </div>
-
-
-                  <div className="rounded-lg border border-gray-300 bg-white text-black-text font-monts-medium shadow-sm">
-                    <div className="flex flex-col space-y-1.5 p-6">
-                      <h2 className="text-lg font-monts-semi-bold">Change Password</h2>
-                      <p className="text-sm">Update your password</p>
-                    </div>
-                    <div className="p-6 pt-0">
-                      <form className="space-y-4">
-                        <div>
-                          <label className="block text-sm mb-2">
-                            Current Password
-                          </label>
-                          <input
-                            type="password"
-                            className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-all focus:ring-2 focus:ring-orange-400 outline-none disabled:cursor-not-allowed disabled:opacity-50"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-sm mb-2">
-                            New Password
-                          </label>
-                          <input
-                            type="password"
-                            className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-all focus:ring-2 focus:ring-orange-400 outline-none disabled:cursor-not-allowed disabled:opacity-50"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-sm mb-2">
-                            Confirm New Password
-                          </label>
-                          <input
-                            type="password"
-                            className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-all focus:ring-2 focus:ring-orange-400 outline-none disabled:cursor-not-allowed disabled:opacity-50"
-                          />
-                        </div>
-                        <button 
-                          onClick={(e)=>{e.preventDefault()}}
-                          className="inline-flex items-center justify-center rounded-4xl text-sm font-medium transition-all duration-200 outline-none disabled:pointer-events-none disabled:opacity-50 bg-orange-400 text-white hover:bg-orange-500 shadow-sm active:scale-[0.98] h-10 px-4">
-                          Update Password
-                        </button>
-                      </form>
-                    </div>
-                  </div>
-                </div>
+                <UserSettings />
               )}
             </motion.div>
           </div>
