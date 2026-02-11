@@ -39,14 +39,14 @@ It is built to reflect real-world shopping workflows, focusing on performance, u
 
 > Installation
 ```js
-> git clone https://github.com/Uchenna99/Shopper.git
-> cd Shopper
-> npm install
+git clone https://github.com/Uchenna99/Shopper.git
+cd Shopper
+npm install
 ```
 
 > Run Locally
 ```js
-> npm run dev
+npm run dev
 ```
 
 => What This Project Demonstrates
