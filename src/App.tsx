@@ -13,7 +13,7 @@ import NotFound from './components/NotFound'
 // import ShoppingCart from './pages/ShoppingCart'
 import Landing from './components/homepage/Landing'
 import { useAppContext } from './hooks/AppContext'
-import PaymentSuccessful from './components/confirmations/PaymentSuccessful'
+// import PaymentSuccessful from './components/confirmations/PaymentSuccessful'
 import { Toaster } from 'sonner'
 // import Login from './pages/Login'
 // import Signup from './pages/SignUp';
@@ -30,6 +30,7 @@ const Signup = React.lazy(()=> import("./pages/SignUp"));
 const ForgotPassword = React.lazy(()=> import("./pages/ForgotPassword"));
 const VerifyOtp = React.lazy(()=> import("./pages/VerifyOtp"));
 const Account = React.lazy(()=> import("./pages/UserAccount"));
+const PaymentSuccessful = React.lazy(()=> import("./components/confirmations/PaymentSuccessful"));
 
 const MensCategory = React.lazy(()=> import("./components/categories/MensCategory"));
 const WomensCategory = React.lazy(()=> import("./components/categories/WomensCategory"));
@@ -51,40 +52,44 @@ function App() {
     <>
       <Toaster richColors position="top-right" />
 
-      <Routes>
+      <Suspense fallback={<div className='w-full h-screen grid place-items-center'><p>Loading...</p></div>}>
 
-        <Suspense fallback={null}>
+        <Routes>
+
           <Route path='/login' element={isloggedIn? <Navigate to="/account" replace /> : <Login/>} />
           <Route path='/signup' element={isloggedIn? <Navigate to="/account" replace /> : <Signup/>} />
           <Route path='/forgot-password' element={isloggedIn? <Navigate to="/account" replace /> : <ForgotPassword/>} />
           <Route path='/verify-otp' element={isloggedIn? <Navigate to="/account" replace /> : <VerifyOtp/>} />
           <Route path='/account' element={<ProtectedRoute><Account/></ProtectedRoute>} />
-        </Suspense>
 
-        <Route path='/' element={<Landing/>} >
+          <Route path='/' element={<Landing/>} >
 
-          <Route index element={<HomePage/>} />
-          <Route path='/men' element={<MensCategory/>} />
-          <Route path='/women' element={<WomensCategory/>} />
-          <Route path='/children' element={<ChildrensCategory/>} />
-          <Route path='/shoes' element={<ShoesCollection/>} />
-          <Route path='/bags' element={<BagsCollection/>} />
-          <Route path='/accessories' element={<AccessoriesCategory/>} />
-          <Route path=':category/productdetails' element={<ProductDetailsPage/>} />
-          <Route path='/cart' element={<ShoppingCart/>} />
-          <Route path='/buynow/checkout' element={<Checkout/>} />
-          <Route path='/about' element={<About/>} />
-          <Route path='/payment-result' element={<PaymentSuccess/>} />
+            <Route index element={<HomePage/>} />
+            <Route path='men' element={<MensCategory/>} />
+            <Route path='women' element={<WomensCategory/>} />
+            <Route path='children' element={<ChildrensCategory/>} />
+            <Route path='shoes' element={<ShoesCollection/>} />
+            <Route path='bags' element={<BagsCollection/>} />
+            <Route path='accessories' element={<AccessoriesCategory/>} />
+            <Route path=':category/productdetails' element={<ProductDetailsPage/>} />
+            <Route path='cart' element={<ShoppingCart/>} />
+            <Route path='buynow/checkout' element={<Checkout/>} />
+            <Route path='about' element={<About/>} />
+            <Route path='payment-result' element={<PaymentSuccess/>} />
+            
+          </Route>
           
-        </Route>
-        
-        <Route path='*' element={<NotFound />} />
+          <Route path='*' element={<NotFound />} />
 
-      </Routes>
+        </Routes>
+
+      </Suspense>
 
       {
         paymentSuccess &&
-        <PaymentSuccessful/>
+        <Suspense fallback={null}>
+          <PaymentSuccessful/>
+        </Suspense>
       }
 
     </>

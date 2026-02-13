@@ -8,46 +8,55 @@
 @font-face {
     font-family: monts-light;
     src: url(./assets/Fonts/Montserrat-Light.woff2);
+    font-display: swap;
 }
 
 @font-face {
     font-family: monts-regular;
     src: url(./assets/Fonts/Montserrat-Regular.woff2);
+    font-display: swap;
 }
 
 @font-face {
     font-family: monts-medium;
     src: url(./assets/Fonts/Montserrat-Medium.woff2);
+    font-display: swap;
 }
 
 @font-face {
     font-family: monts-semi-bold;
     src: url(./assets/Fonts/Montserrat-SemiBold.woff2);
+    font-display: swap;
 }
 
 @font-face {
     font-family: monts-bold;
     src: url(./assets/Fonts/Montserrat-Bold.woff2);
+    font-display: swap;
 }
 
 @font-face {
     font-family: monts-extra-bold;
     src: url(./assets/Fonts/Montserrat-ExtraBold.woff2);
+    font-display: swap;
 }
 
 @font-face {
     font-family: merienda-medium;
     src: url(./assets/Fonts/Merienda-Medium.woff2);
+    font-display: swap;
 }
 
 @font-face {
     font-family: merienda-semi-bold;
     src: url(./assets/Fonts/Merienda-SemiBold.woff2);
+    font-display: swap;
 }
 
 @font-face {
     font-family: merienda-bold;
     src: url(./assets/Fonts/Merienda-Bold.woff2);
+    font-display: swap;
 }
 
 

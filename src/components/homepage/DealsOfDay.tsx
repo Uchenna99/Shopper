@@ -7,12 +7,42 @@ import { Navigation } from "swiper/modules";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../hooks/AppContext";
+import { useEffect } from "react";
+import type { AxiosResponse } from "axios";
+import { fetchWithRetry } from "../../utils/FetchWithRetry";
+import { HOST } from "../../utils/Host";
+import { toast } from "sonner";
 
 
 const DealsOfDay = () => {
     const navigate = useNavigate();
-    const {loadingProducts, allProducts} = useAppContext();
+    const {loadingProducts, setLoadingProducts, allProducts, setAllProducts} = useAppContext();
     const deals = getRandomItems(allProducts, 7);
+
+    useEffect(()=>{
+        const fetchProducts = async()=>{
+            setLoadingProducts(true);
+            try {
+                const response: AxiosResponse = await fetchWithRetry(
+                    {
+                    method: "GET",
+                    url: `${HOST}/api/v1/products/all-products`,
+                    },
+                    5, // retries
+                    2000 // delay
+                );
+                setAllProducts(response.data);
+                setLoadingProducts(false);
+            } catch (error: any) {
+                toast.error(error?.response?.data?.message || "Network error, please refresh page");
+            } finally {
+            };
+        };
+
+        requestIdleCallback(()=>{
+            fetchProducts();
+        })
+    },[]);
 
   return (
     <>

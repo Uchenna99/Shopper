@@ -145,27 +145,7 @@ import { apiRequest } from "../lib/api";
       verifyToken();
     }, []);
 
-    useEffect(()=>{
-        const fetchProducts = async()=>{
-          setLoadingProducts(true);
-            try {
-                const response: AxiosResponse = await fetchWithRetry(
-                    {
-                    method: "GET",
-                    url: `${HOST}/api/v1/products/all-products`,
-                    },
-                    5, // retries
-                    2000 // delay
-                );
-                setAllProducts(response.data);
-                setLoadingProducts(false);
-            } catch (error: any) {
-                toast.error(error?.response?.data?.message || "Network error, please refresh page");
-            } finally {
-            };
-        };
-        fetchProducts();
-    },[]);
+    
 
 
     const addToCart = async (newItem: DB_CartItem): Promise<DB_CartItem[]> => {

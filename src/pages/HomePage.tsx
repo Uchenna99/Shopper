@@ -1,6 +1,6 @@
 // import CardsSlide from "../components/CardsSlide";
-import CashBack from "../components/homepage/CashBack"
 // import DealsOfDay from "../components/homepage/DealsOfDay"
+import CashBack from "../components/homepage/CashBack"
 import Hero from "../components/homepage/Hero"
 import TopCategories from "../components/homepage/TopCategories"
 import NavigationBar from "../components/navbar/NavigationBar";
