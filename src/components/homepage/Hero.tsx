@@ -11,7 +11,7 @@ const Hero = () => {
   const heroImages = [
     "https://res.cloudinary.com/df6xz7bqp/image/upload/v1758227704/Adobe_Express_-_file_1_-min_zgpbdj.png",
     "https://res.cloudinary.com/df6xz7bqp/image/upload/v1758218900/Remove_background_project-min_stzmq9.png",
-    "https://res.cloudinary.com/df6xz7bqp/image/upload/v1758217872/Remove_background_project_2_-min_yfahkp.png"
+    "https://res.cloudinary.com/df6xz7bqp/image/upload/v1771016965/Remove_background_project_2_-min_yfahkp_zbbsii.png"
   ]
 
   return (
@@ -56,8 +56,8 @@ const Hero = () => {
                         src={img}
                         alt="Hero slide"
                         className="w-full h-full object-cover"
-                        fetchPriority={index === 0 ? "high" : "auto"}
-                        loading={index === 0 ? "eager" : "lazy"}
+                        fetchPriority="high"
+                        loading="eager"
                       />
                       <div className="absolute inset-0 bg-black/40 md:hidden"></div>
                     </div>

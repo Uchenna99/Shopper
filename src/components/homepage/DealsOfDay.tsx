@@ -7,46 +7,49 @@ import { Navigation } from "swiper/modules";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../hooks/AppContext";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import type { AxiosResponse } from "axios";
 import { fetchWithRetry } from "../../utils/FetchWithRetry";
 import { HOST } from "../../utils/Host";
 import { toast } from "sonner";
+import { useInView } from "framer-motion";
 
 
 const DealsOfDay = () => {
     const navigate = useNavigate();
     const {loadingProducts, setLoadingProducts, allProducts, setAllProducts} = useAppContext();
     const deals = getRandomItems(allProducts, 7);
+    const slideRef = useRef(null);
+    const slideInView = useInView(slideRef, {amount:0.1, once:true});
+
+    const fetchProducts = async()=>{
+        setLoadingProducts(true);
+        try {
+            const response: AxiosResponse = await fetchWithRetry(
+                {
+                method: "GET",
+                url: `${HOST}/api/v1/products/all-products`,
+                },
+                5, // retries
+                2000 // delay
+            );
+            setAllProducts(response.data);
+            setLoadingProducts(false);
+        } catch (error: any) {
+            toast.error(error?.response?.data?.message || "Network error, please refresh page");
+        } finally {
+        };
+    };
 
     useEffect(()=>{
-        const fetchProducts = async()=>{
-            setLoadingProducts(true);
-            try {
-                const response: AxiosResponse = await fetchWithRetry(
-                    {
-                    method: "GET",
-                    url: `${HOST}/api/v1/products/all-products`,
-                    },
-                    5, // retries
-                    2000 // delay
-                );
-                setAllProducts(response.data);
-                setLoadingProducts(false);
-            } catch (error: any) {
-                toast.error(error?.response?.data?.message || "Network error, please refresh page");
-            } finally {
-            };
-        };
-
-        requestIdleCallback(()=>{
+        if(slideInView && allProducts.length === 0) {
             fetchProducts();
-        })
-    },[]);
+        }
+    },[slideInView]);
 
   return (
     <>
-        <div className="w-full flex justify-center">
+        <div className="w-full flex justify-center" ref={slideRef}>
             <div className="w-[1300px] max-w-full px-4 sm:px-5 py-20 flex flex-col gap-14">
 
                 <h1 className="text-black-text text-2xl sm:text-3xl font-merienda-bold">
@@ -99,11 +102,13 @@ const DealsOfDay = () => {
                         rounded-full z-20 flex items-center justify-center transition-all duration-300 cursor-pointer ring-1 ring-black/20
                         hover:ring-orange-400 hover:text-orange-400 active:ring-orange-400 active:text-orange-400">
                         <ChevronLeft size={20}/>
+                        <p className="hidden">Prev</p>
                     </button>
                     <button className="swiper-button-next-custom absolute right-0 -top-11 bg-white text-black-text w-9 h-9 
                         rounded-full z-20 flex items-center justify-center transition-all duration-300 cursor-pointer ring-1 ring-black/20
                         hover:ring-orange-400 hover:text-orange-400 active:ring-orange-400 active:text-orange-400">
                         <ChevronRight size={20}/>
+                        <p className="hidden">Next</p>
                     </button>
                 </div>
 

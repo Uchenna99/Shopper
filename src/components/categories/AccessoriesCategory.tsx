@@ -72,6 +72,8 @@ const AccessoriesCategory = () => {
                 <motion.img
                   initial={{opacity:0, x:60, y:200}} animate={{opacity:1, x:0, y:0}} 
                   transition={{duration:0.4, delay:0.2, ease:'easeOut'}} 
+                  fetchPriority="high"
+                  loading="eager"
                   onLoad={()=> setIsLoading(false)}
                   src="https://res.cloudinary.com/df6xz7bqp/image/upload/v1758408193/6421-removebg-preview-min_thkuvq.png" 
                   alt="young man" 

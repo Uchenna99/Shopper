@@ -47,7 +47,7 @@ const CardsSlide = ({ title, customClass }:Props) => {
     };
 
     useEffect(()=>{
-        if(slideInView) {
+        if(slideInView && allProducts.length === 0) {
             fetchProducts();
         }
     },[slideInView]);
