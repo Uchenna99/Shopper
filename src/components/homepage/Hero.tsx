@@ -3,16 +3,15 @@ import { useScreenHeight } from "../../hooks/HeightQuery";
 import HeroButton from "../buttons/HeroButton";
 import { Autoplay, EffectFade, Pagination } from "swiper/modules";
 import "swiper/css";
-import "swiper/swiper-bundle.css";    
+import "swiper/swiper-bundle.css";
+import slide1 from "../../assets/Images/slide1.png";
+import slide2 from "../../assets/Images/slide2.png";
+import slide3 from "../../assets/Images/slide3.png";
 
 
 const Hero = () => {
   const smallHeigth = useScreenHeight(500);
-  const heroImages = [
-    "https://res.cloudinary.com/df6xz7bqp/image/upload/v1758227704/Adobe_Express_-_file_1_-min_zgpbdj.png",
-    "https://res.cloudinary.com/df6xz7bqp/image/upload/v1758218900/Remove_background_project-min_stzmq9.png",
-    "https://res.cloudinary.com/df6xz7bqp/image/upload/v1771016965/Remove_background_project_2_-min_yfahkp_zbbsii.png"
-  ]
+  const heroImages = [slide1, slide2, slide3];
 
   return (
     <div className={`w-full bg-orange-500 flex justify-center
@@ -56,8 +55,8 @@ const Hero = () => {
                         src={img}
                         alt="Hero slide"
                         className="w-full h-full object-cover"
-                        fetchPriority="high"
-                        loading="eager"
+                        fetchPriority={index === 0? 'high':'auto'}
+                        loading={index === 0? 'eager':'lazy'}
                       />
                       <div className="absolute inset-0 bg-black/40 md:hidden"></div>
                     </div>
