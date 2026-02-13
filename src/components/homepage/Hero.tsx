@@ -4,9 +4,9 @@ import HeroButton from "../buttons/HeroButton";
 import { Autoplay, EffectFade, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/swiper-bundle.css";
-import slide1 from "../../assets/Images/slide1.png";
-import slide2 from "../../assets/Images/slide2.png";
-import slide3 from "../../assets/Images/slide3.png";
+import slide1 from "../../assets/Images/slide1.webp";
+import slide2 from "../../assets/Images/slide2.webp";
+import slide3 from "../../assets/Images/slide3.webp";
 
 
 const Hero = () => {
