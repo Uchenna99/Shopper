@@ -35,11 +35,11 @@ const Hero = () => {
 
             <Swiper
               modules={[Pagination, Autoplay, EffectFade]}
-              autoplay={{delay: 3000}}
+              autoplay={{delay: 5000}}
               slidesPerView={1}
               loop
-              effect="fade"
-              speed={1500}
+              effect="slide"
+              speed={2000}
               pagination={{
                 clickable: true,
                 renderBullet: (_index, className)=> {
@@ -50,11 +50,15 @@ const Hero = () => {
             >
               {
                 heroImages.map((img, index)=>(
-                  <SwiperSlide className="" key={index}>
-                    <div 
-                      className="h-full w-full bg-orange-500 flex bg-[length:200%] xs:bg-[length:140%] md:bg-[length:120%] 
-                      lg:bg-[length:95%] xl:bg-[length:90%] bg-bottom bg-no-repeat" 
-                      style={{backgroundImage:`url(${img})`}}>
+                  <SwiperSlide key={index}>
+                    <div className="relative h-full w-full">
+                      <img
+                        src={img}
+                        alt="Hero slide"
+                        className="w-full h-full object-cover"
+                        fetchPriority={index === 0 ? "high" : "auto"}
+                        loading={index === 0 ? "eager" : "lazy"}
+                      />
                       <div className="absolute inset-0 bg-black/40 md:hidden"></div>
                     </div>
                   </SwiperSlide>

@@ -1,15 +1,18 @@
-import CardsSlide from "../components/CardsSlide"
+// import CardsSlide from "../components/CardsSlide";
 import CashBack from "../components/homepage/CashBack"
-import DealsOfDay from "../components/homepage/DealsOfDay"
+// import DealsOfDay from "../components/homepage/DealsOfDay"
 import Hero from "../components/homepage/Hero"
 import TopCategories from "../components/homepage/TopCategories"
 import NavigationBar from "../components/navbar/NavigationBar";
 import OurServices from "../components/homepage/OurServices"
 import Footer from "../components/Footer"
 import { useLocation, useNavigate } from "react-router-dom"
-import { useEffect } from "react"
+import React, { Suspense, useEffect } from "react"
 import { useAppContext } from "../hooks/AppContext"
-import { getRandomItems } from "../utils/UtilityFunctions"
+import { getRandomItems } from "../utils/UtilityFunctions";
+
+const DealsOfDay = React.lazy(()=> import("../components/homepage/DealsOfDay"));
+const CardsSlide = React.lazy(()=> import("../components/CardsSlide"));
 
 
 const HomePage = () => {
@@ -38,15 +41,19 @@ const HomePage = () => {
 
       <TopCategories/>
 
-      <DealsOfDay/>
+      <Suspense fallback={null}>
+        <DealsOfDay/>
+      </Suspense>
 
       <CashBack/>
 
-      <CardsSlide
-        title="Best Sellers"
-        products={slideCards}
-        customClass="slider2"
-      />
+      <Suspense fallback={null}>
+        <CardsSlide
+          title="Best Sellers"
+          products={slideCards}
+          customClass="slider2"
+        />
+      </Suspense>
 
       <OurServices/>
 
