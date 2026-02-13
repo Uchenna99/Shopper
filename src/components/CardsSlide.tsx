@@ -5,53 +5,57 @@ import "swiper/css/navigation";    // for navigation buttons
 import ProductCard2 from "./ProductCard2";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import type { DB_Product } from "../utils/Types";
 import { useAppContext } from "../hooks/AppContext";
-import { useEffect } from "react";
+import { useInView } from "framer-motion";
+import { useEffect, useRef } from "react";
 import type { AxiosResponse } from "axios";
 import { fetchWithRetry } from "../utils/FetchWithRetry";
 import { HOST } from "../utils/Host";
 import { toast } from "sonner";
+import { getRandomItems } from "../utils/UtilityFunctions";
 
 
 interface Props {
-    products: DB_Product[];
     title: string;
     customClass: string;
 }
 
-const CardsSlide = ({ title, products, customClass }:Props) => {
+const CardsSlide = ({ title, customClass }:Props) => {
     const navigate = useNavigate();
-    const {loadingProducts, setLoadingProducts, setAllProducts} = useAppContext();
+    const {loadingProducts, setLoadingProducts, setAllProducts, allProducts} = useAppContext();
+    const slideRef = useRef(null);
+    const slideInView = useInView(slideRef, {amount:0.1, once:true});
+    const slideCards = getRandomItems(allProducts, 12);
+
+    const fetchProducts = async()=>{
+        setLoadingProducts(true);
+        try {
+            const response: AxiosResponse = await fetchWithRetry(
+                {
+                method: "GET",
+                url: `${HOST}/api/v1/products/all-products`,
+                },
+                5, // retries
+                2000 // delay
+            );
+            setAllProducts(response.data);
+            setLoadingProducts(false);
+        } catch (error: any) {
+            toast.error(error?.response?.data?.message || "Network error, please refresh page");
+        } finally {
+        };
+    };
 
     useEffect(()=>{
-        const fetchProducts = async()=>{
-            setLoadingProducts(true);
-            try {
-                const response: AxiosResponse = await fetchWithRetry(
-                    {
-                    method: "GET",
-                    url: `${HOST}/api/v1/products/all-products`,
-                    },
-                    5, // retries
-                    2000 // delay
-                );
-                setAllProducts(response.data);
-                setLoadingProducts(false);
-            } catch (error: any) {
-                toast.error(error?.response?.data?.message || "Network error, please refresh page");
-            } finally {
-            };
-        };
-
-        requestIdleCallback(()=>{
+        if(slideInView) {
             fetchProducts();
-        })
-    },[]);
+        }
+    },[slideInView]);
+
     
   return (
     <>
-        <div className="w-full flex justify-center">
+        <div className="w-full flex justify-center" ref={slideRef}>
             <div className="w-[1300px] max-w-full px-4 sm:px-5 py-10 flex flex-col gap-14">
 
                 <h1 className="text-black-text text-2xl sm:text-3xl font-merienda-bold">
@@ -74,7 +78,7 @@ const CardsSlide = ({ title, products, customClass }:Props) => {
                         modules={[Navigation]}
                         >
                         {
-                            loadingProducts || products.length ===0?
+                            loadingProducts || slideCards.length ===0?
                             Array.from({ length: 12 }).map((_, index) => (
                                 <SwiperSlide key={index}>
                                 {/* Skeleton Card */}
@@ -86,7 +90,7 @@ const CardsSlide = ({ title, products, customClass }:Props) => {
                                 </SwiperSlide>
                             ))
                             :
-                            products.map((product, index) => (
+                            slideCards.map((product, index) => (
                                 <SwiperSlide key={index}>
                                     <ProductCard2
                                         name={product.name}

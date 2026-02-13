@@ -13,8 +13,6 @@ import { fetchWithRetry } from "../../utils/FetchWithRetry";
 import { HOST } from "../../utils/Host";
 import { toast } from "sonner";
 import LoadingGrid from "../LoadingGrid";
-import { useAppContext } from "../../hooks/AppContext";
-import { getRandomItems } from "../../utils/UtilityFunctions";
 import LoadingHero from "../LoadingHero";
 
 
@@ -22,8 +20,6 @@ const BagsCollection = () => {
     const smallWidth = useScreenWidth(470);
     const [products, setProducts] = useState<DB_Product[] | null>(null);
     const [isLoading, setIsLoading] = useState(true);
-    const { allProducts} = useAppContext();
-    const slideCards = getRandomItems(allProducts, 12);
     const [isFetching, setIsFetching] = useState(true);
     const isReady = !isLoading || !isFetching;
 
@@ -76,6 +72,8 @@ const BagsCollection = () => {
                 <motion.img
                   initial={{opacity:0, x:60, y:200}} animate={{opacity:1, x:0, y:0}} 
                   transition={{duration:0.4, delay:0.2, ease:'easeOut'}} 
+                  fetchPriority="high"
+                  loading="eager"
                   onLoad={()=> setIsLoading(false)}
                   src="https://res.cloudinary.com/df6xz7bqp/image/upload/v1758406641/Adobe_Express_-_file_5_-min_s5vylr.png" 
                   alt="young man" 
@@ -110,7 +108,6 @@ const BagsCollection = () => {
 
           <CardsSlide
             title="Popular this week"
-            products={slideCards}
             customClass="slide1"
           />
 

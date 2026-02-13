@@ -8,8 +8,6 @@ import OurServices from "../components/homepage/OurServices"
 import Footer from "../components/Footer"
 import { useLocation, useNavigate } from "react-router-dom"
 import React, { Suspense, useEffect } from "react"
-import { useAppContext } from "../hooks/AppContext"
-import { getRandomItems } from "../utils/UtilityFunctions";
 
 const DealsOfDay = React.lazy(()=> import("../components/homepage/DealsOfDay"));
 const CardsSlide = React.lazy(()=> import("../components/CardsSlide"));
@@ -18,8 +16,7 @@ const CardsSlide = React.lazy(()=> import("../components/CardsSlide"));
 const HomePage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { allProducts} = useAppContext();
-  const slideCards = getRandomItems(allProducts, 12);
+
 
   useEffect(() => {
     if (location.state?.scrollTo) {
@@ -50,7 +47,6 @@ const HomePage = () => {
       <Suspense fallback={null}>
         <CardsSlide
           title="Best Sellers"
-          products={slideCards}
           customClass="slider2"
         />
       </Suspense>

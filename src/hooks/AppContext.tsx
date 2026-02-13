@@ -145,7 +145,6 @@ import { apiRequest } from "../lib/api";
       verifyToken();
     }, []);
 
-    
 
 
     const addToCart = async (newItem: DB_CartItem): Promise<DB_CartItem[]> => {

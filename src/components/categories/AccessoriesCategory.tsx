@@ -13,8 +13,6 @@ import type { DB_Product } from "../../utils/Types";
 import type { AxiosResponse } from "axios";
 import { fetchWithRetry } from "../../utils/FetchWithRetry";
 import { toast } from "sonner";
-import { useAppContext } from "../../hooks/AppContext";
-import { getRandomItems } from "../../utils/UtilityFunctions";
 import LoadingHero from "../LoadingHero";
 
 
@@ -22,8 +20,6 @@ const AccessoriesCategory = () => {
     const smallWidth = useScreenWidth(470);
     const [products, setProducts] = useState<DB_Product[] | null>(null);
     const [isLoading, setIsLoading] = useState(true);
-    const { allProducts} = useAppContext();
-    const slideCards = getRandomItems(allProducts, 12);
     const [isFetching, setIsFetching] = useState(true);
     const isReady = !isLoading || !isFetching;
 
@@ -110,7 +106,6 @@ const AccessoriesCategory = () => {
 
           <CardsSlide
             title="Popular this week"
-            products={slideCards}
             customClass="slide1"
           />
 

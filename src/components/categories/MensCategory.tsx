@@ -1,4 +1,3 @@
-import { useAppContext } from "../../hooks/AppContext";
 import HeroButton from "../buttons/HeroButton";
 import CardGrid from "../CardGrid";
 import CardsSlide from "../CardsSlide";
@@ -14,14 +13,11 @@ import { HOST } from "../../utils/Host";
 import type { DB_Product } from "../../utils/Types";
 import { toast } from "sonner";
 import LoadingGrid from "../LoadingGrid";
-import { getRandomItems } from "../../utils/UtilityFunctions";
 import LoadingHero from "../LoadingHero";
 
 
 
 const MensCategory = () => {
-    const { allProducts} = useAppContext();
-    const slideCards = getRandomItems(allProducts, 12);
     const smallWidth = useScreenWidth(450);
     const [products, setProducts] = useState<DB_Product[] | null>(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -78,6 +74,8 @@ const MensCategory = () => {
                 <motion.img
                   initial={{opacity:0, x:60, y:200}} animate={{opacity:1, x:0, y:0, rotateY:180}} 
                   transition={{duration:0.4, delay:0.2, ease:'easeOut'}} 
+                  fetchPriority="high"
+                  loading="eager"
                   onLoad={()=> setIsLoading(false)}
                   src="https://res.cloudinary.com/df6xz7bqp/image/upload/v1758235659/Adobe_Express_-_file_2_-min_gvfg95.png" 
                   alt="young man" 
@@ -114,7 +112,6 @@ const MensCategory = () => {
 
           <CardsSlide
             title="Popular this week"
-            products={slideCards}
             customClass="slide1"
           />
 
