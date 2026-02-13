@@ -19,9 +19,9 @@ const ServicesCard = ({ title, text, image }:Props) => {
         initial={{opacity:0, y:60}} animate={inView? {opacity:1, y:0}:{}} transition={{duration:0.4, ease:'easeInOut'}}>
 
         <div className="w-full h-2/5 flex flex-col gap-3 p-10 sm:p-5 lg:p-10">
-            <h4 className="text-black-text text-xl font-monts-bold">
+            <h2 className="text-black-text text-xl font-monts-bold">
                 {title}
-            </h4>
+            </h2>
             <p className="text-black-text font-monts-medium">
                 {text}
             </p>

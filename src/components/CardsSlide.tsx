@@ -106,12 +106,14 @@ const CardsSlide = ({ title, customClass }:Props) => {
 
                     <button className={`${customClass}-prev-custom absolute left-0 -top-11 bg-white text-black-text w-9 h-9 
                         rounded-full z-20 flex items-center justify-center transition-all duration-300 cursor-pointer ring-1 ring-black/20
-                        hover:ring-orange-400 hover:text-orange-400 active:ring-orange-400 active:text-orange-400`}>
+                        hover:ring-orange-400 hover:text-orange-400 active:ring-orange-400 active:text-orange-400`}
+                        aria-label="Previous Product">
                         <ChevronLeft size={20}/>
                     </button>
                     <button className={`${customClass}-next-custom absolute right-0 -top-11 bg-white text-black-text w-9 h-9 
                         rounded-full z-20 flex items-center justify-center transition-all duration-300 cursor-pointer ring-1 ring-black/20
-                        hover:ring-orange-400 hover:text-orange-400 active:ring-orange-400 active:text-orange-400`}>
+                        hover:ring-orange-400 hover:text-orange-400 active:ring-orange-400 active:text-orange-400`}
+                        aria-label="Next Product">
                         <ChevronRight size={20}/>
                     </button>
                 </div>
